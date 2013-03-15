@@ -19,12 +19,16 @@
 
     <xsl:output method="html" encoding="UTF-8" indent="yes" />
     <!--  use graphics in admonitions -->
-   	<xsl:param name="admon.graphics" select="1" />
-  	<xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path" />images/admons/</xsl:param>
-<!--   	<xsl:param name="admon.graphics.extension" select="'.png'"/>		 -->
-  	<xsl:template match="*" mode="admon.graphic.width">
-  		<xsl:text>22pt</xsl:text>
-  	</xsl:template>
+  <xsl:param name="admon.graphics" select="1" />
+  <xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path" />images/admons/</xsl:param>
+  <xsl:param name="admon.graphics.extension" select="'.png'"/>
+  <xsl:attribute-set name="graphical.admonition.properties">
+    <xsl:attribute name="background-color">#317947</xsl:attribute>
+    <xsl:attribute name="color">white</xsl:attribute>
+  </xsl:attribute-set>	
+  <xsl:template match="*" mode="admon.graphic.width">
+  	<xsl:text>22pt</xsl:text>
+  </xsl:template>
   
     <xsl:param name="callout.graphics.path" select="'images/callouts/'" />
     <!--  chapters will be numbered -->

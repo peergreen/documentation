@@ -99,7 +99,9 @@
   <xsl:param name="ignore.image.scaling">1</xsl:param>
   <!-- for getting bookmarks in pdf document -->
   <xsl:param name="fop1.extensions" select="1" />
-
+  
+  <!-- Body font -->
+  <xsl:param name="body.font.family">Helvetica</xsl:param>
 
   <!--###################################################
     Header
@@ -125,7 +127,7 @@
 
     <xsl:variable name="info.version">
         <xsl:if test="//db:info/db:releaseinfo">
-          <xsl:text>OW2 Shelbie (</xsl:text>
+          <xsl:text>Peergreen (</xsl:text>
           <xsl:value-of select="//db:info/db:releaseinfo" />
           <xsl:text>)</xsl:text>
         </xsl:if>
