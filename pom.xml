@@ -1,0 +1,137 @@
+	<?xml version="1.0" encoding="UTF-8"?>
+	<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	  <modelVersion>4.0.0</modelVersion>
+	  <groupId>com.peergreen</groupId>
+	  <artifactId>pg_doc</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+	  <name>pg_doc</name>
+	
+	
+	<properties>
+	   <!-- This value is overridden by the no-draft profile -->
+	   <xsl.draft.mode>yes</xsl.draft.mode>
+	   <guide.name>*-guide.xml</guide.name>
+	 </properties>
+	
+	 <build>
+	   <plugins>
+	     <plugin>
+	       <groupId>com.agilejava.docbkx</groupId>
+	       <artifactId>docbkx-maven-plugin</artifactId>
+	       <version>2.0.9</version>
+	       <executions>
+	         <execution>
+	           <!-- Generate One page documentation (HTML & PDF)-->
+	           <id>single-page</id>
+	           <goals>
+	             <goal>generate-html</goal>
+	             <goal>generate-pdf</goal>
+	           </goals>
+	           <phase>compile</phase>
+	           <configuration>
+	             <chunkedOutput>false</chunkedOutput>
+	             <htmlCustomization>${basedir}/src/docbkx/resources/xsl/html.xsl</htmlCustomization>
+	             <foCustomization>${basedir}/src/docbkx/resources/xsl/fo.xsl</foCustomization>
+	             <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
+	
+	             <postProcess>
+	               <!-- Place the generated files in the site -->
+	               <copy todir="${basedir}/target/site/reference">
+	               <!-- Generated PDF -->
+	                 <fileset dir="${basedir}/target/docbkx">
+	                   <include name="**/*.pdf" />
+	                 </fileset>
+	               </copy>
+	
+	               <copy todir="${basedir}/target/site/reference/html-single">
+	                 <!-- Generated HTML -->
+	                 <fileset dir="${basedir}/target/docbkx/html">
+	                   <include name="**/*.html" />
+	                 </fileset>
+	                 <!-- Images and resources -->
+	                 <fileset dir="${basedir}/src/docbkx/resources">
+	                   <include name="**/*.css" />
+	                   <include name="**/*.png" />
+	                   <include name="**/*.gif" />
+	                   <include name="**/*.jpg" />
+	                 </fileset>
+	               </copy>
+	             </postProcess>
+	           </configuration>
+	         </execution>
+	
+	         <!-- Generate HTML chunks documentation -->
+	         <execution>
+	           <id>multi-page</id>
+	           <goals>
+	             <goal>generate-html</goal>
+	           </goals>
+	           <phase>compile</phase>
+	           <configuration>
+	             <chunkedOutput>true</chunkedOutput>
+	             <htmlCustomization>${basedir}/src/docbkx/resources/xsl/chunk.xsl</htmlCustomization>
+	             <targetDirectory>${basedir}/target/docbkx/chunk</targetDirectory>
+	
+	             <postProcess>
+	               <!-- Place the generated files in the site -->
+	               <copy todir="${basedir}/target/site/reference/html">
+	                 <!-- Generated HTML Chunks -->
+	                 <fileset dir="${basedir}/target/docbkx/chunk">
+	                   <include name="**/*.html" />
+	                 </fileset>
+	                 <!-- Images and resources -->
+	                 <fileset dir="${basedir}/src/docbkx/resources">
+	                   <include name="**/*.css" />
+	                   <include name="**/*.png" />
+	                   <include name="**/*.gif" />
+	                   <include name="**/*.jpg" />
+	                 </fileset>
+	               </copy>
+	             </postProcess>
+	           </configuration>
+	         </execution>
+	       </executions>
+	       <dependencies>
+	         <dependency>
+	           <groupId>org.docbook</groupId>
+	           <artifactId>docbook-xml</artifactId>
+	           <version>4.4</version>
+	           <scope>runtime</scope>
+	         </dependency>
+	       </dependencies>
+	
+	       <!-- Shared configuration -->
+	       <configuration>
+	         <includes>${guide.name}</includes>
+	         <htmlStylesheet>css/common.css</htmlStylesheet>
+	         <draftMode>${xsl.draft.mode}</draftMode>
+	         <xincludeSupported>true</xincludeSupported>
+	         <!-- use extensions -->
+	         <useExtensions>1</useExtensions>
+	         <highlightSource>1</highlightSource>
+	         <highlightDefaultLanguage></highlightDefaultLanguage>
+	         <!-- callouts -->
+	          <calloutsExtension>1</calloutsExtension>
+	        </configuration>
+	      </plugin>
+	    </plugins>
+	  </build>
+	
+	  <profiles>
+	    <profile>
+	      <id>no-draft</id>
+	      <properties>
+	        <xsl.draft.mode>no</xsl.draft.mode>
+	      </properties>
+	    </profile>
+	    <profile>
+	      <id>user-guide</id>
+	      <properties>
+	        <guide.name>user-guide.xml</guide.name>
+	      </properties>
+	    </profile>
+	  </profiles>
+	</project>
+</xml>
