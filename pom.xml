@@ -105,7 +105,7 @@
 	       <!-- Shared configuration -->
 	       <configuration>
 	         <includes>${guide.name}</includes>
-	         <htmlStylesheet>css/common.css</htmlStylesheet>
+	         <htmlStylesheet>${basedir}/src/docbkx/resources/css/common.css</htmlStylesheet>
 	         <draftMode>${xsl.draft.mode}</draftMode>
 	         <xincludeSupported>true</xincludeSupported>
 	         <!-- use extensions -->

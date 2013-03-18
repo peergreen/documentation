@@ -102,10 +102,18 @@
   
   <!-- Body font -->
   <xsl:param name="body.font.family">Helvetica</xsl:param>
+	
+  <!--==============================================-->
+  <!--        		Table of Contents				-->	
+  <!--==============================================-->
 
-  <!--###################################################
-    Header
-    ################################################### -->
+    <xsl:param name="generate.toc">
+        book      toc,title
+    </xsl:param>
+    
+  <!--==============================================-->
+  <!--    	  			Header						-->
+  <!--==============================================-->
 
   <!-- More space in the center header for long text -->
   <xsl:attribute-set name="header.content.properties">
@@ -203,8 +211,7 @@
   <xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path" />images/admons/</xsl:param>
   <xsl:param name="admon.graphics.extension" select="'.png'"/>
   <xsl:attribute-set name="graphical.admonition.properties">
-    <xsl:attribute name="background-color">#317947</xsl:attribute>
-    <xsl:attribute name="color">white</xsl:attribute>
+    <xsl:attribute name="background-color">#99FF99</xsl:attribute>
   </xsl:attribute-set>	
   <xsl:template match="*" mode="admon.graphic.width">
   	<xsl:text>22pt</xsl:text>
@@ -228,6 +235,16 @@
   <xsl:param name="toc.section.depth">2</xsl:param>
   <!--  chapters will be numbered -->
   <xsl:param name="chapter.autolabel" select="1" />
+  <!-- Remove "Chapter" from the Chapter titles... -->
+  <!--  <xsl:param name="local.l10n.xml" select="document('')"/>
+  <l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+   	<l:l10n language="en">
+        <l:context name="title-numbered">
+            <l:template name="chapter" text="%n.&#160;%t"/>
+        	<l:template name="section" text="%n&#160;%t"/>
+    	</l:context>
+  	</l:l10n>
+  </l:i18n>-->
   <!--  sections will be numbered -->
   <xsl:param name="section.autolabel" select="1" />
   <!--  section numbers will include the chapter number -->

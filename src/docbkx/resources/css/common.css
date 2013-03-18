@@ -50,9 +50,9 @@ h1 {
   line-height: 27px;
   border-width: 1px;
   border-style: solid;
-  border-color: #336699;
-  background-color: #E0ECF8;
-  color: #003399;
+  border-color: #006600;
+  background-color: #A9FF9E;
+  color: #006600;
   margin-top: 20px;
   padding: 20px 0px 20px 50px;
   font-size: 1.6em;
@@ -62,22 +62,22 @@ h2 {
   line-height: 27px;
   font-weight: normal;
   font-size: 1.2em;
-  border-color: #336699;
+  border-color: #006600;
   border-width: 1px 0px 1px 0;
   border-style: solid none solid none;
-  background-color: #E0ECF8;
+  background-color: #A9FF9E;
   padding-left: 5px;
-  color: #3e80a2;
+  color: #006600;
 }
 
 h3, h4{
-  color: #003399;
+  color: #006600;
   font-weight: bold;
   font-size: 1.2em;
 }
 
 h5, h6 {
-  color: #003399;
+  color: #006600;
   font-weight: italic;
   font-size: 1.2em;
 }
