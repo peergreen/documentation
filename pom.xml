@@ -73,7 +73,7 @@
 	             <chunkedOutput>true</chunkedOutput>
 	             <htmlCustomization>${basedir}/src/docbkx/resources/xsl/chunk.xsl</htmlCustomization>
 	             <targetDirectory>${basedir}/target/docbkx/chunk</targetDirectory>
-	
+				 <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
 	             <postProcess>
 	               <!-- Place the generated files in the site -->
 	               <copy todir="${basedir}/target/site/reference/html">

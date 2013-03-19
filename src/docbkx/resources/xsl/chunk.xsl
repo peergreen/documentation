@@ -12,11 +12,15 @@
 
     <!-- Graphics options -->
     <xsl:param name="admon.graphics" select="1" />
-    <xsl:param name="admon.graphics.path" select="'images/admons/'" />
-    <xsl:param name="callout.graphics.path" select="'images/callouts/'" />
+    <xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path" />images/admons/</xsl:param>
+    <xsl:param name="admon.graphics.extension">.png</xsl:param>
+    <xsl:param name="admon.style">
+      <xsl:text>margin-left: 0.5in; margin-right: 0.5in; background-color: 99FF99;</xsl:text>
+    </xsl:param>
+    <xsl:param name="callout.graphics.path"><xsl:value-of select="$img.src.path" />images/callouts/</xsl:param>
     <!-- * enable navigational icons -->
     <xsl:param name="navig.graphics">1</xsl:param>
-    <xsl:param name="navig.graphics.path" select="'images/admons/'" />
+    <xsl:param name="navig.graphics.path"><xsl:value-of select="$img.src.path" />images/admons/</xsl:param>
     <xsl:param name="navig.graphics.extension">.png</xsl:param>
     <xsl:param name="navig.showtitles" select="1" />
 
