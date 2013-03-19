@@ -1,14 +1,14 @@
 @IMPORT url("highlight.css");
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Verdana, Arial, sans-serif;
   font-size: 0.9em;
-  width:1024px;
-  margin:auto;
+  width: 1024px;
+  margin: auto;
 }
 
 table {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Verdana, Arial, sans-serif;
   font-size: 0.9em;
   border: none;
 }
@@ -28,48 +28,50 @@ ul {
 }
 
 a:link {
-  color: #0000CC;
+  color: #003399;
   text-decoration: none;
   font-style: normal;
 }
 
 a:visited {
-  color: #0000CC;
+  color: #888888;
   text-decoration: none;
 }
 
 a:hover {
-   color: red;
+   color: 888888;
    text-decoration: none;
 }
 
 a:active {
-   color: #0000CC;
+   color: #003399;
    text-decoration: none;
 }
 
 h1 {
   line-height: 27px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #006600;
-  background-color: #A9FF9E;
+  /*border-width: 1px;*/
+  /*border-style: solid;*/
+  /*border-color: #006600;*/
+  /*background-color: #DDFFDD;*/
   color: #006600;
   margin-top: 20px;
   padding: 20px 0px 20px 50px;
   font-size: 1.6em;
+  font-weight: bold;
 }
 
 h2 {
   line-height: 27px;
   font-weight: normal;
   font-size: 1.2em;
-  border-color: #006600;
-  border-width: 1px 0px 1px 0;
-  border-style: solid none solid none;
-  background-color: #A9FF9E;
+  /*border-color: #006600;*/
+  /*border-width: 1px 0px 1px 0;*/
+  /*border-style: solid none solid none;*/
+  /*background-color: #DDFFDD;*/
   padding-left: 5px;
   color: #006600;
+  font-weight: bold;
 }
 
 h3, h4{
@@ -134,12 +136,12 @@ table p, dd p, li p {
 
 .programlisting {
   overflow: auto;
-  border: 1px dashed #9999cc;
+  border: 1px solid #9999cc;
 }
 
 .screen {
   overflow: auto;
-  border: 1px dashed #9999cc;
+  border: 1px solid #9999cc;
   width: 75em;
 }
 
