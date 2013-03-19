@@ -140,10 +140,10 @@
 					<xsl:text>images/logo-peergreen.png</xsl:text>
 				  </xsl:attribute>
 				  <xsl:attribute name="height">
-					<xsl:text>15px</xsl:text>
+					<xsl:text>20px</xsl:text>
 				  </xsl:attribute>
 				  <xsl:attribute name="width">
-					<xsl:text>60px</xsl:text>
+					<xsl:text>80px</xsl:text>
 				  </xsl:attribute>
 				  <xsl:attribute name="content-height">
 					<xsl:text>scale-to-fit</xsl:text>
