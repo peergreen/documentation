@@ -14,8 +14,8 @@
 
   <xsl:template name="book.titlepage.recto">
     <fo:block>
-      <fo:table table-layout="fixed" width="150mm">
-        <fo:table-column column-width="150mm" />
+      <fo:table table-layout="fixed" width="175mm">
+        <fo:table-column column-width="175mm" />
         <fo:table-body>
           <fo:table-row height="30mm">
             <fo:table-cell text-align="center" display-align="before">
@@ -121,6 +121,45 @@
       <xsl:value-of select="$body.font.family" />
     </xsl:attribute>
   </xsl:attribute-set>
+  
+  <!--==============================================-->
+  <!--    	  		Custom Header					-->
+  <!--==============================================-->
+
+    <xsl:template name="header.content">	
+        <xsl:param name="pageclass" select="''"/>
+        <xsl:param name="sequence" select="''"/>
+        <xsl:param name="position" select="''"/>
+        <xsl:param name="gentext-key" select="''"/>
+		
+		<xsl:choose>
+			<xsl:when test="$position='left'">
+				<fo:external-graphic>
+				  <xsl:attribute name="src">
+					<xsl:value-of select="$img.src.path" />
+					<xsl:text>images/logo-peergreen.png</xsl:text>
+				  </xsl:attribute>
+				  <xsl:attribute name="height">
+					<xsl:text>15px</xsl:text>
+				  </xsl:attribute>
+				  <xsl:attribute name="width">
+					<xsl:text>60px</xsl:text>
+				  </xsl:attribute>
+				  <xsl:attribute name="content-height">
+					<xsl:text>scale-to-fit</xsl:text>
+				  </xsl:attribute>
+				  <xsl:attribute name="content-width">
+					<xsl:text>scale-to-fit</xsl:text>
+				  </xsl:attribute>
+				</fo:external-graphic>
+			</xsl:when>
+			<xsl:when test="$position='right'">
+				<!-- Insert chapter title -->
+				<xsl:apply-templates select="." mode="object.title.markup"/>
+			</xsl:when>
+		</xsl:choose>
+    </xsl:template>
+
 
   <!--==============================================-->
   <!--               Custom Footer                  -->
@@ -135,7 +174,8 @@
 
     <xsl:variable name="info.version">
         <xsl:if test="//db:info/db:releaseinfo">
-          <xsl:text>Peergreen (</xsl:text>
+          <xsl:value-of select="//db:info/db:productname" />
+		  <xsl:text> (</xsl:text>
           <xsl:value-of select="//db:info/db:releaseinfo" />
           <xsl:text>)</xsl:text>
         </xsl:if>
@@ -183,8 +223,8 @@
   <!-- Space between paper border and content (chaotic stuff, don't touch) -->
   <xsl:param name="page.margin.top">10mm</xsl:param>
   <xsl:param name="page.margin.bottom">15mm</xsl:param>
-  <xsl:param name="page.margin.outer">30mm</xsl:param>
-  <xsl:param name="page.margin.inner">30mm</xsl:param>
+  <xsl:param name="page.margin.outer">18mm</xsl:param>
+  <xsl:param name="page.margin.inner">18mm</xsl:param>
 
   <xsl:param name="body.margin.top">10mm</xsl:param>
   <xsl:param name="body.margin.bottom">15mm</xsl:param>
@@ -211,7 +251,7 @@
   <xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path" />images/admons/</xsl:param>
   <xsl:param name="admon.graphics.extension" select="'.png'"/>
   <xsl:attribute-set name="graphical.admonition.properties">
-    <xsl:attribute name="background-color">#99FF99</xsl:attribute>
+    <xsl:attribute name="background-color">#E6FBE8</xsl:attribute>
   </xsl:attribute-set>	
   <xsl:template match="*" mode="admon.graphic.width">
   	<xsl:text>22pt</xsl:text>

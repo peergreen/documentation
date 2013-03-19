@@ -9,10 +9,9 @@
       xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <title>Peergreen :: User Guide</title>
-
+	<productname>Peergreen</productname>
     <copyright>
       <year>2013</year>
-
     </copyright>
 
     <authorgroup>
