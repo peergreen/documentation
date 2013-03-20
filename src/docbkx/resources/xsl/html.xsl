@@ -6,12 +6,15 @@
                 version='1.0'>
 
     <xsl:import href="urn:docbkx:stylesheet"/>
-    <xsl:import href="highlight.xsl"/>
+    <!--<xsl:import href="highlight.xsl"/>-->
     
     <!--==============================================-->
     <!--                HTML Settings                 -->
     <!--==============================================-->
 
+	<!-- 	Syntax code highlighter path -->
+	<xsl:param name="html.stylesheet"><xsl:value-of select="$img.src.path" />highlighter/prettify.css</xsl:param>
+	
     <!-- These extensions are required for table printing and other stuff -->
     <xsl:param name="tablecolumns.extension">0</xsl:param>
     <xsl:param name="graphicsize.extension">0</xsl:param>
@@ -115,11 +118,33 @@
 			</div>
         </div>
     </xsl:template>
+	
+	<xsl:template match="db:programlisting[@language]" mode="class.value">
+	  <xsl:param name="class" select="local-name(.)"/>
+	  <xsl:variable name="lang" select="concat('lang-', @language, ' ')"/>
+	  <xsl:choose>
+		<xsl:when test="@linenumbering = 'linenums'">
+		  <xsl:value-of select="concat('prettyprint ', $lang, 'linenums ', $class)"/>
+		</xsl:when>
+		<xsl:otherwise>
+		  <xsl:value-of select="concat('prettyprint ', $lang, $class)"/>
+		</xsl:otherwise>
+	  </xsl:choose>
+	</xsl:template>
     
     <xsl:template name="user.footer.content">
-	  <div style="width:100%;background-color:#DDFFDD;border:none;">
+		<xsl:param name="node" select="."/>
+		<script>
+			<xsl:attribute name="src">
+				<xsl:value-of select="$img.src.path" />
+				<xsl:text>highlighter/prettify.js</xsl:text>
+			</xsl:attribute>
+		</script>
+		<script>prettyPrint();</script>
+		
+		<div style="width:100%;background-color:#DDFFDD;border:none;">
 	  		<div style="margin:auto;"><p>Copyright © Peergreen <xsl:value-of select="db:info/db:copyright/db:year" /> All rights reserved.</p></div>
-	  </div>
+		</div>
 	</xsl:template>
 
 </xsl:stylesheet>

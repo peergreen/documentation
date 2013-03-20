@@ -1,4 +1,7 @@
 @IMPORT url("highlight.css");
+@IMPORT url("../highlighter/prettify.css");
+/*@IMPORT url("../highlighter/desert.css");*/
+/*@IMPORT url("../highlighter/sons-of-obsidian.css");*/
 
 body {
   font-family: Verdana, Arial, sans-serif;
@@ -135,8 +138,8 @@ table p, dd p, li p {
 }
 
 .programlisting {
-  overflow: auto;
-  border: 1px solid #9999cc;
+  /* overflow: auto; */
+  /*border: 1px solid #9999cc;*/
 }
 
 .screen {

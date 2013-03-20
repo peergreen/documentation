@@ -292,7 +292,7 @@
   <!-- ProgramListing/Screen has a background color -->
   <xsl:param name="shade.verbatim">1</xsl:param>
   <xsl:attribute-set name="shade.verbatim.style">
-    <xsl:attribute name="background-color">#edf8fd</xsl:attribute>
+    <xsl:attribute name="background-color">#f8f8fc</xsl:attribute>
   </xsl:attribute-set>
   <!-- Reduce size of program listing font and add a border -->
   <xsl:attribute-set name="verbatim.properties">
@@ -301,7 +301,7 @@
     <xsl:attribute name="space-before.maximum">1em</xsl:attribute>
     <xsl:attribute name="font-size">7pt</xsl:attribute>
     <xsl:attribute name="border-width">1px</xsl:attribute>
-    <xsl:attribute name="border-style">dashed</xsl:attribute>
+    <xsl:attribute name="border-style">solid</xsl:attribute>
     <xsl:attribute name="border-color">#9999cc</xsl:attribute>
     <xsl:attribute name="padding-top">0.5em</xsl:attribute>
     <xsl:attribute name="padding-left">0.5em</xsl:attribute>
