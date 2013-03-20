@@ -6,7 +6,7 @@
   <groupId>com.peergreen</groupId>
   <artifactId>pg_doc</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>pg_doc</name>
+  <name>Peergreen Documentation Testing</name>
 
 
   <properties>
