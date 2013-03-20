@@ -84,6 +84,7 @@
 			The Peergreen Server  directories tree contains the following elements :
 		</para>
 		<table frame="all">
+			<title>Directory tree</title>
 			<tgroup cols="2" align="justify" colsep="1" rowsep="1">
 				<colspec colname="c1" colwidth="1*"/>
 				<colspec colname="c2" colwidth="3*"/>
@@ -153,6 +154,7 @@ Scope 'shelbie' (9 commands)
 			The following table describes a few commands:
 		</para>
 		<table frame="all">
+			<title>Commands description</title>
 			<tgroup cols="2" align="justify" colsep="1" rowsep="1">
 				<colspec colname="c1" colwidth="1*"/>
 				<colspec colname="c2" colwidth="3*"/>
