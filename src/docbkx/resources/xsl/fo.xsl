@@ -226,7 +226,7 @@
   <xsl:param name="page.margin.outer">18mm</xsl:param>
   <xsl:param name="page.margin.inner">18mm</xsl:param>
 
-  <xsl:param name="body.margin.top">10mm</xsl:param>
+  <xsl:param name="body.margin.top">15mm</xsl:param>
   <xsl:param name="body.margin.bottom">15mm</xsl:param>
 
   <xsl:param name="region.before.extent">10mm</xsl:param>
@@ -252,6 +252,9 @@
   <xsl:param name="admon.graphics.extension" select="'.png'"/>
   <xsl:attribute-set name="graphical.admonition.properties">
     <xsl:attribute name="background-color">#E6FBE8</xsl:attribute>
+	<xsl:attribute name="border-width">1px</xsl:attribute>
+    <xsl:attribute name="border-style">solid</xsl:attribute>
+    <xsl:attribute name="border-color">#99cc99</xsl:attribute>
   </xsl:attribute-set>	
   <xsl:template match="*" mode="admon.graphic.width">
   	<xsl:text>22pt</xsl:text>
@@ -302,7 +305,7 @@
     <xsl:attribute name="font-size">7pt</xsl:attribute>
     <xsl:attribute name="border-width">1px</xsl:attribute>
     <xsl:attribute name="border-style">solid</xsl:attribute>
-    <xsl:attribute name="border-color">#9999cc</xsl:attribute>
+    <xsl:attribute name="border-color">#99cc99</xsl:attribute>
     <xsl:attribute name="padding-top">0.5em</xsl:attribute>
     <xsl:attribute name="padding-left">0.5em</xsl:attribute>
     <xsl:attribute name="padding-right">0.5em</xsl:attribute>
