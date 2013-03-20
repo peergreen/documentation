@@ -13,7 +13,7 @@
 
     <!-- Graphics options -->
     <xsl:param name="admon.graphics" select="1" />
-    <xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path" />images/admons/</xsl:param>
+    <xsl:param name="admon.graphics.path">images/admons/</xsl:param>
     <xsl:param name="admon.graphics.extension">.png</xsl:param>
 	<xsl:template match="*" mode="admon.graphic.width">
 	  <xsl:text>24pt</xsl:text>
@@ -21,10 +21,10 @@
     <xsl:param name="admon.style">
       <xsl:text>margin-left: 0.5in; margin-right: 0.5in; background-color: DDFFDD;</xsl:text>
     </xsl:param>
-    <xsl:param name="callout.graphics.path"><xsl:value-of select="$img.src.path" />images/callouts/</xsl:param>
+    <xsl:param name="callout.graphics.path">images/callouts/</xsl:param>
     <!-- * enable navigational icons -->
     <xsl:param name="navig.graphics">1</xsl:param>
-    <xsl:param name="navig.graphics.path"><xsl:value-of select="$img.src.path" />images/admons/</xsl:param>
+    <xsl:param name="navig.graphics.path">images/admons/</xsl:param>
     <xsl:param name="navig.graphics.extension">.png</xsl:param>
 	<!-- no other header navigation (prev, next, etc.) -->
 	<xsl:template name="header.navigation"/>
@@ -70,7 +70,6 @@
 				<a style="border:none;" href="http://www.peergreen.com/" title="Peergreen">
 					<img>
 						<xsl:attribute name="src">
-							<xsl:value-of select="$img.src.path" />
 							<xsl:text>images/peergreen-logo-white.png</xsl:text>
 						</xsl:attribute>
 						<xsl:attribute name="border">
@@ -88,7 +87,6 @@
 			<div style="float:right; padding-top:30px">
 				<img>
 					<xsl:attribute name="src">
-						<xsl:value-of select="$img.src.path" />
 						<xsl:text>images/community-documentation.png</xsl:text>
 					</xsl:attribute>
 					<xsl:attribute name="border">
@@ -122,7 +120,6 @@
 		<xsl:param name="node" select="."/>
 		<script>
 			<xsl:attribute name="src">
-				<xsl:value-of select="$img.src.path" />
 				<xsl:text>highlighter/prettify.js</xsl:text>
 			</xsl:attribute>
 		</script>

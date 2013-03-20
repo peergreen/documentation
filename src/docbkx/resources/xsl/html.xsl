@@ -6,14 +6,10 @@
                 version='1.0'>
 
     <xsl:import href="urn:docbkx:stylesheet"/>
-    <!--<xsl:import href="highlight.xsl"/>-->
     
     <!--==============================================-->
     <!--                HTML Settings                 -->
     <!--==============================================-->
-
-	<!-- 	Syntax code highlighter path -->
-	<xsl:param name="html.stylesheet"><xsl:value-of select="$img.src.path" />highlighter/prettify.css</xsl:param>
 	
     <!-- These extensions are required for table printing and other stuff -->
     <xsl:param name="tablecolumns.extension">0</xsl:param>
@@ -24,7 +20,7 @@
     
     <!--  use graphics in admonitions -->
 	<xsl:param name="admon.graphics" select="1" />
-	<xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path" />images/admons/</xsl:param>
+	<xsl:param name="admon.graphics.path">images/admons/</xsl:param>
 	<xsl:param name="admon.graphics.extension">.png</xsl:param>
 	<xsl:template match="note" mode="admon.graphic.width">
 	  <xsl:text>24pt</xsl:text>
@@ -84,7 +80,6 @@
 				<a style="border:none;" href="http://www.peergreen.com/" title="Peergreen">
 					<img>
 						<xsl:attribute name="src">
-							<xsl:value-of select="$img.src.path" />
 							<xsl:text>images/peergreen-logo-white.png</xsl:text>
 						</xsl:attribute>
 						<xsl:attribute name="border">
@@ -102,7 +97,6 @@
 			<div style="float:right; padding-top:30px">
 				<img>
 					<xsl:attribute name="src">
-						<xsl:value-of select="$img.src.path" />
 						<xsl:text>images/community-documentation.png</xsl:text>
 					</xsl:attribute>
 					<xsl:attribute name="border">
@@ -136,7 +130,6 @@
 		<xsl:param name="node" select="."/>
 		<script>
 			<xsl:attribute name="src">
-				<xsl:value-of select="$img.src.path" />
 				<xsl:text>highlighter/prettify.js</xsl:text>
 			</xsl:attribute>
 		</script>
