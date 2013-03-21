@@ -249,8 +249,7 @@
 
   <!--  use graphics in admonitions -->
   <xsl:param name="admon.graphics" select="1"/>
-  <xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path"/>images/admons/
-  </xsl:param>
+  <xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path"/>images/admons/</xsl:param>
   <xsl:param name="admon.graphics.extension" select="'.png'"/>
   <xsl:attribute-set name="graphical.admonition.properties">
     <xsl:attribute name="background-color">#E6FBE8</xsl:attribute>
@@ -272,8 +271,7 @@
   </xsl:attribute-set>
 
   <!-- Fix the value, otherwise an HTTP URL was provided by default -->
-  <xsl:param name="draft.watermark.image"><xsl:value-of select="$img.src.path"/>images/admons/draft.png
-  </xsl:param>
+  <xsl:param name="draft.watermark.image"><xsl:value-of select="$img.src.path"/>images/admons/draft.png</xsl:param>
 
   <!-- don't use graphics for callout -->
   <xsl:param name="callout.graphics" select="0"/>
