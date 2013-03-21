@@ -11,139 +11,186 @@
 
   <section>
     <title>What is peergreen</title>
-	
-	<para><tip>
-          <para>As shown in the example, it is possible to annotate fields but
-          it is also possible to annotate setters.</para>
-        </tip>
-        <caution>
-          <para>As shown in the example, it is possible to annotate fields but
-          it is also possible to annotate setters.</para>
-        </caution>
-        <note>
-          <para>As shown in the example, it is possible to annotate fields but
-          it is also possible to annotate setters.</para>
-        </note>
-        <warning>
-          <para>As shown in the example, it is possible to annotate fields but
-          it is also possible to annotate setters.</para>
-        </warning>
-        <important>
-          <para>As shown in the example, it is possible to annotate fields but
-          it is also possible to annotate setters.</para>
-        </important>
+
+    <para>
+      <tip>
+        <para>As shown in the example, it is possible to annotate fields but
+          it is also possible to annotate setters.
         </para>
-	
-	
-	
+      </tip>
+      <caution>
+        <para>As shown in the example, it is possible to annotate fields but
+          it is also possible to annotate setters.
+        </para>
+      </caution>
+      <note>
+        <para>As shown in the example, it is possible to annotate fields but
+          it is also possible to annotate setters.
+        </para>
+      </note>
+      <warning>
+        <para>As shown in the example, it is possible to annotate fields but
+          it is also possible to annotate setters.
+        </para>
+      </warning>
+      <important>
+        <para>As shown in the example, it is possible to annotate fields but
+          it is also possible to annotate setters.
+        </para>
+      </important>
+    </para>
+
+    <para>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../images/community-documentation.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+          <phrase>The Eiffel Tower</phrase>
+        </textobject>
+        <caption>
+          <para>Designed by Gustave Eiffel in 1889, The Eiffel Tower is one of the
+            most widely recognized buildings in the world.
+          </para>
+        </caption>
+      </mediaobject>
+    </para>
+
+
     <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim
-     lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
-      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet, 
-      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet 
-      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus 
-      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit 
-      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc 
-      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna, 
-      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet, 
-      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet. 
-      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus 
-      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet 
-      tincidunt sit amet, laoreet eu massa.</para>
-      
-      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim
-     lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
-      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet, 
-      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet 
-      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus 
-      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit 
-      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc 
-      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna, 
-      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet, 
-      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet. 
-      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus 
-      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet 
-      tincidunt sit amet, laoreet eu massa.</para>
-      
-      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim
-     lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
-      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet, 
-      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet 
-      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus 
-      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit 
-      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc 
-      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna, 
-      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet, 
-      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet. 
-      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus 
-      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet 
-      tincidunt sit amet, laoreet eu massa.</para>
-      
-      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim
-     lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
-      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet, 
-      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet 
-      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus 
-      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit 
-      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc 
-      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna, 
-      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet, 
-      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet. 
-      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus 
-      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet 
-      tincidunt sit amet, laoreet eu massa.</para>
-      
-      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim
-     lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
-      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet, 
-      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet 
-      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus 
-      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit 
-      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc 
-      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna, 
-      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet, 
-      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet. 
-      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus 
-      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet 
-      tincidunt sit amet, laoreet eu massa.</para>
+      lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
+      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet,
+      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet
+      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus
+      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit
+      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc
+      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna,
+      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet.
+      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus
+      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet
+      tincidunt sit amet, laoreet eu massa.
+    </para>
+
+    <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim
+      lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
+      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet,
+      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet
+      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus
+      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit
+      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc
+      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna,
+      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet.
+      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus
+      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet
+      tincidunt sit amet, laoreet eu massa.
+    </para>
+
+    <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim
+      lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
+      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet,
+      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet
+      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus
+      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit
+      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc
+      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna,
+      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet.
+      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus
+      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet
+      tincidunt sit amet, laoreet eu massa.
+    </para>
+
+    <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim
+      lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
+      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet,
+      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet
+      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus
+      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit
+      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc
+      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna,
+      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet.
+      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus
+      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet
+      tincidunt sit amet, laoreet eu massa.
+    </para>
+
+    <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim
+      lorem sit amet mi scelerisque eget scelerisque nibh pretium. Aenean quis dolor
+      purus, eget bibendum tellus. Nam quam massa, dapibus vitae sodales sit amet,
+      mollis eu dui. Pellentesque sit amet ipsum massa. Aenean justo magna, laoreet
+      nec laoreet sit amet, venenatis in tellus. Proin convallis nisi vel purus
+      venenatis eget imperdiet nulla euismod. Curabitur non quam nibh, sed hendrerit
+      felis. Quisque eget mi vitae quam aliquet ornare et sodales libero. Nunc
+      fringilla congue libero vel volutpat. Nullam at nisl tortor. Nullam est urna,
+      adipiscing non sodales vel, pretium et diam. Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit. Aliquam sodales mauris nec ipsum lacinia imperdiet.
+      Morbi pharetra malesuada nisi, eget convallis felis feugiat et. Ut blandit luctus
+      augue, sit amet fermentum quam iaculis nec. Aenean nibh ligula, cursus sit amet
+      tincidunt sit amet, laoreet eu massa.
+    </para>
 
   </section>
 
   <section>
     <title>Features overview</title>
 
-    <para><itemizedlist>
+    <para>
+      <itemizedlist>
         <listitem>
           <para>Rich line editing including tab-completion, persistent history
-          and user input masking (<link
-          xlink:href="http://jline.sourceforge.net/">Jline</link>).</para>
+            and user input masking (<link
+                xlink:href="http://jline.sourceforge.net/">Jline</link>).
+          </para>
         </listitem>
 
         <listitem>
-          <para>Remote access using an embedded <acronym>SSH2</acronym> server
-          <link
-          xlink:href="http://www.lag.net/jaramiko/">(Jaramiko)</link></para>
+          <para>Remote access using an embedded
+            <acronym>SSH2</acronym>
+            server
+            <link
+                xlink:href="http://www.lag.net/jaramiko/">(Jaramiko)
+            </link>
+          </para>
         </listitem>
 
         <listitem>
-          <para>Annotation-based command line parsing <link
-          xlink:href="https://args4j.dev.java.net/">(Args4j)</link></para>
+          <para>Annotation-based command line parsing
+            <link
+                xlink:href="https://args4j.dev.java.net/">(Args4j)
+            </link>
+          </para>
         </listitem>
 
         <listitem>
-          <para>Scripting support using the powerful <link
-          xlink:href="http://groovy.codehaus.org/">Groovy</link>
-          language</para>
+          <para>Scripting support using the powerful
+            <link
+                xlink:href="http://groovy.codehaus.org/">Groovy
+            </link>
+            language
+          </para>
         </listitem>
 
         <listitem>
-          <para><acronym>ANSI</acronym> text coloration and decoration
-          support</para>
+          <para>
+            <acronym>ANSI</acronym>
+            text coloration and decoration
+            support
+          </para>
         </listitem>
 
         <listitem>
-          <para>Dynamic module discovery using <link
-          xlink:href="http://www.osgi.org/Main/HomePage">OSGi</link> and <link
-          xlink:href="http://felix.apache.org/site/ipojo.html">iPOJO</link></para>
+          <para>Dynamic module discovery using
+            <link
+                xlink:href="http://www.osgi.org/Main/HomePage">OSGi
+            </link>
+            and
+            <link
+                xlink:href="http://felix.apache.org/site/ipojo.html">iPOJO
+            </link>
+          </para>
         </listitem>
 
         <listitem>
@@ -153,49 +200,63 @@
         <listitem>
           <para>Internationalization support</para>
         </listitem>
-      </itemizedlist></para>
+      </itemizedlist>
+    </para>
   </section>
 
   <section>
     <title>Use cases</title>
-	<screen language="java"><code>public interface ICommand {
+    <screen language="java">public interface ICommand {
+      /**
+      * Wow, magnificient comment !
+      */
+      String getName();
 
-        String getName();
+      @Component
+      String getUsage();
+      String getHelp(String param) throws Exception;
 
-        String getUsage();
+      String getDescription();
 
-        String getHelp();
+      Class&lt;? extends ICommandHandler&gt; getCommandHandler();
 
-        String getDescription();
+      Class&lt;? extends ICommandRenderer&gt; getCommandRenderer();
 
-        Class&lt;? extends ICommandHandler&gt; getCommandHandler();
+      Class&lt;?&gt; getOption();
+      }
+    </screen>
 
-        Class&lt;? extends ICommandRenderer&gt; getCommandRenderer();
+    <programlisting language="java">public interface ICommand {
+      /**
+      * Wow, magnificient comment !
+      */
+      String getName();
 
-        Class&lt;?&gt; getOption();
-	}</code></screen>
-	
-	<programlisting language="java">public interface ICommand {
-        String getName();
-        String getUsage();
-        String getHelp();
-        String getDescription();
+      @Component
+      String getUsage();
+      String getHelp(String param) throws Exception;
+      String getDescription();
 
-        Class&lt;? extends ICommandHandler&gt; getCommandHandler();
-        Class&lt;? extends ICommandRenderer&gt; getCommandRenderer();
-        Class&lt;?&gt; getOption();
-	}
-	</programlisting >
-	
-	
-	<para>Example :<screen><userinput>java -server</userinput></screen></para>
-	
-	<screen>mvn archetype:generate \
- -DarchetypeGroupId=org.ow2.shelbie \
- -DarchetypeArtifactId=shelbie-archetype-command \
- -DarchetypeVersion=1.0.0-SNAPSHOT \
- -DgroupId=org.ow2.shelbie.examples \
- -DartifactId=shelbie-hello-command</screen>
+      Class&lt;? extends ICommandHandler&gt; getCommandHandler();
+      Class&lt;? extends ICommandRenderer&gt; getCommandRenderer();
+      Class&lt;?&gt; getOption();
+      }
+    </programlisting>
+
+
+    <para>Example :
+      <screen>
+        <userinput>java -server</userinput>
+      </screen>
+    </para>
+
+    <screen>mvn archetype:generate \
+      -DarchetypeGroupId=org.ow2.shelbie \
+      -DarchetypeArtifactId=shelbie-archetype-command \
+      -DarchetypeVersion=1.0.0-SNAPSHOT \
+      -DgroupId=org.ow2.shelbie.examples \
+      -DartifactId=shelbie-hello-command
+    </screen>
     <para></para>
   </section>
 </chapter>
