@@ -13,6 +13,7 @@
     <!-- This value is overridden by the no-draft profile -->
     <xsl.draft.mode>yes</xsl.draft.mode>
     <guide.name>*-guide.xml</guide.name>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <build>
@@ -20,30 +21,21 @@
       <plugin>
         <groupId>com.agilejava.docbkx</groupId>
         <artifactId>docbkx-maven-plugin</artifactId>
-        <version>2.0.9</version>
+        <version>2.0.14</version>
         <executions>
           <execution>
-            <!-- Generate One page documentation (HTML & PDF)-->
-            <id>single-page</id>
+            <id>html-single-page</id>
             <goals>
               <goal>generate-html</goal>
-              <goal>generate-pdf</goal>
             </goals>
             <phase>compile</phase>
             <configuration>
+              <htmlStylesheet>css/common.css</htmlStylesheet>
               <chunkedOutput>false</chunkedOutput>
               <htmlCustomization>${basedir}/src/docbkx/resources/xsl/html.xsl</htmlCustomization>
-              <foCustomization>${basedir}/src/docbkx/resources/xsl/fo.xsl</foCustomization>
               <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
 
               <postProcess>
-                <!-- Place the generated files in the site -->
-                <copy todir="${basedir}/target/site/reference">
-                  <!-- Generated PDF -->
-                  <fileset dir="${basedir}/target/docbkx">
-                    <include name="**/*.pdf"/>
-                  </fileset>
-                </copy>
 
                 <copy todir="${basedir}/target/site/reference/html-single">
                   <!-- Generated HTML -->
@@ -63,15 +55,39 @@
             </configuration>
           </execution>
 
+          <execution>
+            <id>pdf-single-page</id>
+            <goals>
+              <goal>generate-pdf</goal>
+            </goals>
+            <phase>compile</phase>
+            <configuration>
+              <highlightSource>1</highlightSource>
+              <foCustomization>${basedir}/src/docbkx/resources/xsl/fo.xsl</foCustomization>
+              <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
+
+              <postProcess>
+                <!-- Place the generated files in the site -->
+                <copy todir="${basedir}/target/site/reference">
+                  <!-- Generated PDF -->
+                  <fileset dir="${basedir}/target/docbkx">
+                    <include name="**/*.pdf"/>
+                  </fileset>
+                </copy>
+              </postProcess>
+            </configuration>
+          </execution>
+
           <!-- Generate HTML chunks documentation -->
           <execution>
-            <id>multi-page</id>
+            <id>html-multi-page</id>
             <goals>
               <goal>generate-html</goal>
             </goals>
             <phase>compile</phase>
             <configuration>
               <chunkedOutput>true</chunkedOutput>
+              <htmlStylesheet>../css/common.css</htmlStylesheet>
               <htmlCustomization>${basedir}/src/docbkx/resources/xsl/chunk.xsl</htmlCustomization>
               <targetDirectory>${basedir}/target/docbkx/chunk</targetDirectory>
               <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
@@ -97,23 +113,33 @@
         </executions>
         <dependencies>
           <dependency>
-            <groupId>org.docbook</groupId>
+            <groupId>net.sf.docbook</groupId>
             <artifactId>docbook-xml</artifactId>
-            <version>4.4</version>
-            <scope>runtime</scope>
+            <version>5.0-all</version>
+            <type>zip</type>
+            <classifier>resources</classifier>
+          </dependency>
+          <dependency>
+            <groupId>net.sf.docbook</groupId>
+            <artifactId>docbook-xsl</artifactId>
+            <version>1.78.0</version>
+            <type>zip</type>
+            <classifier>ns-resources</classifier>
+          </dependency>
+          <dependency>
+            <groupId>net.sf.xslthl</groupId>
+            <artifactId>xslthl</artifactId>
+            <version>2.1.0</version>
           </dependency>
         </dependencies>
 
         <!-- Shared configuration -->
         <configuration>
           <includes>${guide.name}</includes>
-          <htmlStylesheet>css/common.css</htmlStylesheet>
           <draftMode>${xsl.draft.mode}</draftMode>
           <xincludeSupported>true</xincludeSupported>
           <!-- use extensions -->
           <useExtensions>1</useExtensions>
-          <highlightSource>1</highlightSource>
-          <highlightDefaultLanguage></highlightDefaultLanguage>
           <!-- callouts -->
           <calloutsExtension>1</calloutsExtension>
         </configuration>
