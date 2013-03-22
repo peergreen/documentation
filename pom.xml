@@ -26,21 +26,22 @@
           <execution>
             <id>html-single-page</id>
             <goals>
-              <goal>generate-html</goal>
+              <goal>generate-xhtml</goal>
             </goals>
             <phase>compile</phase>
             <configuration>
+              <chunkerOutputOmitXmlDeclaration>no</chunkerOutputOmitXmlDeclaration>
+              <makeCleanHtml>yes</makeCleanHtml>
               <htmlStylesheet>css/common.css</htmlStylesheet>
               <chunkedOutput>false</chunkedOutput>
-              <htmlCustomization>${basedir}/src/docbkx/resources/xsl/html.xsl</htmlCustomization>
-              <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
+              <xhtmlCustomization>${basedir}/src/docbkx/resources/xsl/html.xsl</xhtmlCustomization>
 
               <postProcess>
 
-                <copy todir="${basedir}/target/site/reference/html-single">
+                <copy todir="${basedir}/target/site/reference/xhtml-single">
                   <!-- Generated HTML -->
-                  <fileset dir="${basedir}/target/docbkx/html">
-                    <include name="**/*.html"/>
+                  <fileset dir="${basedir}/target/docbkx/xhtml">
+                    <include name="**/*.xhtml"/>
                   </fileset>
                   <!-- Images and resources -->
                   <fileset dir="${basedir}/src/docbkx/resources">
@@ -82,18 +83,18 @@
           <execution>
             <id>html-multi-page</id>
             <goals>
-              <goal>generate-html</goal>
+              <goal>generate-xhtml</goal>
             </goals>
             <phase>compile</phase>
             <configuration>
+              <makeCleanHtml>yes</makeCleanHtml>
               <chunkedOutput>true</chunkedOutput>
               <htmlStylesheet>../css/common.css</htmlStylesheet>
-              <htmlCustomization>${basedir}/src/docbkx/resources/xsl/chunk.xsl</htmlCustomization>
+              <xhtmlCustomization>${basedir}/src/docbkx/resources/xsl/chunk.xsl</xhtmlCustomization>
               <targetDirectory>${basedir}/target/docbkx/chunk</targetDirectory>
-              <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
               <postProcess>
                 <!-- Place the generated files in the site -->
-                <copy todir="${basedir}/target/site/reference/html">
+                <copy todir="${basedir}/target/site/reference/xhtml">
                   <!-- Generated HTML Chunks -->
                   <fileset dir="${basedir}/target/docbkx/chunk">
                     <include name="**/*.html"/>
@@ -142,6 +143,7 @@
           <useExtensions>1</useExtensions>
           <!-- callouts -->
           <calloutsExtension>1</calloutsExtension>
+          <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
         </configuration>
       </plugin>
     </plugins>

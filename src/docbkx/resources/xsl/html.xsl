@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xslthl="http://xslthl.sf.net"
                 xmlns:db="http://docbook.org/ns/docbook"
+                xmlns="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="xslthl"
                 version='1.0'>
 
@@ -15,8 +16,6 @@
   <xsl:param name="tablecolumns.extension">0</xsl:param>
   <xsl:param name="graphicsize.extension">0</xsl:param>
   <xsl:param name="ignore.image.scaling">1</xsl:param>
-
-  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
   <!--  use graphics in admonitions -->
   <xsl:param name="admon.graphics" select="1"/>
@@ -75,41 +74,16 @@
   <!--==============================================-->
 
   <xsl:template name="user.header.content">
-    <div
-        style="background-color:#333333;border:none;height:73px;border:1px solid black;padding-left:50px;padding-right:50px">
+    <div style="background-color:#333333;border:none;height:73px;padding-left:50px;padding-right:50px">
       <div style="float:left">
         <a style="border:none;" href="http://www.peergreen.com/" title="Peergreen">
-          <img>
-            <xsl:attribute name="src">
-              <xsl:text>images/peergreen-logo-white.png</xsl:text>
-            </xsl:attribute>
-            <xsl:attribute name="border">
-              <xsl:text>none</xsl:text>
-            </xsl:attribute>
-            <xsl:attribute name="position">
-              <xsl:text>absolute</xsl:text>
-            </xsl:attribute>
-            <xsl:attribute name="height">
-              <xsl:text>70px</xsl:text>
-            </xsl:attribute>
-          </img>
+          <img src="images/peergreen-logo-white.png"
+               style="border:none;height:70px"/>
         </a>
       </div>
       <div style="float:right; padding-top:30px">
-        <img>
-          <xsl:attribute name="src">
-            <xsl:text>images/community-documentation.png</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="border">
-            <xsl:text>none</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="position">
-            <xsl:text>absolute</xsl:text>
-          </xsl:attribute>
-          <xsl:attribute name="height">
-            <xsl:text>40px</xsl:text>
-          </xsl:attribute>
-        </img>
+        <img src="images/community-documentation.png"
+             style="border:none;height:40px"/>
       </div>
     </div>
   </xsl:template>
@@ -129,11 +103,7 @@
 
   <xsl:template name="user.footer.content">
     <xsl:param name="node" select="."/>
-    <script>
-      <xsl:attribute name="src">
-        <xsl:text>highlighter/prettify.js</xsl:text>
-      </xsl:attribute>
-    </script>
+    <script src="highlighter/prettify.js"/>
     <script>prettyPrint();</script>
 
     <div style="width:100%;background-color:#DDFFDD;border:none;">
