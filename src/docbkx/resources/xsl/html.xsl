@@ -88,7 +88,7 @@
     </div>
   </xsl:template>
 
-  <xsl:template match="db:programlisting[@language]" mode="class.value">
+  <xsl:template match="db:programlisting[@language]|db:screen[@language]" mode="class.value">
     <xsl:param name="class" select="local-name(.)"/>
     <xsl:variable name="lang" select="concat('lang-', @language, ' ')"/>
     <xsl:choose>
