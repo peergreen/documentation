@@ -13,12 +13,6 @@
   <xsl:param name="admon.graphics" select="1"/>
   <xsl:param name="admon.graphics.path">../images/admons/</xsl:param>
   <xsl:param name="admon.graphics.extension">.png</xsl:param>
-  <xsl:template match="*" mode="admon.graphic.width">
-    <xsl:text>24pt</xsl:text>
-  </xsl:template>
-  <xsl:param name="admon.style">
-    <xsl:text>margin-left: 0.5in; margin-right: 0.5in; background-color: DDFFDD;</xsl:text>
-  </xsl:param>
   <xsl:param name="callout.graphics.path">../images/callouts/</xsl:param>
   <!-- * enable navigational icons -->
   <xsl:param name="navig.graphics">1</xsl:param>
