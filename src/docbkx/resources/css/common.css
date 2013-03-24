@@ -1,8 +1,8 @@
 @IMPORT url("highlight.css");
 @IMPORT url("bootstrap.css");
-@IMPORT url("../highlighter/prettify.css");
-/*@IMPORT url("../highlighter/desert.css");*/
-/*@IMPORT url("../highlighter/sons-of-obsidian.css");*/
+@IMPORT url("prettify.css");
+/*@IMPORT url("desert.css");*/
+/*@IMPORT url("sons-of-obsidian.css");*/
 
 body {
 /*   font-family: Verdana, Arial, sans-serif; */

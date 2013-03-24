@@ -87,7 +87,7 @@
 
   <xsl:template name="user.footer.navigation">
     <xsl:param name="node" select="."/>
-    <script src="../highlighter/prettify.js"/>
+    <script src="../js/prettify.js"/>
     <script>prettyPrint();</script>
 
     <div style="width:100%;background-color:#DDFFDD;border:none;">
