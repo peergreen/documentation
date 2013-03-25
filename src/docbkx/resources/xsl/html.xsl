@@ -60,29 +60,9 @@
 
   <xsl:param name="generate.toc">
     book toc
-    chapter toc
   </xsl:param>
 
-  <!--==============================================-->
-  <!--             Headers and Footers			  -->
-  <!--==============================================-->
-
-  <xsl:template name="user.header.content">
-    <div style="background-color:#333333;border:none;height:73px;padding-left:50px;padding-right:50px">
-      <div style="float:left">
-        <a style="border:none;" href="http://www.peergreen.com/" title="Peergreen">
-          <img src="images/peergreen-logo-white.png"
-               style="border:none;height:70px"/>
-        </a>
-      </div>
-      <div style="float:right; padding-top:30px">
-        <img src="images/community-documentation.png"
-             style="border:none;height:40px"/>
-      </div>
-    </div>
-  </xsl:template>
-
-  <xsl:template match="db:programlisting[@language]|db:screen[@language]" mode="class.value">
+ <xsl:template match="db:programlisting[@language]|db:screen[@language]" mode="class.value">
     <xsl:param name="class" select="local-name(.)"/>
     <xsl:variable name="lang" select="concat('lang-', @language, ' ')"/>
     <xsl:choose>
@@ -94,10 +74,65 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+  
+  <!--==============================================-->
+  <!--             Headers and Footers			  	-->
+  <!--==============================================-->
+
+  <xsl:template name="user.head.content">
+  	<link href="css/doc.css" rel="stylesheet" type="text/css"/>
+	<link href="css/bootstrap-responsive.css" rel="stylesheet"/>
+  </xsl:template>
+  
+  <xsl:template name="user.header.content">
+<!--     <div style="background-color:#333333;border:none;height:73px;padding-left:50px;padding-right:50px"> -->
+<!--       <div style="float:left"> -->
+<!--         <a style="border:none;" href="http://www.peergreen.com/" title="Peergreen"> -->
+<!--           <img src="images/peergreen-logo-white.png" -->
+<!--                style="border:none;height:70px"/> -->
+<!--         </a> -->
+<!--       </div> -->
+<!--       <div style="float:right; padding-top:30px"> -->
+<!--         <img src="images/community-documentation.png" -->
+<!--              style="border:none;height:40px"/> -->
+<!--       </div> -->
+<!--     </div> -->
+    
+      <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#"><img src="images/community-documentation.png" style="border:none;height:20px"/></a>
+          <div class="nav-collapse collapse">
+		  	<ul class="nav">
+			   <li class="active">
+					<a class="brand" href="http://www.peergreen.com/" title="Peergreen"><img alt="Peergreen logo" src="images/peergreen-logo-white.png" /></a>
+			   </li>
+			</ul>
+          </div>
+        </div>
+      </div>
+    </div> 
+    
+    <header class="jumbotron subhead" id="overview">
+    	<div class="container">
+	   		<h1 class="title"><xsl:value-of select="db:info/db:title"/></h1>
+	   	</div>
+	</header>
+  </xsl:template>
 
   <xsl:template name="user.footer.content">
     <xsl:param name="node" select="."/>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="js/prettify.js"/>
+    <script src="js/bootstrap.js"></script>
+	<script src="js/application.js"></script>
     <script>prettyPrint();</script>
 
     <div style="width:100%;background-color:#DDFFDD;border:none;">
@@ -108,5 +143,14 @@
       </div>
     </div>
   </xsl:template>
-
+  
+  <!--==============================================-->
+  <!--             HTML Customization			  	-->
+  <!--==============================================-->
+  
+  <xsl:template name="body.attributes">
+  	<xsl:attribute name="data-spy">scroll</xsl:attribute>
+  	<xsl:attribute name="data-target">.bs-docs-sidebar</xsl:attribute>
+  </xsl:template>
+  
 </xsl:stylesheet>
