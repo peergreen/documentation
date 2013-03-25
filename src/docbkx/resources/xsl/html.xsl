@@ -59,20 +59,22 @@
   <xsl:param name="keep.relative.image.uris" select="0"></xsl:param>
 
   <xsl:param name="generate.toc">
-    book toc
+	<!-- Do not write ToC automatically -->
   </xsl:param>
 
  <xsl:template match="db:programlisting[@language]|db:screen[@language]" mode="class.value">
     <xsl:param name="class" select="local-name(.)"/>
     <xsl:variable name="lang" select="concat('lang-', @language, ' ')"/>
-    <xsl:choose>
-      <xsl:when test="@linenumbering = 'linenums'">
-        <xsl:value-of select="concat('prettyprint ', $lang, 'linenums ', $class)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="concat('prettyprint ', $lang, $class)"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <!-- Line numbering enable by default -->
+    <xsl:value-of select="concat('prettyprint ', $lang, 'linenums ', $class)"/>
+<!--     <xsl:choose> -->
+<!--       <xsl:when test="@linenumbering = 'linenums'"> -->
+<!--         <xsl:value-of select="concat('prettyprint ', $lang, 'linenums ', $class)"/> -->
+<!--       </xsl:when> -->
+<!--       <xsl:otherwise> -->
+<!--         <xsl:value-of select="concat('prettyprint ', $lang, $class)"/> -->
+<!--       </xsl:otherwise> -->
+<!--     </xsl:choose> -->
   </xsl:template>
   
   <!--==============================================-->
