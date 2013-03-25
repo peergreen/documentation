@@ -124,7 +124,19 @@
     
     <header class="jumbotron subhead" id="overview">
     	<div class="container">
-	   		<h1 class="title"><xsl:value-of select="db:info/db:title"/></h1>
+		<div class="lead">
+				<h1 class="title"><xsl:value-of select="db:info/db:title"/></h1>
+				<xsl:if test="db:info/db:authorgroup/db:author != ''">
+					<p>Written by
+						<xsl:for-each select="db:info/db:authorgroup/db:author">
+		                  <xsl:if test="position() &gt; 1">
+		                    <xsl:text>, </xsl:text>
+		                  </xsl:if>
+		                  <xsl:value-of select="db:personname"/>
+				</xsl:for-each>
+		            </p>
+	            </xsl:if>
+			</div>
 	   	</div>
 	</header>
   </xsl:template>
@@ -154,6 +166,9 @@
   <!--==============================================-->
   <!--             HTML Customization			  	-->
   <!--==============================================-->
+  <xsl:template name="book.titlepage.recto">
+	<!-- No default title page -->
+  </xsl:template>
   
   <xsl:template name="body.attributes">
   	<xsl:attribute name="data-spy">scroll</xsl:attribute>
