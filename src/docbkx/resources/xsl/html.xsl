@@ -134,6 +134,11 @@
     <script src="js/bootstrap.js"></script>
 	<script src="js/application.js"></script>
     <script>prettyPrint();</script>
+    <script>
+    	var shiftWindow = function() { scrollBy(0, -50) };
+    	window.addEventListener("hashchange", shiftWindow);
+   		function load() { if (window.location.hash) shiftWindow(); }
+  	</script>
 
     <div style="width:100%;background-color:#DDFFDD;border:none;">
       <div style="margin:auto;">
@@ -151,6 +156,7 @@
   <xsl:template name="body.attributes">
   	<xsl:attribute name="data-spy">scroll</xsl:attribute>
   	<xsl:attribute name="data-target">.bs-docs-sidebar</xsl:attribute>
+  	<xsl:attribute name="onload">load()</xsl:attribute>
   </xsl:template>
   
 </xsl:stylesheet>
