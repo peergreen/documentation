@@ -176,4 +176,14 @@
   	<xsl:attribute name="onload">load()</xsl:attribute>
   </xsl:template>
   
+  <!-- ToC Customization -->
+  <xsl:include href="toc.xsl"/>
+  <xsl:param name="toc.list.type">ul</xsl:param>
+  <xsl:template name="toc.list.attributes">
+	<xsl:attribute name="class">nav nav-list bs-docs-sidenav</xsl:attribute>
+  </xsl:template>
+
+  <!-- Body Customization -->
+  <xsl:include href="body.xsl"/>
+
 </xsl:stylesheet>
