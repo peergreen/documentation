@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<book version="5.0" xml:id="arquillian-junit-tuto.book"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Testing OSGi applications with Arquillian, maven &amp; JUnit</title>
+	<productname>Peergreen Platform</productname>
+    <copyright>
+      <year>2013</year>
+    </copyright>
+
+    <authorgroup>
+
+      <author>
+        <personname></personname>
+
+        <affiliation>
+          <orgname></orgname>
+        </affiliation>
+      </author>
+
+    </authorgroup>
+
+    <date><?eval ${date}?></date>
+  </info>
+  
+	
+  
+  <chapter>
+	<title>Testing OSGi applications with Arquillian, maven &amp; JUnit</title>
+	<para>Arquillian (<link	xlink:href="http://arquillian.org">http://arquillian.org
+	</link>) is a testing framework for both OSGi and Java EE applications. This 
+	tutorial focuses on OSGi applications and describes how to write a unit test 
+	with Arquillian, maven and JUnit on Peergreen Platform.</para>	
+	
+	<section>
+	<title>BasicLogService, the OSGi application to test</title>
+	<para>We need an application to test. You can download the basic example 
+	<emphasis>BasicLogService</emphasis> here. It implements the OSGi's 
+	LogService interface.</para>
+	
+	<programlisting language="java">public class BasicLogService implements LogService {
+
+	public void log(int level, String message) {
+		log(null, level, message, null);
+	}
+
+	public void log(int level, String message, Throwable exception) {
+		log(null, level, message, exception);
+	}
+
+	public void log(ServiceReference sr, int level, String message) {
+		log(sr, level, message, null);
+	}
+
+	public void log(ServiceReference serviceReference, int level, String message, Throwable exception) {
+		String userLevel = null;
+
+		if (exception != null) {
+			message += ", exception:" + exception.getCause();
+		}
+
+		switch (level) {
+		case LogService.LOG_ERROR:
+			userLevel = "ERROR";
+			break;
+		case LogService.LOG_WARNING:
+			userLevel = "WARNING";
+			break;
+		case LogService.LOG_INFO:
+			userLevel = "INFO";
+			break;
+		case LogService.LOG_DEBUG:
+			userLevel = "DEBUG";
+			break;
+		}
+
+		System.out.println("[" + userLevel + "] " + message);
+	}
+	</programlisting>
+	<para>To start the service at the bundle activation, we need an Activator :</para>
+	<programlisting language="java">public class Activator implements BundleActivator {
+
+	private ServiceRegistration serviceRegistration;
+
+    public void start(BundleContext bundleContext) {
+        LogService logService = new BasicLogService();
+        Dictionary properties = new Properties();
+        properties.put("nature", "basic");
+        serviceRegistration = bundleContext.registerService(LogService.class.getName(), logService, properties);
+        System.out.println("service started");
+    }
+
+    public void stop(BundleContext context) {
+        if (serviceRegistration != null) {
+            serviceRegistration.unregister();
+            System.out.println("service stopped");
+
+        }
+    }
+}
+</programlisting>
+	</section>
+	
+	<section>
+		<title>Arquillian/ JUnit Test</title>
+		<para>The test is provided in the same maven project as an unit 
+		test (under the src/test directory). In this Maven project, we 
+		use the dependencies for using arquillian OSGi adapter in the 
+		<link xlink:href="https://docs.jboss.org/author/display/JBOSGI/Arquillian+Test+Framework">
+		embedded mode</link>. We also define a dependency on the Peergreen 
+		Platform itself on which we will run the test.</para>
+	
+	
+	<programlisting language="xml">ADD THE PEERGREEN REPOSITORY
+
+	&lt;properties&gt;
+		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+		&lt;arquilian.version&gt;1.0.3.Final&lt;/arquilian.version&gt;
+		&lt;osgi.core.version&gt;5.0.0&lt;/osgi.core.version&gt;
+		&lt;osgi.compendium.version&gt;4.3.1&lt;/osgi.compendium.version&gt;
+		&lt;junit.version&gt;4.11&lt;/junit.version&gt;
+		&lt;peergreen-platform.version&gt;1.0.0-SNAPSHOT&lt;/peergreen-platform.version&gt;
+		&lt;maven-bundle-plugin.version&gt;2.3.7&lt;/maven-bundle-plugin.version&gt;
+	&lt;/properties&gt;
+
+	&lt;dependencies&gt;
+		&lt;!-- OSGi API --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.osgi&lt;/groupId&gt;
+			&lt;artifactId&gt;org.osgi.core&lt;/artifactId&gt;
+			&lt;version&gt;${osgi.core.version}&lt;/version&gt;
+			&lt;scope&gt;provided&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.osgi&lt;/groupId&gt;
+			&lt;artifactId&gt;org.osgi.compendium&lt;/artifactId&gt;
+			&lt;version&gt;${osgi.compendium.version}&lt;/version&gt;
+			&lt;scope&gt;compile&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;!-- JUnit --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;junit&lt;/groupId&gt;
+			&lt;artifactId&gt;junit&lt;/artifactId&gt;
+			&lt;version&gt;${junit.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;!-- OSGi Arquillian --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.jb	oss.arquillian.container&lt;/groupId&gt;
+			&lt;artifactId&gt;arquillian-container-osgi-embedded&lt;/artifactId&gt;
+			&lt;version&gt;${arquilian.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.jboss.arquillian.junit&lt;/groupId&gt;
+			&lt;artifactId&gt;arquillian-junit-container&lt;/artifactId&gt;
+			&lt;version&gt;${arquilian.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;!-- Peergreen platform --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;com.peergreen.platform&lt;/groupId&gt;
+			&lt;artifactId&gt;platform-light&lt;/artifactId&gt;
+			&lt;version&gt;${peergreen-platform.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+	&lt;/dependencies&gt;
+
+	&lt;repositories&gt;
+		&lt;repository&gt;
+			&lt;releases&gt;
+				&lt;enabled&gt;true&lt;/enabled&gt;
+			&lt;/releases&gt;
+			&lt;snapshots&gt;
+				&lt;enabled&gt;true&lt;/enabled&gt;
+			&lt;/snapshots&gt;
+			&lt;id&gt;jboss-release&lt;/id&gt;
+			&lt;name&gt;JBoss Release&lt;/name&gt;
+			&lt;url&gt;https://repository.jboss.org/nexus/content/repositories/releases/&lt;/url&gt;
+			&lt;layout&gt;default&lt;/layout&gt;
+		&lt;/repository&gt;
+
+		&lt;repository&gt;
+			&lt;id&gt;peergreen-release&lt;/id&gt;
+			&lt;name&gt;Peergreen Release Repository&lt;/name&gt;
+			&lt;url&gt;https://forge.peergreen.com/nexus/content/repositories/releases&lt;/url&gt;
+			&lt;snapshots&gt;
+				&lt;enabled&gt;false&lt;/enabled&gt;
+			&lt;/snapshots&gt;
+		&lt;/repository&gt;
+		&lt;repository&gt;
+			&lt;id&gt;peergreen-snapshot&lt;/id&gt;
+			&lt;name&gt;Peergreen Snapshot Repository&lt;/name&gt;
+			&lt;url&gt;https://forge.peergreen.com/nexus/content/repositories/snapshots&lt;/url&gt;
+			&lt;releases&gt;
+				&lt;enabled&gt;false&lt;/enabled&gt;
+			&lt;/releases&gt;
+		&lt;/repository&gt;
+
+	&lt;/repositories&gt;
+	&lt;build&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
+				&lt;version&gt;${maven-bundle-plugin.version}&lt;/version&gt;
+				&lt;extensions&gt;true&lt;/extensions&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+	</programlisting>
+	
+	<para>The test itself consists in checking the bundle state and the 
+	service injection. The deployment method creates the application bundle 
+	with the application classes and the LogService interface.</para>
+	
+	<programlisting language="java">@RunWith(Arquillian.class)
+public class TestMyBundle {
+	private final static String FILTER = "(&amp;(" + Constants.OBJECTCLASS + "=" + LogService.class.getName() + ")(nature=basic))";
+	
+	@ArquillianResource
+	public BundleContext bundleContext;
+
+	@ArquillianResource
+	public Bundle bundle;
+
+	@Deployment
+	public static JavaArchive createdeployment() {
+		final JavaArchive archive = ShrinkWrap.create(JavaArchive.class,
+				"mybundle.jar");
+		archive.setManifest(new Asset() {
+			public InputStream openStream() {
+				OSGiManifestBuilder builder = OSGiManifestBuilder.newInstance();
+				builder.addBundleSymbolicName(archive.getName());
+				builder.addBundleVersion("1.2.3");
+				builder.addBundleActivator(Activator.class.getName());
+				builder.addBundleManifestVersion(2);
+				return builder.openStream();
+			}
+		});
+
+		return archive.addClasses(Activator.class, BasicLogService.class,
+				LogService.class);
+	}
+
+	@Test
+	public void testBundleContextInjection() {
+		assertNotNull("BundleContext injected", bundleContext);
+		Assert.assertNotNull(bundleContext);
+	}
+
+	@Test
+	public void testBundleInjection() throws Exception {
+		assertNotNull("Bundle injected", bundle);
+		assertEquals("Bundle RESOLVED", Bundle.RESOLVED, bundle.getState());
+		bundle.start();
+		assertEquals("Bundle ACTIVE", Bundle.ACTIVE, bundle.getState());
+	}
+
+	@Test
+	public void testService() {
+		boolean serviceRefFound=false;
+		boolean serviceFound=false;
+
+		BundleContext context = bundle.getBundleContext();
+		ServiceReference[] serviceReferences = null;
+		try {
+			serviceReferences = context.getServiceReferences(LogService.class.getName(), FILTER);
+		} catch (InvalidSyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		assertNotNull("Service Ref null", serviceReferences);
+        if (serviceReferences != null) {
+        	for (ServiceReference serviceReference : serviceReferences) {
+        		serviceRefFound = true;
+        		Object service = bundleContext.getService(serviceReference);
+        		if (service instanceof LogService) {
+        			serviceFound = true;
+        			((LogService) service).log(LogService.LOG_DEBUG, "test");
+            	} 	
+        	}
+        }
+        
+		assertTrue("Service Ref not Found", serviceRefFound);
+		assertTrue("Service not Found", serviceFound);
+	}
+
+	@Test
+	public void testStop() throws Exception {
+		bundle.stop();
+		assertEquals("Bundle RESOLVED", Bundle.RESOLVED, bundle.getState());
+	}
+
+}
+	</programlisting>
+	
+	<para>When we launch the test, we got the expected result:</para>
+	
+	<screen>-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.peergreen.example.mybundle.junit.arquillian.TestMyBundle
+     ___                                                       ___  _         _     __                         
+    / _ \  ___   ___  _ __   __ _  _ __   ___   ___  _ __     / _ \| |  __ _ | |_  / _|  ___   _ __  _ __ ___  
+   / /_)/ / _ \ / _ \| '__| / _` || '__| / _ \ / _ \| '_ \   / /_)/| | / _` || __|| |_  / _ \ | '__|| '_ ` _ \ 
+  / ___/ |  __/|  __/| |   | (_| || |   |  __/|  __/| | | | / ___/ | || (_| || |_ |  _|| (_) || |   | | | | | |
+  \/      \___| \___||_|    \__, ||_|    \___| \___||_| |_| \/     |_| \__,_| \__||_|   \___/ |_|   |_| |_| |_|
+                            |___/
+                                           ___                          _ _          ___    _ _ _   _          
+                                          / __|___ _ __  _ __ _  _ _ _ (_) |_ _  _  | __|__| (_) |_(_)___ _ _  
+                                         | (__/ _ \ '  \| '  \ || | ' \| |  _| || | | _|/ _` | |  _| / _ \ ' \ 
+                                          \___\___/_|_|_|_|_|_\_,_|_||_|_|\__|\_, | |___\__,_|_|\__|_\___/_||_|
+                                                                              |__/
+service started
+[DEBUG] test
+service stopped
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.044 sec
+
+Results :
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+	</screen>
+	</section>
+  </chapter>
+</book>

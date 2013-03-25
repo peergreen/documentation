@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<book version="5.0" xml:id="paxexam-junit-tuto.book"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Testing OSGi applications with pax-exam 3, maven &amp; JUnit</title>
+	<productname>Peergreen Platform</productname>
+    <copyright>
+      <year>2013</year>
+    </copyright>
+
+    <authorgroup>
+
+      <author>
+        <personname></personname>
+
+        <affiliation>
+          <orgname></orgname>
+        </affiliation>
+      </author>
+
+    </authorgroup>
+
+    <date><?eval ${date}?></date>
+  </info>
+  
+	
+  
+  <chapter>
+	<title>Testing OSGi applications with pax-exam 3, maven &amp; JUnit</title>
+	<para>Pax Exam is a testing framework for both OSGi and Java 
+  	EE applications. This tutorial focuses on OSGi applications 
+  	and describes how to write a test with Pax Exam, maven and 
+  	JUnit on Peergreen Platform.</para>	
+	
+	<section>
+	<title>Hello service</title>
+	<para>We need an application to test. You can download the 
+	basic example <emphasis>HelloService</emphasis> here. It 
+	implements the Hello interface by relying on IPOJO service 
+	component model. The interface contains a single method 
+	named <emphasis>sayHello()</emphasis>. </para>
+	
+	<programlisting language="java">public interface Hello {
+    String sayHello(String name);
+}</programlisting>
+	</section>
+	
+	<section>
+		<title>Pax Exam / JUnit Test</title>
+		<para>The test is provided in a separated maven project as an 
+		integration test (it). You can download it here. In this Maven 
+		project, we use Pax Exam 3 with a native container which uses 
+		the OSGi FrameworkFactory API to look up an OSGi framework for 
+		running the tests. The Native Container launches the OSGi 
+		framework in the same VM. We basically use the dependencies 
+		from the <link 
+		xlink:href="https://ops4j1.jira.com/wiki/display/PAXEXAM3/Maven+Dependencies#MavenDependencies-NativeContainerExample">
+		Pax Exam documentation</link>. We also define a dependency 
+		on the Peergreen Platform itself on which we will run the test 
+		and another dependency on the HelloService application.</para>
+	
+	
+	<programlisting language="xml">ADD THE PEERGREEN REPOSITORY
+
+	&lt;properties&gt;
+		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+		&lt;osgi.core.version&gt;5.0.0&lt;/osgi.core.version&gt;
+		&lt;exam.version&gt;3.0.0&lt;/exam.version&gt;
+		&lt;url.version&gt;1.5.2&lt;/url.version&gt;
+		&lt;junit.version&gt;4.11&lt;/junit.version&gt;
+		&lt;felix.version&gt;4.2.0&lt;/felix.version&gt;
+		&lt;logback.version&gt;0.9.20&lt;/logback.version&gt;
+		&lt;peergreen-platform.version&gt;1.0.0&lt;/peergreen-platform.version&gt;
+		&lt;hello.version&gt;1.0.0&lt;/hello.version&gt;
+	&lt;/properties&gt;
+
+	&lt;dependencies&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.osgi&lt;/groupId&gt;
+			&lt;artifactId&gt;org.osgi.core&lt;/artifactId&gt;
+			&lt;version&gt;${osgi.core.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;junit&lt;/groupId&gt;
+			&lt;artifactId&gt;junit&lt;/artifactId&gt;
+			&lt;version&gt;${junit.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
+			&lt;artifactId&gt;pax-exam-container-native&lt;/artifactId&gt;
+			&lt;version&gt;${exam.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
+			&lt;artifactId&gt;pax-exam-junit4&lt;/artifactId&gt;
+			&lt;version&gt;${exam.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
+			&lt;artifactId&gt;pax-exam-link-mvn&lt;/artifactId&gt;
+			&lt;version&gt;${exam.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.ops4j.pax.url&lt;/groupId&gt;
+			&lt;artifactId&gt;pax-url-aether&lt;/artifactId&gt;
+			&lt;version&gt;${url.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+			&lt;artifactId&gt;logback-core&lt;/artifactId&gt;
+			&lt;version&gt;${logback.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+			&lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+			&lt;version&gt;${logback.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;com.peergreen.platform&lt;/groupId&gt;
+			&lt;artifactId&gt;platform-light&lt;/artifactId&gt;
+			&lt;version&gt;${peergreen-platform.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;com.peergreen.example&lt;/groupId&gt;
+			&lt;artifactId&gt;hello-service&lt;/artifactId&gt;
+			&lt;version&gt;${hello.version}&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+	&lt;/dependencies&gt;
+	</programlisting>
+	
+	<para>The test itself is pretty simple and it is just used to 
+	check the HelloService bundle presence and state, to check the 
+	HelloService availability and finally to check the sayHello() 
+	method return. The annotations are described in the Pax Exam 
+	documentation <link 
+	xlink:href="https://ops4j1.jira.com/wiki/display/PAXEXAM3/JUnit+Driver">
+	here</link>. </para>
+	
+	<para>In the <emphasis>@Config method</emphasis>, in one hand one 
+	reduces the log level to make Pax Exam a bit less verbose and in 
+	another hand, one defines the bundles list to deploy on the OSGi 
+	platform (JUnit and Hello Service).</para>
+	
+	<programlisting language="java">@RunWith(PaxExam.class)
+@ExamReactorStrategy(PerClass.class)
+public class HelloServiceTest {
+	
+	@Inject
+	BundleContext context;
+
+	@Inject
+	private Hello helloService;
+
+	@Configuration
+	public Option[] config() {
+		
+	// Reduce log level.
+	Logger root = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+	root.setLevel(Level.INFO);
+
+	return options(
+			systemProperty("org.ops4j.pax.logging.DefaultServiceLog.level").value("WARN"),
+			mavenBundle("com.peergreen.example", "ipojo-hello-service", "1.0.0"),
+			junitBundles()
+     		);
+	}
+
+    @Test
+    public void checkInject() {   	
+        assertNotNull(context);
+        assertNotNull(helloService);
+    }
+    
+	@Test
+	public void checkHelloBundle() {
+		Boolean bundleHelloFound=false;
+		Boolean  bundleHelloActive=false;
+		Bundle[] bundles = context.getBundles();
+        for (Bundle bundle : bundles) {
+        	if (bundle != null) {
+        		if (bundle.getSymbolicName().equals("com.peergreen.example.ipojo-hello-service")) {
+        			bundleHelloFound=true;
+        			if(bundle.getState() == Bundle.ACTIVE) {
+        				bundleHelloActive = true;
+        			}
+        		}
+        	}
+		}
+        assertTrue(bundleHelloFound);
+        assertTrue(bundleHelloActive);
+	}
+    
+	@Test
+	public void getHelloService() {
+		assertEquals("hello test", helloService.sayHello("test"));
+	}
+}
+	</programlisting>
+	
+	<para>When we launch the test, we got the expected result:</para>
+	
+	<screen>-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.peergreen.example.ipojo.hello.it.junit.paxexam.HelloServiceTest
+21:19:39.593 [main] INFO  org.ops4j.pax.exam.junit.PaxExam - creating PaxExam runner for class com.peergreen.example.ipojo.hello.it.junit.paxexam.HelloServiceTest
+21:19:39.614 [main] INFO  o.o.pax.exam.spi.DefaultExamSystem - Pax Exam System (Version: 3.0.0) created.
+21:19:39.621 [main] DEBUG o.ops4j.store.intern.TemporaryStore - Storage Area is /tmp/1363810779619-0
+21:19:39.630 [main] DEBUG o.ops4j.pax.exam.spi.PaxExamRuntime - Found TestContainerFactory: org.ops4j.pax.exam.nat.internal.NativeTestContainerFactory
+21:19:39.661 [main] INFO  org.ops4j.pax.exam.junit.PaxExam - running test class com.peergreen.example.ipojo.hello.it.junit.paxexam.HelloServiceTest
+     ___                                                       ___  _         _     __                         
+    / _ \  ___   ___  _ __   __ _  _ __   ___   ___  _ __     / _ \| |  __ _ | |_  / _|  ___   _ __  _ __ ___  
+   / /_)/ / _ \ / _ \| '__| / _` || '__| / _ \ / _ \| '_ \   / /_)/| | / _` || __|| |_  / _ \ | '__|| '_ ` _ \ 
+  / ___/ |  __/|  __/| |   | (_| || |   |  __/|  __/| | | | / ___/ | || (_| || |_ |  _|| (_) || |   | | | | | |
+  \/      \___| \___||_|    \__, ||_|    \___| \___||_| |_| \/     |_| \__,_| \__||_|   \___/ |_|   |_| |_| |_|
+                            |___/
+                                           ___                          _ _          ___    _ _ _   _          
+                                          / __|___ _ __  _ __ _  _ _ _ (_) |_ _  _  | __|__| (_) |_(_)___ _ _  
+                                         | (__/ _ \ '  \| '  \ || | ' \| |  _| || | | _|/ _` | |  _| / _ \ ' \ 
+                                          \___\___/_|_|_|_|_|_\_,_|_||_|_|\__|\_, | |___\__,_|_|\__|_\___/_||_|
+                                                                              |__/
+Start component
+Stop component
+21:19:42.849 [Peergreen Kernel Main Thread] INFO  o.o.p.e.spi.reactors.ReactorManager - suite finished
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.418 sec
+
+Results :
+
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
+	</screen>
+	</section>
+  </chapter>
+</book>
