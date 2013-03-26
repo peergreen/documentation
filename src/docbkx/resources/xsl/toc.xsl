@@ -122,19 +122,19 @@
 	        <xsl:with-param name="toc-context" select="$toc-context"/>
 	      </xsl:call-template>
 	    </xsl:attribute>
+	    <i xmlns="http://www.w3.org/1999/xhtml" class="icon-chevron-right"> </i>
 	    
-	    
-	  <!-- * if $autotoc.label.in.hyperlink is non-zero, then output the label -->
-	  <!-- * as part of the hyperlinked title -->
-	  <xsl:if test="not($autotoc.label.in.hyperlink = 0)">
-	    <xsl:variable name="label">
-	      <xsl:apply-templates select="." mode="label.markup"/>
-	    </xsl:variable>
-	    <xsl:copy-of select="$label"/>
-	    <xsl:if test="$label != ''">
-	      <xsl:value-of select="$autotoc.label.separator"/>
-	    </xsl:if>
-	  </xsl:if>
+	  	<!-- * if $autotoc.label.in.hyperlink is non-zero, then output the label -->
+	  	<!-- * as part of the hyperlinked title -->
+	  	<xsl:if test="not($autotoc.label.in.hyperlink = 0)">
+	    	<xsl:variable name="label">
+	      		<xsl:apply-templates select="." mode="label.markup"/>
+	   		</xsl:variable>
+	    	<xsl:copy-of select="$label"/>
+	    	<xsl:if test="$label != ''">
+	      		<xsl:value-of select="$autotoc.label.separator"/>
+	    	</xsl:if>
+	  	</xsl:if>
 	
 	    <xsl:apply-templates select="." mode="titleabbrev.markup"/>
 	  </a>

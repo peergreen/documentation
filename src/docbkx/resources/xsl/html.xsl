@@ -116,6 +116,20 @@
 			   <li class="active">
 					<a class="brand" href="http://www.peergreen.com/" title="Peergreen"><img alt="Peergreen logo" src="images/peergreen-logo-white.png" /></a>
 			   </li>
+			   <li class="">
+                	<a href="./getting-started-guide.xhtml">Get started</a>
+               </li>
+               <li class="">
+                	<a href="./user-guide.xhtml">User guide</a>
+               </li>
+               <li class="dropdown">
+		          <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
+		          <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+		            <li><a href="./peergreen-platform-osgi-arquillian-junit-guide.xhtml">Testing OSGi applications with Arquillian, maven &amp; JUnit</a></li>
+		            <li><a href="./peergreen-platform-osgi-paxexam-junit-guide.xhtml">Testing OSGi applications with pax-exam 3, maven &amp; JUnit</a></li>
+		            <li><a href="./peergreen-platform-osgi-paxexam-testng-guide.xhtml">Testing OSGi applications with pax-exam 3, maven &amp; TestNG</a></li>
+		          </ul>
+		        </li>
 			</ul>
           </div>
         </div>
@@ -154,13 +168,20 @@
    		function load() { if (window.location.hash) shiftWindow(); }
   	</script>
 
-    <div style="width:100%;background-color:#DDFFDD;border:none;">
-      <div style="margin:auto;">
-        <p>Copyright © Peergreen
-          <xsl:value-of select="db:info/db:copyright/db:year"/> All rights reserved.
-        </p>
-      </div>
-    </div>
+	<div class="footer" >
+		<div class='container content'>
+			<div class="row">
+				<div class="span12 pagination-centered">			
+					<div class="inner clearfix">
+						<div class="content clearfix">
+							<div>Copyright &#169; Peergreen 2013 All rights reserved.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
   </xsl:template>
   
   <!--==============================================-->
