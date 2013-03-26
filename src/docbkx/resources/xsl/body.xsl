@@ -33,6 +33,7 @@
 	      			<!-- Insert ToC -->
 	      			<xsl:call-template name="division.toc">
 						<xsl:with-param name="toc-context" select="d:book"/>
+						<xsl:with-param name="toc.title.p" select="false()"></xsl:with-param>
 					    <xsl:with-param name="nodes" select="EMPTY"/>
 				  	</xsl:call-template>
 	      		</div>

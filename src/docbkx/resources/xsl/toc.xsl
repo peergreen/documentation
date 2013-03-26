@@ -163,6 +163,7 @@
 	
 	  <xsl:variable name="subtoc">
 	    <xsl:element name="{$toc.list.type}" namespace="http://www.w3.org/1999/xhtml">
+	      <xsl:attribute name="class">nav nav-list</xsl:attribute>
 	      <xsl:choose>
 	        <xsl:when test="$qanda.in.toc != 0">
 	          <xsl:apply-templates mode="toc" select="$nodes.plus">

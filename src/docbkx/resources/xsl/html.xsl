@@ -110,7 +110,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#"><img src="images/community-documentation.png" style="border:none;height:20px"/></a>
+          <a class="brand" href="#"><img src="images/community-documentation.png" style="border:none;height:24px"/></a>
           <div class="nav-collapse collapse">
 		  	<ul class="nav">
 			   <li class="active">
