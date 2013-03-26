@@ -41,4 +41,6 @@
   </info>
 
   <xi:include href="introduction/chapter.xml" />
+  <xi:include href="introduction/chapter2.xml" />
+  <xi:include href="introduction/chapter3.xml" />
 </book>
