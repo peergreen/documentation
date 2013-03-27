@@ -32,139 +32,154 @@
 	
   
   <chapter>
-	<title>Testing OSGi applications with pax-exam 3, maven &amp; TestNG</title>
+	<title>Introdcution</title>
 	<para>Pax Exam is a testing framework for both OSGi and Java EE 
 	applications. This tutorial focuses on OSGi applications and 
 	describes how to write a test with Pax Exam, maven and TestNG 
 	on Peergreen Platform.</para>	
-	
-	<section>
+  </chapter>
+  <chapter>
 	<title>Hello service</title>
 	<para>We need an application to test. You can download the 
-	basic example <emphasis>HelloService</emphasis> here. It 
-	implements the Hello interface by relying on IPOJO service 
+	basic example <emphasis>HelloService</emphasis> <link 
+	xlink:href="https://github.com/peergreen/pax-exam">here</link>. 
+	It implements the Hello interface by relying on IPOJO service 
 	component model. The interface contains a single method 
 	named <emphasis>sayHello()</emphasis>. </para>
 	
 	<programlisting language="java">public interface Hello {
     String sayHello(String name);
 }</programlisting>
-	</section>
+  </chapter>
 	
-	<section>
-		<title>Pax Exam / TestNG Test</title>
-		
-		<para>The test is provided in a separated maven project as an 
-		integration test (it). You can download it here. In this Maven 
-		project, we use Pax Exam 3 with a native container which uses 
-		the OSGi FrameworkFactory API to look up an OSGi framework for 
-		running the tests. The Native Container launches the OSGi 
-		framework in the same VM. We basically use the dependencies 
-		from the <link 
-		xlink:href="https://ops4j1.jira.com/wiki/display/PAXEXAM3/Maven+Dependencies#MavenDependencies-NativeContainerExample">
-		Pax Exam documentation</link> except that we replace JUnit 
-		dependencies by TestNG ones. To note that TestNG requires to 
-		add a dependency on JTA api.  We also define a dependency on 
-		the Peergreen Platform itself on which we will run the test 
-		and another dependency on the HelloService application.
-		</para>
+  <chapter>
+	<title>Pax Exam / TestNG Test</title>
 	
-	<programlisting language="xml">ADD THE PEERGREEN REPOSITORY
+	<para>The test is provided in a separated maven project as an 
+	integration test (it). You can download it here. In this Maven 
+	project, we use Pax Exam 3 with a native container which uses 
+	the OSGi FrameworkFactory API to look up an OSGi framework for 
+	running the tests. The Native Container launches the OSGi 
+	framework in the same VM. We basically use the dependencies 
+	from the <link 
+	xlink:href="https://ops4j1.jira.com/wiki/display/PAXEXAM3/Maven+Dependencies#MavenDependencies-NativeContainerExample">
+	Pax Exam documentation</link> except that we replace JUnit 
+	dependencies by TestNG ones. To note that TestNG requires to 
+	add a dependency on JTA api.  We also define a dependency on 
+	the Peergreen Platform itself on which we will run the test 
+	and another dependency on the HelloService application.
+	</para>
+	
+	<programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!--
+ Copyright 2013 Peergreen S.A.S.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-	&lt;properties&gt;
-		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-		&lt;osgi.core.version&gt;5.0.0&lt;/osgi.core.version&gt;
-		&lt;exam.version&gt;3.0.0&lt;/exam.version&gt;		
-		&lt;url.version&gt;1.5.2&lt;/url.version&gt;
-		&lt;testng.version&gt;6.3.1&lt;/testng.version&gt;
-		&lt;felix.version&gt;4.2.0&lt;/felix.version&gt;
-		&lt;logback.version&gt;0.9.20&lt;/logback.version&gt;
-		&lt;jta.version&gt;1.0.12&lt;/jta.version&gt;
-		&lt;peergreen-platform.version&gt;1.0.0&lt;/peergreen-platform.version&gt;
-		&lt;hello.version&gt;1.0.0&lt;/hello.version&gt;
-	&lt;/properties&gt;
+   http://www.apache.org/licenses/LICENSE-2.0
 
-	&lt;dependencies&gt;
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+--&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;com.peergreen.example.paxexam&lt;/groupId&gt;
+    &lt;artifactId&gt;paxexam-itests&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+  &lt;/parent&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+  &lt;artifactId&gt;paxexam-itests-testng&lt;/artifactId&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
-			&lt;artifactId&gt;pax-exam-container-native&lt;/artifactId&gt;
-			&lt;version&gt;${exam.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+  &lt;name&gt;Pax Exam Example :: iTests :: TestNG&lt;/name&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.testng&lt;/groupId&gt;
-			&lt;artifactId&gt;testng&lt;/artifactId&gt;
-			&lt;version&gt;${testng.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+  &lt;properties&gt;
+    &lt;junit.version&gt;4.11&lt;/junit.version&gt;
+    &lt;logback.version&gt;0.9.20&lt;/logback.version&gt;
+    &lt;testng.version&gt;6.8&lt;/testng.version&gt;
+  &lt;/properties&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
-			&lt;artifactId&gt;pax-exam-testng&lt;/artifactId&gt;
-			&lt;version&gt;${exam.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+  &lt;dependencies&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
-			&lt;artifactId&gt;pax-exam-link-mvn&lt;/artifactId&gt;
-			&lt;version&gt;${exam.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.peergreen.example.paxexam&lt;/groupId&gt;
+      &lt;artifactId&gt;paxexam-hello-service&lt;/artifactId&gt;
+      &lt;version&gt;${project.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.ops4j.pax.url&lt;/groupId&gt;
-			&lt;artifactId&gt;pax-url-aether&lt;/artifactId&gt;
-			&lt;version&gt;${url.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.peergreen.platform&lt;/groupId&gt;
+      &lt;artifactId&gt;platform-light&lt;/artifactId&gt;
+      &lt;version&gt;${peergreen-platform.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.osgi&lt;/groupId&gt;
-			&lt;artifactId&gt;org.osgi.core&lt;/artifactId&gt;
-			&lt;version&gt;${osgi.core.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+    
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
+      &lt;artifactId&gt;pax-exam-container-native&lt;/artifactId&gt;
+      &lt;version&gt;${pax.exam.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
-			&lt;artifactId&gt;logback-core&lt;/artifactId&gt;
-			&lt;version&gt;${logback.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.testng&lt;/groupId&gt;
+      &lt;artifactId&gt;testng&lt;/artifactId&gt;
+      &lt;version&gt;${testng.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
-			&lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
-			&lt;version&gt;${logback.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
+      &lt;artifactId&gt;pax-exam-testng&lt;/artifactId&gt;
+      &lt;version&gt;${pax.exam.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.ow2.spec.ee&lt;/groupId&gt;
-			&lt;artifactId&gt;ow2-jta-1.1-spec&lt;/artifactId&gt;
-			&lt;version&gt;${jta.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.ops4j.pax.exam&lt;/groupId&gt;
+      &lt;artifactId&gt;pax-exam-link-mvn&lt;/artifactId&gt;
+      &lt;version&gt;${pax.exam.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;com.peergreen.example&lt;/groupId&gt;
-			&lt;artifactId&gt;hello-service&lt;/artifactId&gt;
-			&lt;version&gt;${hello.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.ops4j.pax.url&lt;/groupId&gt;
+      &lt;artifactId&gt;pax-url-aether&lt;/artifactId&gt;
+      &lt;version&gt;1.5.2&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;com.peergreen.platform&lt;/groupId&gt;
-			&lt;artifactId&gt;platform-light&lt;/artifactId&gt;
-			&lt;version&gt;${peergreen-platform.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
-		
-	&lt;/dependencies&gt;
-	</programlisting>
+    &lt;dependency&gt;
+      &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+      &lt;artifactId&gt;logback-core&lt;/artifactId&gt;
+      &lt;version&gt;${logback.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+      &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+      &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+      &lt;version&gt;${logback.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.ow2.spec.ee&lt;/groupId&gt;
+      &lt;artifactId&gt;ow2-jta-1.1-spec&lt;/artifactId&gt;
+      &lt;version&gt;1.0.12&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+  &lt;/dependencies&gt;
+
+&lt;/project&gt;</programlisting>
 	
 	<para>The test itself is pretty simple and it is just used to 
 	check the HelloService bundle presence and state, to check the 
@@ -236,7 +251,7 @@ public class HelloServiceTest {
 	
 	<para>When we launch the test, we got the expected result:</para>
 	
-	<screen>-------------------------------------------------------
+	<screen><prompt>-------------------------------------------------------
  T E S T S
 -------------------------------------------------------
 Running TestSuite
@@ -265,9 +280,6 @@ Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.612 sec
 
 Results :
 
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
-
-	</screen>
-	</section>
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0</prompt></screen>
   </chapter>
 </book>

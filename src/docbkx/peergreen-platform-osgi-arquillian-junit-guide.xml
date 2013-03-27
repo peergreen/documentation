@@ -32,17 +32,18 @@
 	
   
   <chapter>
-	<title>Testing OSGi applications with Arquillian, maven &amp; JUnit</title>
+	<title>Introduction</title>
 	<para>Arquillian (<link	xlink:href="http://arquillian.org">http://arquillian.org
 	</link>) is a testing framework for both OSGi and Java EE applications. This 
 	tutorial focuses on OSGi applications and describes how to write a unit test 
 	with Arquillian, maven and JUnit on Peergreen Platform.</para>	
-	
-	<section>
+  </chapter>
+  <chapter>
 	<title>BasicLogService, the OSGi application to test</title>
 	<para>We need an application to test. You can download the basic example 
-	<emphasis>BasicLogService</emphasis> here. It implements the OSGi's 
-	LogService interface.</para>
+	<emphasis>BasicLogService</emphasis> <link 
+	xlink:href="https://github.com/peergreen/arquillian">here</link>. It implements 
+	the OSGi's LogService interface.</para>
 	
 	<programlisting language="java">public class BasicLogService implements LogService {
 
@@ -105,9 +106,9 @@
     }
 }
 </programlisting>
-	</section>
+	</chapter>
 	
-	<section>
+	<chapter>
 		<title>Arquillian/ JUnit Test</title>
 		<para>The test is provided in the same maven project as an unit 
 		test (under the src/test directory). In this Maven project, we 
@@ -117,109 +118,128 @@
 		Platform itself on which we will run the test.</para>
 	
 	
-	<programlisting language="xml">ADD THE PEERGREEN REPOSITORY
+	<programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!--
+ Copyright 2013 Peergreen S.A.S.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-	&lt;properties&gt;
-		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-		&lt;arquilian.version&gt;1.0.3.Final&lt;/arquilian.version&gt;
-		&lt;osgi.core.version&gt;5.0.0&lt;/osgi.core.version&gt;
-		&lt;osgi.compendium.version&gt;4.3.1&lt;/osgi.compendium.version&gt;
-		&lt;junit.version&gt;4.11&lt;/junit.version&gt;
-		&lt;peergreen-platform.version&gt;1.0.0-SNAPSHOT&lt;/peergreen-platform.version&gt;
-		&lt;maven-bundle-plugin.version&gt;2.3.7&lt;/maven-bundle-plugin.version&gt;
-	&lt;/properties&gt;
+   http://www.apache.org/licenses/LICENSE-2.0
 
-	&lt;dependencies&gt;
-		&lt;!-- OSGi API --&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.osgi&lt;/groupId&gt;
-			&lt;artifactId&gt;org.osgi.core&lt;/artifactId&gt;
-			&lt;version&gt;${osgi.core.version}&lt;/version&gt;
-			&lt;scope&gt;provided&lt;/scope&gt;
-		&lt;/dependency&gt;
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+--&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
 
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.osgi&lt;/groupId&gt;
-			&lt;artifactId&gt;org.osgi.compendium&lt;/artifactId&gt;
-			&lt;version&gt;${osgi.compendium.version}&lt;/version&gt;
-			&lt;scope&gt;compile&lt;/scope&gt;
-		&lt;/dependency&gt;
+  &lt;groupId&gt;com.peergreen.example.arquillian&lt;/groupId&gt;
+  &lt;artifactId&gt;arquillian-example-bundle&lt;/artifactId&gt;
+  &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
 
-		&lt;!-- JUnit --&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;junit&lt;/groupId&gt;
-			&lt;artifactId&gt;junit&lt;/artifactId&gt;
-			&lt;version&gt;${junit.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+  &lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;arquillian.version&gt;1.0.3.Final&lt;/arquillian.version&gt;
+    &lt;osgi.core.version&gt;5.0.0&lt;/osgi.core.version&gt;
+    &lt;osgi.compendium.version&gt;4.3.1&lt;/osgi.compendium.version&gt;
+    &lt;junit.version&gt;4.11&lt;/junit.version&gt;
+    &lt;peergreen-platform.version&gt;1.0.0-SNAPSHOT&lt;/peergreen-platform.version&gt;
+    &lt;maven-bundle-plugin.version&gt;2.3.7&lt;/maven-bundle-plugin.version&gt;
+  &lt;/properties&gt;
 
-		&lt;!-- OSGi Arquillian --&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.jb	oss.arquillian.container&lt;/groupId&gt;
-			&lt;artifactId&gt;arquillian-container-osgi-embedded&lt;/artifactId&gt;
-			&lt;version&gt;${arquilian.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.jboss.arquillian.junit&lt;/groupId&gt;
-			&lt;artifactId&gt;arquillian-junit-container&lt;/artifactId&gt;
-			&lt;version&gt;${arquilian.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+  &lt;dependencies&gt;
+    &lt;!-- OSGi API --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.osgi&lt;/groupId&gt;
+      &lt;artifactId&gt;org.osgi.core&lt;/artifactId&gt;
+      &lt;version&gt;${osgi.core.version}&lt;/version&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.osgi&lt;/groupId&gt;
+      &lt;artifactId&gt;org.osgi.compendium&lt;/artifactId&gt;
+      &lt;version&gt;${osgi.compendium.version}&lt;/version&gt;
+      &lt;scope&gt;compile&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-		&lt;!-- Peergreen platform --&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;com.peergreen.platform&lt;/groupId&gt;
-			&lt;artifactId&gt;platform-light&lt;/artifactId&gt;
-			&lt;version&gt;${peergreen-platform.version}&lt;/version&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-		&lt;/dependency&gt;
+    &lt;!-- JUnit --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;${junit.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-	&lt;/dependencies&gt;
+    &lt;!-- OSGi Arquillian --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.jboss.arquillian.container&lt;/groupId&gt;
+      &lt;artifactId&gt;arquillian-container-osgi-embedded&lt;/artifactId&gt;
+      &lt;version&gt;${arquillian.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.jboss.arquillian.junit&lt;/groupId&gt;
+      &lt;artifactId&gt;arquillian-junit-container&lt;/artifactId&gt;
+      &lt;version&gt;${arquillian.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-	&lt;repositories&gt;
-		&lt;repository&gt;
-			&lt;releases&gt;
-				&lt;enabled&gt;true&lt;/enabled&gt;
-			&lt;/releases&gt;
-			&lt;snapshots&gt;
-				&lt;enabled&gt;true&lt;/enabled&gt;
-			&lt;/snapshots&gt;
-			&lt;id&gt;jboss-release&lt;/id&gt;
-			&lt;name&gt;JBoss Release&lt;/name&gt;
-			&lt;url&gt;https://repository.jboss.org/nexus/content/repositories/releases/&lt;/url&gt;
-			&lt;layout&gt;default&lt;/layout&gt;
-		&lt;/repository&gt;
+    &lt;!-- Peergreen platform --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.peergreen.platform&lt;/groupId&gt;
+      &lt;artifactId&gt;platform-light&lt;/artifactId&gt;
+      &lt;version&gt;${peergreen-platform.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
 
-		&lt;repository&gt;
-			&lt;id&gt;peergreen-release&lt;/id&gt;
-			&lt;name&gt;Peergreen Release Repository&lt;/name&gt;
-			&lt;url&gt;https://forge.peergreen.com/nexus/content/repositories/releases&lt;/url&gt;
-			&lt;snapshots&gt;
-				&lt;enabled&gt;false&lt;/enabled&gt;
-			&lt;/snapshots&gt;
-		&lt;/repository&gt;
-		&lt;repository&gt;
-			&lt;id&gt;peergreen-snapshot&lt;/id&gt;
-			&lt;name&gt;Peergreen Snapshot Repository&lt;/name&gt;
-			&lt;url&gt;https://forge.peergreen.com/nexus/content/repositories/snapshots&lt;/url&gt;
-			&lt;releases&gt;
-				&lt;enabled&gt;false&lt;/enabled&gt;
-			&lt;/releases&gt;
-		&lt;/repository&gt;
+  &lt;/dependencies&gt;
 
-	&lt;/repositories&gt;
-	&lt;build&gt;
-		&lt;plugins&gt;
-			&lt;plugin&gt;
-				&lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
-				&lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
-				&lt;version&gt;${maven-bundle-plugin.version}&lt;/version&gt;
-				&lt;extensions&gt;true&lt;/extensions&gt;
-			&lt;/plugin&gt;
-		&lt;/plugins&gt;
-	&lt;/build&gt;
-	</programlisting>
+
+  &lt;repositories&gt;
+    &lt;!-- Peergreen repository --&gt;
+    &lt;repository&gt;
+      &lt;id&gt;peergreen&lt;/id&gt;
+      &lt;name&gt;Peergreen Maven2 Repository&lt;/name&gt;
+      &lt;url&gt;https://forge.peergreen.com/repository/content/groups/public/&lt;/url&gt;
+      &lt;releases&gt;
+        &lt;enabled&gt;true&lt;/enabled&gt;
+      &lt;/releases&gt;
+      &lt;snapshots&gt;
+        &lt;enabled&gt;false&lt;/enabled&gt;
+      &lt;/snapshots&gt;
+    &lt;/repository&gt;
+
+    &lt;!-- Arquillian repository --&gt;
+    &lt;repository&gt;
+      &lt;id&gt;jboss-release&lt;/id&gt;
+      &lt;name&gt;JBoss Release&lt;/name&gt;
+      &lt;url&gt;https://repository.jboss.org/nexus/content/repositories/releases/&lt;/url&gt;
+      &lt;layout&gt;default&lt;/layout&gt;
+      &lt;releases&gt;
+        &lt;enabled&gt;true&lt;/enabled&gt;
+      &lt;/releases&gt;
+      &lt;snapshots&gt;
+        &lt;enabled&gt;true&lt;/enabled&gt;
+      &lt;/snapshots&gt;
+    &lt;/repository&gt;
+  &lt;/repositories&gt;
+
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
+        &lt;version&gt;${maven-bundle-plugin.version}&lt;/version&gt;
+        &lt;extensions&gt;true&lt;/extensions&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+
+&lt;/project&gt;</programlisting>
 	
 	<para>The test itself consists in checking the bundle state and the 
 	service injection. The deployment method creates the application bundle 
@@ -304,12 +324,11 @@ public class TestMyBundle {
 		assertEquals("Bundle RESOLVED", Bundle.RESOLVED, bundle.getState());
 	}
 
-}
-	</programlisting>
+}</programlisting>
 	
 	<para>When we launch the test, we got the expected result:</para>
 	
-	<screen>-------------------------------------------------------
+	<screen><prompt>-------------------------------------------------------
  T E S T S
 -------------------------------------------------------
 Running com.peergreen.example.mybundle.junit.arquillian.TestMyBundle
@@ -331,8 +350,6 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.044 sec
 
 Results :
 
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
-	</screen>
-	</section>
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0</prompt></screen>
   </chapter>
 </book>
