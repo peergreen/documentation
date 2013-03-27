@@ -80,26 +80,8 @@
   <!--==============================================-->
   <!--             Headers and Footers			  	-->
   <!--==============================================-->
-
-  <xsl:template name="user.head.content">
-  	<link href="css/doc.css" rel="stylesheet" type="text/css"/>
-	<link href="css/bootstrap-responsive.css" rel="stylesheet"/>
-  </xsl:template>
   
   <xsl:template name="user.header.content">
-<!--     <div style="background-color:#333333;border:none;height:73px;padding-left:50px;padding-right:50px"> -->
-<!--       <div style="float:left"> -->
-<!--         <a style="border:none;" href="http://www.peergreen.com/" title="Peergreen"> -->
-<!--           <img src="images/peergreen-logo-white.png" -->
-<!--                style="border:none;height:70px"/> -->
-<!--         </a> -->
-<!--       </div> -->
-<!--       <div style="float:right; padding-top:30px"> -->
-<!--         <img src="images/community-documentation.png" -->
-<!--              style="border:none;height:40px"/> -->
-<!--       </div> -->
-<!--     </div> -->
-    
       <!-- Navbar
     ================================================== -->
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -156,18 +138,23 @@
   </xsl:template>
 
   <xsl:template name="user.footer.content">
-    <xsl:param name="node" select="."/>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="js/prettify.js"/>
     <script src="js/bootstrap.js"></script>
 	<script src="js/application.js"></script>
     <script>prettyPrint();</script>
-    <script>
-    	var shiftWindow = function() { scrollBy(0, -50) };
-    	window.addEventListener("hashchange", shiftWindow);
-   		function load() { if (window.location.hash) shiftWindow(); }
-  	</script>
+	<!-- Fluid transition -->
+	<script>
+		$('a[href^="#"]').click(function(){
+			var the_id = $(this).attr("href");
+			$('html, body').animate({
+				scrollTop:$(the_id).offset().top
+			}, 'slow');
+			return false;
+		});
+	</script>
 
+	<!-- Footer -->
 	<div class="footer" >
 		<div class='container content'>
 			<div class="row">
