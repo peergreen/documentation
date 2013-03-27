@@ -78,39 +78,6 @@
               </postProcess>
             </configuration>
           </execution>
-
-          <!-- Generate HTML chunks documentation -->
-          <execution>
-            <id>html-multi-page</id>
-            <goals>
-              <goal>generate-xhtml</goal>
-            </goals>
-            <phase>compile</phase>
-            <configuration>
-              <makeCleanHtml>yes</makeCleanHtml>
-              <chunkedOutput>true</chunkedOutput>
-              <htmlStylesheet>../css/common.css</htmlStylesheet>
-              <xhtmlCustomization>${basedir}/src/docbkx/resources/xsl/chunk.xsl</xhtmlCustomization>
-              <targetDirectory>${basedir}/target/docbkx/chunk</targetDirectory>
-              <postProcess>
-                <!-- Place the generated files in the site -->
-                <copy todir="${basedir}/target/site/reference/xhtml">
-                  <!-- Generated HTML Chunks -->
-                  <fileset dir="${basedir}/target/docbkx/chunk">
-                    <include name="**/*.html"/>
-                  </fileset>
-                  <!-- Images and resources -->
-                  <fileset dir="${basedir}/src/docbkx/resources">
-                    <include name="**/*.css"/>
-                    <include name="**/*.png"/>
-                    <include name="**/*.gif"/>
-                    <include name="**/*.jpg"/>
-                    <include name="**/*.js"/>
-                  </fileset>
-                </copy>
-              </postProcess>
-            </configuration>
-          </execution>
         </executions>
         <dependencies>
           <dependency>
