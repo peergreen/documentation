@@ -187,14 +187,40 @@
   <!--==============================================-->
   <!--             HTML Customization			  	-->
   <!--==============================================-->
+
   <xsl:template name="book.titlepage.recto">
 	<!-- No default title page -->
   </xsl:template>
   
+  <xsl:template name="chapter.titlepage.recto">
+	<div class="page-header">
+		<xsl:attribute name="id">
+			<xsl:call-template name="object.id">
+			<xsl:with-param name="object" select="."/>
+		</xsl:call-template>
+		</xsl:attribute>
+		<h1>
+			<xsl:value-of select="db:title"/>
+		</h1>
+	</div>
+  </xsl:template>
+
+  <xsl:template name="section.titlepage.recto">
+	<div class="section-title">
+		<xsl:attribute name="id">
+			<xsl:call-template name="object.id">
+			<xsl:with-param name="object" select="."/>
+		</xsl:call-template>
+		</xsl:attribute>
+		<h2>
+			<xsl:value-of select="db:title"/>
+		</h2>
+	</div>
+  </xsl:template>
+
   <xsl:template name="body.attributes">
   	<xsl:attribute name="data-spy">scroll</xsl:attribute>
   	<xsl:attribute name="data-target">.bs-docs-sidebar</xsl:attribute>
-  	<xsl:attribute name="onload">load()</xsl:attribute>
   </xsl:template>
   
   <!-- ToC Customization -->
