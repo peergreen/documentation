@@ -15,7 +15,7 @@
   <!-- These extensions are required for table printing and other stuff -->
   <xsl:param name="tablecolumns.extension">0</xsl:param>
   <xsl:param name="graphicsize.extension">0</xsl:param>
-  <xsl:param name="ignore.image.scaling">1</xsl:param>
+  <xsl:param name="ignore.image.scaling">0</xsl:param>
 
   <!--  use graphics in admonitions -->
   <xsl:param name="admon.graphics" select="1"/>

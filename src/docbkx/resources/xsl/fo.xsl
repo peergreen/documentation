@@ -97,7 +97,7 @@
   <!-- These extensions are required for table printing and other stuff -->
   <xsl:param name="tablecolumns.extension">0</xsl:param>
   <xsl:param name="fop.extension">1</xsl:param>
-  <xsl:param name="ignore.image.scaling">1</xsl:param>
+  <xsl:param name="ignore.image.scaling">0</xsl:param>
   <!-- for getting bookmarks in pdf document -->
   <xsl:param name="fop1.extensions" select="1"/>
 
