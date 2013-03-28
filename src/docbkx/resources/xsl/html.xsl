@@ -99,7 +99,7 @@
 					<a class="brand" href="http://www.peergreen.com/" title="Peergreen"><img alt="Peergreen logo" src="images/peergreen-logo-white.png" /></a>
 			   </li>
 			   <li class="">
-                	<a href="./getting-started-guide.xhtml">Get started</a>
+                	<a href="./getting-started-guide.xhtml">Getting started</a>
                </li>
                <li class="">
                 	<a href="./user-guide.xhtml">User guide</a>
@@ -122,16 +122,21 @@
     	<div class="container">
 		<div class="lead">
 				<h1 class="title"><xsl:value-of select="db:info/db:title"/></h1>
+				<p>
 				<xsl:if test="db:info/db:authorgroup/db:author != ''">
-					<p>Written by
+					Written by
 						<xsl:for-each select="db:info/db:authorgroup/db:author">
 		                  <xsl:if test="position() &gt; 1">
 		                    <xsl:text>, </xsl:text>
 		                  </xsl:if>
 		                  <xsl:value-of select="db:personname"/>
-				</xsl:for-each>
-		            </p>
+						</xsl:for-each>
+		            	<br />
 	            </xsl:if>
+	            <xsl:if test="db:info/db:releaseinfo != ''">
+					Version : <xsl:value-of select="db:info/db:releaseinfo"/>
+	            </xsl:if>
+	            </p>
 			</div>
 	   	</div>
 	</header>
@@ -187,7 +192,7 @@
 		</xsl:call-template>
 		</xsl:attribute>
 		<h1>
-			<xsl:value-of select="db:title"/>
+			<xsl:apply-templates select="." mode="object.title.markup"/>
 		</h1>
 	</div>
   </xsl:template>
@@ -200,7 +205,7 @@
 		</xsl:call-template>
 		</xsl:attribute>
 		<h2>
-			<xsl:value-of select="db:title"/>
+			<xsl:apply-templates select="." mode="object.title.markup"/>
 		</h2>
 	</div>
   </xsl:template>
