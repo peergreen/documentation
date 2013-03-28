@@ -184,7 +184,7 @@ Scope 'shelbie' (9 commands)
 	<para>
 		The commands are categorized with a prefix for easier search and uniqueness. 
 		For example, commands related to the underlying JVM resources are prefixed 
-		with <emphasis role="bold">‘javavm:’</emphasis>.
+		with <literal>javavm:</literal>.
 	</para>
 	<para>
 		The following table describes a few commands:
@@ -334,7 +334,8 @@ Scope 'shelbie' (9 commands)
 <chapter>
 	<title>Logging</title>
 	<para>
-		Standard and error outputs are redirected in files under the &lt;your-dir&gt;/peergreen/logs directory :
+		Standard and error outputs are redirected in files under the 
+		<emphasis>&lt;your-dir&gt;/peergreen/logs</emphasis> directory :
 	</para>
 	<screen><prompt>system.out
 system.err</prompt></screen>
@@ -343,7 +344,7 @@ system.err</prompt></screen>
 <chapter>
 	<title>Stopping Peergreen Server</title>
 	<para>
-		To stop Peergreen server from the console, enter <emphasis role="bold">^D</emphasis> in the console.
+		To stop Peergreen server from the console, enter <literal>^D</literal> in the console.
 	</para>
 	<para>
 		Alternatively, you can also run the following command:
