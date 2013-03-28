@@ -80,6 +80,9 @@
   <!--==============================================-->
   <!--             Headers and Footers			  	-->
   <!--==============================================-->
+  <xsl:template name="user.head.content">
+  	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+  </xsl:template>
   
   <xsl:template name="user.header.content">
       <!-- Navbar
