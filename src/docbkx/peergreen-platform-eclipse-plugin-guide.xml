@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.0" xml:id="pg-eclipse-plugin.book"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Developing OSGi applications with Peergreen’s Eclipse plugin</title>
+	<productname>Peergreen Platform</productname>
+
+    <authorgroup>
+
+      <author>
+        <personname></personname>
+
+        <affiliation>
+          <orgname></orgname>
+        </affiliation>
+      </author>
+
+    </authorgroup>
+
+    <date><?eval ${date}?></date>
+  </info>
+  
+  <chapter>
+	<title>Introduction</title>
+	<para>
+		<link xlink:href="http://www.eclipse.org/">Eclipse</link> is a 
+		multi-language software development environment with an extensible 
+		plugins system. <emphasis>Peergreen Platform Eclipse plugin</emphasis> 
+		provides an efficient tool for developing OSGi applications within 
+		Eclipse IDE. With Peergreen Platform plugin, developers are able to :
+		<itemizedlist>
+			<listitem>launch Peergreen platform from the IDE as an OSGi framework.</listitem>
+			<listitem>deploy the application bundle to test it.</listitem>
+			<listitem>retrieve new version of the platform.</listitem>
+		</itemizedlist>
+	</para>
+	<para>
+		<note>
+        <para>This tutorial was written with Eclipse Juno.</para>
+      </note>
+	</para>
+  </chapter>
+  
+  <chapter>
+  	<title>The application project</title>
+  	<para>We’re using the OSGi application example, named Hello Service, 
+  	available <link xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">
+  	here</link>. The maven project defines a bundle which implements a single service 
+  	Hello :</para>
+  	
+  	<programlisting language="java">package com.peergreen.example.ipojo.hello.api;
+
+public interface Hello {
+    String sayHello(String name);
+}</programlisting>
+
+	<para>The <literal>pom.xml</literal> includes :
+		<itemizedlist>
+			<listitem>the maven bundle plugin to generate the OSGi bundle.</listitem>
+			<listitem>the maven ipojo plugin to enhance the classes with the IPOJO 
+			service management container.</listitem>
+		</itemizedlist>
+	</para>
+	
+	<programlisting language="xml">&lt;build&gt;
+	&lt;plugins&gt;
+		&lt;plugin&gt;
+			&lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+			&lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
+			&lt;version&gt;2.3.7&lt;/version&gt;
+			&lt;extensions&gt;true&lt;/extensions&gt;
+		&lt;/plugin&gt;
+		&lt;plugin&gt;
+			&lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+			&lt;artifactId&gt;maven-ipojo-plugin&lt;/artifactId&gt;
+			&lt;version&gt;1.8.6&lt;/version&gt;
+			&lt;executions&gt;
+				&lt;execution&gt;
+					&lt;goals&gt;
+						&lt;goal&gt;ipojo-bundle&lt;/goal&gt;
+					&lt;/goals&gt;
+				&lt;/execution&gt;
+			&lt;/executions&gt;
+		&lt;/plugin&gt;
+	&lt;/plugins&gt;
+&lt;/build&gt;</programlisting>
+	
+	<mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot1.png"></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot1.png" 
+          			 scale="40"></imagedata>
+        </imageobject>
+    </mediaobject>
+  </chapter>
+  
+  <chapter>
+  	<title>Plugin installation</title>
+  	<para>In the <emphasis>&#171; Help menu &#187;</emphasis>, select 
+  		<emphasis>&#171; Install New Software &#187;</emphasis>.</para>
+  	<mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot2.png"></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot2.png" 
+          			 scale="40"></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para/>
+    <para>Click on the <emphasis>&#171;Add...&#187;</emphasis> button</para>
+    <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot3.png"></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot3.png" 
+          			 scale="40"></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>Set the name to <emphasis>Peergreen update site</emphasis>.</para>
+	<para>Set the location to <emphasis>http://www.peergreen.com/eclipse</emphasis>.</para>
+	<para>And then click on the <emphasis>&#171;OK&#187;</emphasis> button.</para>
+	<mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot4.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot4.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>Select <emphasis>Peergreen Repository / OSGi framework extension for Peergreen Platform.
+    </emphasis></para>
+	<para>Unselect the entry <emphasis>‘Contact all update site during install to find required software’
+	</emphasis>.</para>
+	<para>Click on <emphasis>&#171;Next&#187;</emphasis> button.</para>
+	<mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot5.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot5.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>Click on <emphasis>&#171;Next&#187;</emphasis> button.</para>
+    <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot6.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot6.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>Accept the terms of the license agreement and click on the 
+    <emphasis>&#171;Finish&#187;</emphasis> button.</para>
+    <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot7.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot7.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>Ignore the security warning about unsigned content by clicking on 
+    <emphasis>&#171;Ok&#187;</emphasis> button.</para>
+    <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot8.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot8.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>Accept to restart Eclipse to finish the install by clicking on the 
+    <emphasis>&#171;Yes&#187;</emphasis> button.</para>
+    <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot9.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot9.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>After the restart, the plugin installation is finished.</para>
+  </chapter>
+  
+  <chapter>
+  	<title>Run the application</title>
+  	<para>Once the plugin is installed, you can run your application from the IDE.</para> 
+	<para>For that, select <emphasis>&#171;Run As/Run Configurations...&#187;</emphasis> in 
+the contextual menu of your project (right click).</para>
+	<mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot10.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot10.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>Deselect all the bundle and then select only the application bundle 
+    (here, select <emphasis>com.peergreen.example.hello-service</emphasis> bundle).</para> 
+    <para>Click on the <emphasis>&#171;Run&#187;</emphasis> button.</para>
+    <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot11.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot11.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>The peergreen platform is launched and the application is deployed.</para>
+    <para>You have access to the shell in the console view.</para>
+    <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot12.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot12.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    
+    <para>You can type the <literal>lb</literal> command to get the bundles list and check 
+    your application bundle (see here the hello-service bundle).</para>
+    <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot13.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot13.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+  </chapter>
+  
+  <chapter>
+  	<title>Retrieve a new version of Peergreen Platform</title>
+  	<para>Go to the menu <emphasis>Window/Preferences</emphasis>.</para> 
+	<para>Select the <emphasis>Peergreen Platform</emphasis> entry.</para>
+	<mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot14.png" ></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse-plugin-screenshots/screenshot14.png" 
+          			 scale="40" ></imagedata>
+        </imageobject>
+    </mediaobject>
+    <para>Select the version to use in the list or select a local platform that was 
+    installed somewhere else.</para>
+	<para>Click on the <emphasis>&#171;Apply&#187;</emphasis> Button and on the 
+	<emphasis>&#171;Ok&#187;</emphasis> button to activate the new version.
+    </para>
+  </chapter>
+</book>

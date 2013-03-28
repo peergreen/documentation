@@ -107,6 +107,7 @@
                <li class="dropdown">
 		          <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 		          <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+		          	<li><a href="./peergreen-platform-eclipse-plugin-guide.xhtml">Developing OSGi applications with Peergreen’s Eclipse plugin</a></li>
 		            <li><a href="./peergreen-platform-osgi-arquillian-junit-guide.xhtml">Testing OSGi applications with Arquillian, maven &amp; JUnit</a></li>
 		            <li><a href="./peergreen-platform-osgi-paxexam-junit-guide.xhtml">Testing OSGi applications with pax-exam 3, maven &amp; JUnit</a></li>
 		            <li><a href="./peergreen-platform-osgi-paxexam-testng-guide.xhtml">Testing OSGi applications with pax-exam 3, maven &amp; TestNG</a></li>
