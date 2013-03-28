@@ -1,26 +1,17 @@
+/************************************/
+/*		Bootstrap style 			*/
+/************************************/
 @IMPORT url("bootstrap.css");
 @IMPORT url("bootstrap-responsive.css");
+
+
+/************************************/
+/*		PG documentation style 		*/
+/************************************/
 @IMPORT url("doc.css");
+
+
+/************************************/
+/*		Google code prettify style	*/
+/************************************/
 @IMPORT url("prettify.css");
-
-.warning, .tip, .caution, .important, .note {
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border: 1px solid #999;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
-}
-
-.warning, .caution {
-	background-color: #FBDADA;	
-}
-
-.note, .tip {
-	background-color: #DAFBDA;	
-}
-
-.important {
-	background-color: #FBFBDA;	
-}

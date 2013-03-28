@@ -107,6 +107,10 @@ img {
   -ms-interpolation-mode: bicubic;
 }
 
+.mediaobject {
+  padding-bottom: 20px;
+}
+
 #map_canvas img,
 .google-maps img {
   max-width: none;
@@ -3864,7 +3868,12 @@ input[type="submit"].btn.btn-mini {
           border-radius: 0 0 6px 6px;
 }
 
-.alert {
+.alert, 
+.warning, 
+.tip, 
+.caution, 
+.important, 
+.note {
   padding: 8px 35px 8px 14px;
   margin-bottom: 20px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -3875,7 +3884,12 @@ input[type="submit"].btn.btn-mini {
           border-radius: 4px;
 }
 
-.alert,
+.alert, 
+.warning, 
+.tip, 
+.caution, 
+.important, 
+.note ,
 .alert h4 {
   color: #c09853;
 }
@@ -3902,28 +3916,35 @@ input[type="submit"].btn.btn-mini {
 }
 
 .alert-danger,
-.alert-error {
+.alert-error ,
+.caution{
   color: #b94a48;
   background-color: #f2dede;
   border-color: #eed3d7;
 }
 
 .alert-danger h4,
-.alert-error h4 {
+.alert-error h4,
+.caution h4 {
   color: #b94a48;
 }
 
-.alert-info {
+.alert-info ,
+.tip,
+.note {
   color: #3a87ad;
   background-color: #d9edf7;
   border-color: #bce8f1;
 }
 
-.alert-info h4 {
+.alert-info h4,
+.tip h4,
+.note  h4{
   color: #3a87ad;
 }
 
-.alert-block {
+.alert-block,
+.warning {
   padding-top: 14px;
   padding-bottom: 14px;
 }
