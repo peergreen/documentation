@@ -3,7 +3,7 @@
                 xmlns:xslthl="http://xslthl.sf.net"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="xslthl"
+                exclude-result-prefixes="xslthl db"
                 version='1.0'>
 
   <xsl:import href="urn:docbkx:stylesheet"/>
@@ -99,23 +99,60 @@
           <div class="nav-collapse collapse">
 		  	<ul class="nav">
 			   <li class="active">
-					<a class="brand" href="http://www.peergreen.com/" title="Peergreen"><img alt="Peergreen logo" src="images/peergreen-logo-white.png" /></a>
+					<a class="brand" target="_blank" href="http://www.peergreen.com/" title="Peergreen"><img alt="Peergreen logo" src="images/peergreen-logo-white.png" /></a>
 			   </li>
-			   <li class="">
-                	<a href="./getting-started-guide.xhtml">Getting started</a>
-               </li>
-               <li class="">
-                	<a href="./user-guide.xhtml">User guide</a>
-               </li>
-               <li class="dropdown">
-		          <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
-		          <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-		          	<li><a href="./peergreen-platform-eclipse-plugin-guide.xhtml">Developing OSGi applications with Peergreen’s Eclipse plugin</a></li>
-		            <li><a href="./peergreen-platform-osgi-arquillian-junit-guide.xhtml">Testing OSGi applications with Arquillian, maven &amp; JUnit</a></li>
-		            <li><a href="./peergreen-platform-osgi-paxexam-junit-guide.xhtml">Testing OSGi applications with pax-exam 3, maven &amp; JUnit</a></li>
-		            <li><a href="./peergreen-platform-osgi-paxexam-testng-guide.xhtml">Testing OSGi applications with pax-exam 3, maven &amp; TestNG</a></li>
-		          </ul>
-		        </li>
+			    <xsl:variable name="current-name">
+			    	<xsl:call-template name="getFileNameByID">
+            			<xsl:with-param name="book-id">
+            				<xsl:value-of select="@xml:id"/>	
+            			</xsl:with-param>
+            		</xsl:call-template>	
+			    </xsl:variable>
+			   	<xsl:for-each select="document('../../peergreen-server-documentation.xml')/files/file">
+			   		<li>
+			   			<xsl:attribute name="class">
+			   				<xsl:choose>
+					   			<xsl:when test="$current-name=./name">
+					   				<xsl:text>active</xsl:text>
+					   			</xsl:when>
+					   		</xsl:choose>
+			   			</xsl:attribute>
+			   		
+			   			<a>
+			   				<xsl:attribute name="href">
+			   					<xsl:value-of select="substring-before(./name,'.')"/>
+			   					<xsl:text>.xhtml</xsl:text>	
+			   				</xsl:attribute>
+		  					<xsl:value-of select="./label"/>
+		  				</a>
+		  			</li>
+		  		</xsl:for-each>
+		  		<xsl:for-each select="document('../../peergreen-server-documentation.xml')/files/set">
+		  			<li class="dropdown">
+		  				<a id="drop1" href="#" role="button" class="dropdown-toggle" 
+		  				   data-toggle="dropdown"><xsl:value-of select="@label"/><b class="caret"></b></a>
+		  				<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+		  					<xsl:for-each select="./file">
+						   		<li>
+						   			<xsl:attribute name="class">
+						   				<xsl:choose>
+								   			<xsl:when test="$current-name=./name">
+								   				<xsl:text>active</xsl:text>
+								   			</xsl:when>
+								   		</xsl:choose>
+						   			</xsl:attribute>
+						   			<a>
+						   				<xsl:attribute name="href">
+						   					<xsl:value-of select="substring-before(./name,'.')"/>
+						   					<xsl:text>.xhtml</xsl:text>	
+						   				</xsl:attribute>
+					  					<xsl:value-of select="./label"/>
+					  				</a>
+					  			</li>
+					  		</xsl:for-each>
+		  				</ul>
+		  			</li>	
+		  		</xsl:for-each>
 			</ul>
           </div>
         </div>
@@ -124,23 +161,47 @@
     
     <header class="jumbotron subhead" id="overview">
     	<div class="container">
-		<div class="lead">
-				<h1 class="title"><xsl:value-of select="db:info/db:title"/></h1>
-				<p>
-				<xsl:if test="db:info/db:authorgroup/db:author != ''">
-					Written by
-						<xsl:for-each select="db:info/db:authorgroup/db:author">
-		                  <xsl:if test="position() &gt; 1">
-		                    <xsl:text>, </xsl:text>
-		                  </xsl:if>
-		                  <xsl:value-of select="db:personname"/>
-						</xsl:for-each>
-		            	<br />
-	            </xsl:if>
-	            <xsl:if test="db:info/db:releaseinfo != ''">
-					Version : <xsl:value-of select="db:info/db:releaseinfo"/>
-	            </xsl:if>
-	            </p>
+			<div class="row">
+				<div class="span12">
+					<h1 class="title"><xsl:value-of select="db:info/db:title"/></h1>
+				</div>
+				<div class="span4">
+		    		<a class="btn btn-primary btn-large">
+		            	<xsl:attribute name="href">
+		            		<xsl:variable name="name">
+			            		<xsl:call-template name="getFileNameByID">
+			            			<xsl:with-param name="book-id">
+			            				<xsl:value-of select="@xml:id"/>	
+			            			</xsl:with-param>
+			            		</xsl:call-template>
+		            		</xsl:variable>	    
+		            		
+		            		<xsl:text>../pdf/</xsl:text> 
+		            		<xsl:value-of select="substring-before($name,'.')"/>
+		            		<xsl:text>.pdf</xsl:text>       		
+		            	</xsl:attribute>
+		            	<img src="images/pdf.png" alt="PDF" width="24px"/> 
+		             	Download the PDF version
+		            </a>
+		    	</div>
+				<div class="span8">
+					<p>
+					<xsl:if test="db:info/db:authorgroup/db:author != ''">
+						Written by
+							<xsl:for-each select="db:info/db:authorgroup/db:author">
+			                  <xsl:if test="position() &gt; 1">
+			                    <xsl:text>, </xsl:text>
+			                  </xsl:if>
+			                  <xsl:value-of select="db:personname"/>
+							</xsl:for-each>
+			            	<br />
+		            </xsl:if>
+		            <xsl:if test="db:info/db:releaseinfo != ''">
+						Version : <xsl:value-of select="db:info/db:releaseinfo"/>
+						<br />
+		            </xsl:if>
+		            </p>
+		    	</div>
 			</div>
 	   	</div>
 	</header>
@@ -167,17 +228,46 @@
 	<div class="footer" >
 		<div class='container content'>
 			<div class="row">
-				<div class="span12 pagination-centered">			
+				<div class="span4"></div>
+				<div class="span4 pagination-centered">			
 					<div class="inner clearfix">
 						<div class="content clearfix">
 							<div>Copyright &#169; Peergreen 2013 All rights reserved.</div>
 						</div>
+						<br />
+						<div>
+							<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.fr">
+							<img alt="Licence Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" />
+							</a>
+							<br />
+							<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">
+							<a xmlns:cc="http://creativecommons.org/ns#" href="http://www.peergreen.com" property="cc:attributionName" rel="cc:attributionURL">
+							Peergreen</a> documentation</span> is available under the terms of 
+							<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.fr">
+							the Creative Commons Attribution - Noncommercial - No Derivative Works 3.0 not transposed.</a>.
+						</div>
 					</div>
 				</div>
+				<div class="span4"></div>
 			</div>
 		</div>
 	</div>
-
+  </xsl:template>
+  
+  <xsl:template name="getFileNameByID">
+  	<xsl:param name="book-id"/>
+  	<xsl:for-each select="document('../../peergreen-server-documentation.xml')/files/file">
+  		<xsl:if test="@id=$book-id">
+  			<xsl:value-of select="./name"/>
+  		</xsl:if>
+  	</xsl:for-each>
+  	<xsl:for-each select="document('../../peergreen-server-documentation.xml')/files/set">
+  		<xsl:for-each select="./file">
+  			<xsl:if test="@id=$book-id">
+	  			<xsl:value-of select="./name"/>
+	  		</xsl:if>
+  		</xsl:for-each>
+  	</xsl:for-each>
   </xsl:template>
   
   <!--==============================================-->
