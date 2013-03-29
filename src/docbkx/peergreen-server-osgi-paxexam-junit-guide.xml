@@ -9,7 +9,7 @@
       xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <title>Testing OSGi applications with pax-exam 3, maven &amp; JUnit</title>
-	<productname>Peergreen Platform</productname>
+	<productname>Peergreen Server</productname>
     <copyright>
       <year>2013</year>
     </copyright>
@@ -36,7 +36,7 @@
 	<para>Pax Exam is a testing framework for both OSGi and Java 
   	EE applications. This tutorial focuses on OSGi applications 
   	and describes how to write a test with Pax Exam, maven and 
-  	JUnit on Peergreen Platform.</para>	
+  	JUnit on Peergreen Server.</para>	
   </chapter>
   	
   <chapter>
@@ -64,7 +64,7 @@
 	from the <link 
 	xlink:href="https://ops4j1.jira.com/wiki/display/PAXEXAM3/Maven+Dependencies#MavenDependencies-NativeContainerExample">
 	Pax Exam documentation</link>. We also define a dependency 
-	on the Peergreen Platform itself on which we will run the test 
+	on the Peergreen Server itself on which we will run the test 
 	and another dependency on the HelloService application.</para>
 	
 	
@@ -111,9 +111,9 @@
     &lt;/dependency&gt;
 
     &lt;dependency&gt;
-      &lt;groupId&gt;com.peergreen.platform&lt;/groupId&gt;
-      &lt;artifactId&gt;platform-light&lt;/artifactId&gt;
-      &lt;version&gt;${peergreen-platform.version}&lt;/version&gt;
+      &lt;groupId&gt;com.peergreen.server&lt;/groupId&gt;
+      &lt;artifactId&gt;peergreen-server-light&lt;/artifactId&gt;
+      &lt;version&gt;${peergreen-server.version}&lt;/version&gt;
       &lt;scope&gt;test&lt;/scope&gt;
     &lt;/dependency&gt;
     

@@ -8,8 +8,8 @@
       xmlns:html="http://www.w3.org/1999/xhtml"
       xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <title>Getting started with Peergreen Platform</title>
-	<productname>Peergreen Platform</productname>
+    <title>Getting started with Peergreen Server</title>
+	<productname>Peergreen Server</productname>
     <copyright>
       <year>2013</year>
     </copyright>
@@ -92,7 +92,7 @@
 	<para>
 		To start Peergreen Server, run the java command : 
 	</para>
-	<screen><prompt>java -jar platform-subsystems-1.0.0-SNAPSHOT.jar.</prompt></screen>
+	<screen><prompt>java -jar peergreen-server-1.0.0.jar.</prompt></screen>
 	<para>
 		The kernel is started once the following message appears :
 	</para>
@@ -256,7 +256,7 @@ Scope 'shelbie' (9 commands)
 	<para>
 		Peergreen Server provides a shell remote access through a simple telnet interface. 
 		By default, the server listens on the 10023 port number for all the network interfaces. 
-		So you can  connect to the platform shell with the following command:
+		So you can  connect to the server shell with the following command:
 	</para>
 	<screen><prompt>telnet localhost 10023</prompt></screen>
 </chapter>
@@ -266,69 +266,6 @@ Scope 'shelbie' (9 commands)
 	<para>
 		TO DO
 	</para>
-</chapter>
-	
-<chapter>
-	<title>Deployment plan</title>
-	<para>
-		Peergreen Plaftom supports <link 
-		xlink:href="http://jonas.ow2.org/JONAS_5_3_0_M7/doc/doc-en/html/deployment-plans_guide.html">
-		JOnAS’s deployment plan</link> enabling to deploy in one unit a whole set of application 
-		modules. Concretely a deployment plan is an XML file with a sorted list of modules to deploy. 
-		The modules can be retrieved from maven repositories as illustrated in the following example :
-	</para>
-	<programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;deployment-plan   
-  xmlns="http://jonas.ow2.org/ns/deployment-plan/1.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
-  xmlns:m2="http://jonas.ow2.org/ns/deployment-plan/maven2/1.0"
-  xsi:schemaLocation="http://jonas.ow2.org/ns/deployment-plan/1.0 
-			http://jonas.ow2.org/ns/deployment-plan/1.0/deployment-plan-1.0.xsd                       
-			http://jonas.ow2.org/ns/deployment-plan/maven2/1.0 
-			http://jonas.ow2.org/ns/deployment-plan/maven2-deployment-plan-1.0.xsd"
-  atomic="false" id="dp-example"&gt;
-
-  &lt;deployment id="org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar" 
-		xsi:type="m2:maven2-deploymentType" reloadable="false" 
-		start="true" reference="true" startlevel="1" 
-		starttransient="true"&gt;
-    &lt;m2:groupId&gt;org.apache.geronimo.specs&lt;/m2:groupId&gt;
-    &lt;m2:artifactId&gt;geronimo-jms_1.1_spec&lt;/m2:artifactId&gt;
-    &lt;m2:version&gt;1.1.1&lt;/m2:version&gt;
-    &lt;m2:type&gt;jar&lt;/m2:type&gt;
-  &lt;/deployment&gt;
-
-  &lt;deployment id="org.apache.geronimo.specs:geronimo-servlet_2.5_spec:jar" 
-		xsi:type="m2:maven2-deploymentType" reloadable="false" 
-		start="true" reference="true" startlevel="1" 
-		starttransient="true"&gt;
-    &lt;m2:groupId&gt;org.apache.geronimo.specs&lt;/m2:groupId&gt;
-    &lt;m2:artifactId&gt;geronimo-servlet_2.5_spec&lt;/m2:artifactId&gt;
-    &lt;m2:version&gt;1.2&lt;/m2:version&gt;
-    &lt;m2:type&gt;jar&lt;/m2:type&gt;
-  &lt;/deployment&gt;
-
-  &lt;deployment id="org.apache.commons:com.springsource.org.apache.commons.beanutils:jar" 
-		xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" 
-		reference="true" startlevel="1" starttransient="true"&gt;
-    &lt;m2:groupId&gt;org.apache.commons&lt;/m2:groupId&gt;
-    &lt;m2:artifactId&gt;com.springsource.org.apache.commons.beanutils&lt;/m2:artifactId&gt;
-    &lt;m2:version&gt;1.8.3&lt;/m2:version&gt;
-    &lt;m2:type&gt;jar&lt;/m2:type&gt;
-  &lt;/deployment&gt;
-
-  &lt;deployment id="org.apache.commons:com.springsource.org.apache.commons.collections:jar" 
-		xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" 
-		reference="true" startlevel="1" starttransient="true"&gt;    
-	&lt;m2:groupId&gt;org.apache.commons&lt;/m2:groupId&gt;
-    &lt;m2:artifactId&gt;com.springsource.org.apache.commons.collections&lt;/m2:artifactId&gt;
-    &lt;m2:version&gt;3.2.1&lt;/m2:version&gt;
-    &lt;m2:type&gt;jar&lt;/m2:type&gt;
-  &lt;/deployment&gt;
-
-  ...
-
-&lt;/deployment-plan&gt;</programlisting>
 </chapter>
 	
 <chapter>
@@ -351,7 +288,7 @@ system.err</prompt></screen>
 	</para>
 	<screen><prompt>osgi:shutdown</prompt></screen>
 	<para>
-		Whenever some application threads don’t stop, the platform print a message and kill all the remaining  
+		Whenever some application threads don’t stop, the server print a message and kill all the remaining  
 		threads. You can disable this behavior with the  java property :
 	</para>
 	<screen><prompt>-Dcom.peergreen.bootstrap.thread.check.reportonly=true</prompt></screen>

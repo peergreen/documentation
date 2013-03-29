@@ -9,7 +9,7 @@
       xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <title>Developing OSGi applications with Peergreen’s Eclipse plugin</title>
-	<productname>Peergreen Platform</productname>
+	<productname>Peergreen Eclipse Plugin</productname>
 
     <authorgroup>
 
