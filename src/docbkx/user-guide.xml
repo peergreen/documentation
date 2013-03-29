@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<book version="5.0" xml:id="shelbie.book"
+<book version="5.0" xml:id="user-guide"
       xmlns="http://docbook.org/ns/docbook"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -40,7 +40,4 @@
     </legalnotice>
   </info>
 
-  <xi:include href="introduction/chapter.xml" />
-  <xi:include href="introduction/chapter2.xml" />
-  <xi:include href="introduction/chapter3.xml" />
 </book>
