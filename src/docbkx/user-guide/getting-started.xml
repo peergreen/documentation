@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" 
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <title>Getting started with Peergreen Server</title>
+
+  <section>
+	  <title>Introduction</title>
+		
+		<para>
+			The goal of the book is to get you up and running Peergreen Server as quickly 
+			as possible. It provides basic steps described in the following sections. Note 
+			that you may need to refer other guides for further information. 
+		</para>
+	</section>
+		
+	<section>
+		<title>What is Peergreen Server ?</title>
+		<para>
+			Peergreen Server is an OSGi based “à la carte” and cloud native application 
+			server targeting  both the PaaS and the Internet of Things requirements. Its 
+			low footprint enables its deployment from server in data-centers to embedded 
+			gateways. 
+		</para>
+		<para>
+			Peergreen  is a software company started by the core team who developed JOnAS 
+			the OW2 Java EE Application Server.
+		</para>
+	</section>
+		
+	<section>
+		<title>Prerequisites</title>
+		<para>
+			Peergreen Server requires a Java SE 7 environment to run. You may refer to 
+			Oracle web site (<link
+			xlink:href="http://www.oracle.com/technetwork/java/javase/overview/index.html">
+			Java SE</link> or <link 
+			xlink:href="http://www.oracle.com/technetwork/java/embedded/overview/getstarted/index.html">
+			Java SE Embedded</link>) or any others compliant JVM products documentations 
+			for details on how to download and install Java SE 7 or greater. 
+		</para>
+	</section>
+		
+	<section>
+		<title>Download</title>
+		<para>
+			Peergreen Server can be downloaded from the Peergreen Web site here. The jar 
+			file is compressed with <link 
+			xlink:href="http://docs.oracle.com/javase/1.5.0/docs/guide/deployment/deployment-guide/pack200.html">
+			pack200</link> to reduce the download time. It will be unpacked automatically at the first launch. 
+		</para>
+	</section>
+		
+	<section>
+		<title>Starting Peergreen Server</title>
+		<para>
+			To start Peergreen Server, run the java command : 
+		</para>
+		<screen><prompt>java -jar peergreen-server-1.0.0.jar.</prompt></screen>
+		<para>
+			The kernel is started :
+		</para>
+		<screen><prompt>    / _ \  ___   ___  _ __   __ _  _ __   ___   ___  _ __     / _ \| |  __ _ | |_  / _|  ___   _ __  _ __ ___  
+   / /_)/ / _ \ / _ \| '__| / _` || '__| / _ \ / _ \| '_ \   / /_)/| | / _` || __|| |_  / _ \ | '__|| '_ ` _ \ 
+  / ___/ |  __/|  __/| |   | (_| || |   |  __/|  __/| | | | / ___/ | || (_| || |_ |  _|| (_) || |   | | | | | |
+  \/      \___| \___||_|    \__, ||_|    \___| \___||_| |_| \/     |_| \__,_| \__||_|   \___/ |_|   |_| |_| |_|
+                            |___/
+                                           ___                          _ _          ___    _ _ _   _          
+                                          / __|___ _ __  _ __ _  _ _ _ (_) |_ _  _  | __|__| (_) |_(_)___ _ _  
+                                         | (__/ _ \ '  \| '  \ || | ' \| |  _| || | | _|/ _` | |  _| / _ \ ' \ 
+                                          \___\___/_|_|_|_|_|_\_,_|_||_|_|\__|\_, | |___\__,_|_|\__|_\___/_||_|
+                                                                              |__/
+Welcome on Peergreen Platform:
+  - Enter help or hit TAB key to list available commands.
+  - Enter shutdown or hit CTRL^D key to shutdown the platform.
+
+System.out redirected to $HOME/Documents/peergreen/logs/system.out
+System.err redirected to $HOME/Documents/peergreen/logs/system.err
+
+Peergreen News
+Peergreen wins two OW2 Awards : http://www.peergreen.com/Blog/Peergreen+Won+Two+Awards+During+OW2CON+2012?language=en
+OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meeting?language=en
+</prompt></screen>
+		<para>
+			At the first launch, the kernel uncompress the pack200 jar file and creates 
+			the server’s directory tree.
+		</para>
+	</section>
+		
+	<section>
+		<title>Setting the internet proxy</title>
+		<para>
+			At each launch, Peergreen Server checks Peergreen’news enabling to be aware 
+			of new releases availaibility. For that, it requires an internet connection.  
+			If you’re behind an internet proxy, you can set its parameters through the 
+			Java properties :
+		</para>
+		<screen><prompt>-Dhttp.proxyHost=myproxy.mycompany.com -Dhttp.proxyPort=80</prompt></screen>
+	</section>
+		
+	<section>
+		<title>Directory tree</title>
+		<para>
+			The Peergreen Server  directories tree contains the following elements :
+		</para>
+		<table frame="none">
+			<title>Directory tree</title>
+			<tgroup cols="2" align="justify" colsep="1" rowsep="1">
+				<colspec colname="c1" colwidth="1*"/>
+				<colspec colname="c2" colwidth="3*"/>
+				<thead>
+					<row>
+						<entry align="center"><emphasis role="bold">Directory</emphasis></entry>
+						<entry align="center"><emphasis role="bold">Description</emphasis></entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>mvn-cache</entry>
+						<entry>Cache of the maven artefacts downloaded during  
+						application deployment</entry>
+					</row>
+					<row>
+						<entry>peergreen</entry>
+						<entry>Work space of the server . If removed the 
+						persistent store is lost.</entry>
+					</row>
+					<row>
+						<entry>peergreen/logs</entry>
+						<entry>Error &amp; messages debug files</entry>
+					</row>
+					<row>
+						<entry>peergreen/storage</entry>
+						<entry>Persistent store of the underlying OSGi framework</entry>
+					</row>
+					<row>
+						<entry>peergreen/bundles</entry>
+						<entry>Bundles of the platform</entry>
+					</row>
+					<row>
+						<entry>deploy</entry>
+						<entry>Application deployment directory (bundles, deployment plan). 
+						The directory is periodically scanned . You can drop a file to 
+						deploy it or remove it to undeploy it. If the file is touched, 
+						the related module is updated. </entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</section>
+		
+	<section>
+		<title>A few useful commands</title>
+		<para>
+			Peergreen Server provides a dynamic shell with native commands. 
+			The shell session is automatically started at the server launch.
+		</para>
+		<para>
+			You can use the help command to get an overview of the commands :
+		</para>
+		<screen><prompt>…
+Scope 'shelbie' (9 commands)
+-----------------------------------
+  shelbie:shutdown     Shutdown the OSGi platform
+  shelbie:each         Execute a closure on a list of arguments.
+  shelbie:help         Display command's help
+ …</prompt></screen>
+		<para>
+			The commands are categorized with a prefix for easier search and uniqueness. 
+			For example, commands related to the underlying JVM resources are prefixed 
+			with <literal>javavm:</literal>.
+		</para>
+		<para>
+			The following table describes a few commands:
+		</para>
+		<table frame="none">
+			<title>Commands description</title>
+			<tgroup cols="2" align="justify" colsep="1" rowsep="1">
+				<colspec colname="c1" colwidth="1*"/>
+				<colspec colname="c2" colwidth="3*"/>
+				<thead>
+					<row>
+						<entry align="center"><emphasis role="bold">Command</emphasis></entry>
+						<entry align="center"><emphasis role="bold">Description</emphasis></entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>shelbie:help</entry>
+						<entry>List the available command</entry>
+					</row>
+					<row>
+						<entry>shelbie:history</entry>
+						<entry>List commands historic</entry>
+					</row>
+					<row>
+						<entry>shelbie:shutdown</entry>
+						<entry>Shutdown the underlying OSGi gateway</entry>
+					</row>
+					<row>
+						<entry>info:events</entry>
+						<entry>Print relevant platform events with timestamps.</entry>
+					</row>
+					<row>
+						<entry>info:elapsed &lt;e1&gt; &lt;e2&gt;</entry>
+						<entry>Compute the elapsed time between e2 and e1</entry>
+					</row>
+					<row>
+						<entry>javavm:threads</entry>
+						<entry>Display threads list</entry>
+					</row>
+					<row>
+						<entry>javavm:thread-dump</entry>
+						<entry>Get a threads dump</entry>
+					</row>
+					<row>
+						<entry>deployment:list</entry>
+						<entry>List deployed artefacts with uri</entry>
+					</row>
+					<row>
+						<entry>deployment:deploy-artefact &lt;uri&gt;</entry>
+						<entry>deploy an artefact. The ‘-p’ flag enables to persist 
+						the deployment and recover it after a JVM reboot.</entry>
+					</row>
+					<row>
+						<entry>deployment:undeploy-artefact</entry>
+						<entry>undeploy an artefact</entry>
+					</row>
+					<row>
+						<entry>felix:lb</entry>
+						<entry>List installed bundles</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</section>
+		
+	<section>
+		<title>Remote access</title>
+		<para>
+			Peergreen Server provides a shell remote access through a simple telnet interface. 
+			By default, the server listens on the 10023 port number for all the network interfaces. 
+			So you can  connect to the server shell with the following command:
+		</para>
+		<screen><prompt>telnet localhost 10023</prompt></screen>
+	</section>
+		
+	<section>
+		<title>Deploy a sample application</title>
+		<para>
+			You can get a sample application HelloService on github <link 
+			xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">
+			here</link>. Once compiled, you can deploy the application by dropping the 
+			bundle into the deploy directory.
+		</para>
+		
+		<screen><prompt>cp target/hello-service-1.0.0-SNAPSHOT.jar &lt;your-install-dir>/deploy.</prompt></screen>
+		
+		<para>
+			You can check the installation of the bundle with the lb command in the shell console:
+		</para>
+		
+		<screen><prompt>START LEVEL 1
+   ID|State      |Level|Name
+    0|Active     |    0|systemBundle (3.8.1.v20120830-144521)
+    1|Active     |    1|Peergreen Deployment Api (1.0.0.SNAPSHOT)
+    2|Active     |    1|Peergreen Deployment Internal (1.0.0.SNAPSHOT)
+    3|Active     |    1|extension-jonas (1.0.0.SNAPSHOT)
+    4|Active     |    1|Peergreen deployment scanner (1.0.0.SNAPSHOT)
+    5|Active     |    1|Apache Felix iPOJO (1.8.6)
+    6|Active     |    1|Apache Felix iPOJO White Board Pattern Handler (1.6.0)
+    7|Active     |    1|OW2 Utilities :: i18n (2.0.0)
+    8|Active     |    1|OW2 Utilities :: Log :: JUL Bridge (2.0.0)
+    9|Active     |    1|Apache Felix Configuration Admin Service (1.6.0)
+   10|Active     |    1|Apache Felix Resolver (0.1.0.r1455049)
+   11|Active     |    1|OW2 Shelbie :: Core (2.0.0.M3-SNAPSHOT)
+   12|Active     |    1|OW2 Shelbie iPOJO Commands (2.0.0.M3-SNAPSHOT)
+   13|Active     |    1|OW2 Shelbie :: Commands :: Built-in (2.0.0.M3-SNAPSHOT)
+   14|Active     |    1|OW2 Shelbie ConfigAdmin Commands (2.0.0.M3-SNAPSHOT)
+   15|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
+   16|Active     |    1|Peergreen Gogo Commands (1.0.0.SNAPSHOT)
+   17|Active     |    1|OPS4J Pax Url - mvn: (1.2.8)
+   18|Active     |    1|Peergreen Deployment Commands (1.0.0.SNAPSHOT)
+   19|Active     |    1|Peergreen Java VM Commands (1.0.0.SNAPSHOT)
+   20|Active     |    1|Peergreen Telnetd (1.0.0.SNAPSHOT)
+   21|Active     |    1|Peergreen newsfeed (1.0.0.SNAPSHOT)
+   22|Active     |    1|Peergreen Newsfeed Commands (1.0.0.SNAPSHOT)
+   23|Active     |    1|OW2 Shelbie :: Startup Console (2.0.0.M3-SNAPSHOT)
+   28|Resolved   |    1|Test of exported package (1.0.0.SNAPSHOT)
+   <emphasis role="bold">94|Active     |    1|hello-service (1.0.0.SNAPSHOT)</emphasis></prompt></screen>
+   
+   	<para>
+   		Inversely, the bundle is undeployed when you remove the file from the directory. 
+   	</para>
+   	<screen><prompt>rm &lt;your-install-dir>/deploy/hello-service-1.0.0-SNAPSHOT.jar</prompt></screen>
+   	
+   	<para>And :</para>
+   	<screen><prompt>me@peergreen-platform$ lb
+START LEVEL 1
+   ID|State      |Level|Name
+    0|Active     |    0|systemBundle (3.8.1.v20120830-144521)
+    1|Active     |    1|Peergreen Deployment Api (1.0.0.SNAPSHOT)
+    2|Active     |    1|Peergreen Deployment Internal (1.0.0.SNAPSHOT)
+    3|Active     |    1|extension-jonas (1.0.0.SNAPSHOT)
+    4|Active     |    1|Peergreen deployment scanner (1.0.0.SNAPSHOT)
+    5|Active     |    1|Apache Felix iPOJO (1.8.6)
+    6|Active     |    1|Apache Felix iPOJO White Board Pattern Handler (1.6.0)
+    7|Active     |    1|OW2 Utilities :: i18n (2.0.0)
+    8|Active     |    1|OW2 Utilities :: Log :: JUL Bridge (2.0.0)
+    9|Active     |    1|Apache Felix Configuration Admin Service (1.6.0)
+   10|Active     |    1|Apache Felix Resolver (0.1.0.r1455049)
+   11|Active     |    1|OW2 Shelbie :: Core (2.0.0.M3-SNAPSHOT)
+   12|Active     |    1|OW2 Shelbie iPOJO Commands (2.0.0.M3-SNAPSHOT)
+   13|Active     |    1|OW2 Shelbie :: Commands :: Built-in (2.0.0.M3-SNAPSHOT)
+   14|Active     |    1|OW2 Shelbie ConfigAdmin Commands (2.0.0.M3-SNAPSHOT)
+   15|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
+   16|Active     |    1|Peergreen Gogo Commands (1.0.0.SNAPSHOT)
+   17|Active     |    1|OPS4J Pax Url - mvn: (1.2.8)
+   18|Active     |    1|Peergreen Deployment Commands (1.0.0.SNAPSHOT)
+   19|Active     |    1|Peergreen Java VM Commands (1.0.0.SNAPSHOT)
+   20|Active     |    1|Peergreen Telnetd (1.0.0.SNAPSHOT)
+   21|Active     |    1|Peergreen newsfeed (1.0.0.SNAPSHOT)
+   22|Active     |    1|Peergreen Newsfeed Commands (1.0.0.SNAPSHOT)
+   23|Active     |    1|OW2 Shelbie :: Startup Console (2.0.0.M3-SNAPSHOT)
+   28|Resolved   |    1|Test of exported package (1.0.0.SNAPSHOT)</prompt></screen>
+	</section>
+		
+	<section>
+		<title>Logging</title>
+		<para>
+			Standard and error outputs are redirected in files under the 
+			<emphasis>&lt;your-dir&gt;/peergreen/logs</emphasis> directory :
+		</para>
+		<screen><prompt>system.out
+system.err</prompt></screen>
+	</section>
+		
+	<section>
+		<title>Stopping Peergreen Server</title>
+		<para>
+			To stop Peergreen server from the console, enter <literal>^D</literal> in the console.
+		</para>
+		<para>
+			Alternatively, you can also run the following command:
+		</para>
+		<screen><prompt>osgi:shutdown</prompt></screen>
+		<para>
+			Whenever some application threads don’t stop, the server print a message and kill all the remaining  
+			threads. You can disable this behavior with the  java property :
+		</para>
+		<screen><prompt>-Dcom.peergreen.bootstrap.thread.check.reportonly=true</prompt></screen>
+	</section>
+
+</chapter>

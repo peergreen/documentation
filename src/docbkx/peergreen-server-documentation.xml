@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files>
-	<file id="getting-started">
-		<label>Getting started</label>
-		<name>getting-started-guide.xml</name>
+	<file id="user-guide">
+		<label>User guide</label>
+		<name>user-guide.xml</name>
 	</file>
 	
 	<set label="Tutorials">
 		<file id="pg-eclipse-plugin">
 			<label>Developing OSGi applications with Peergreen’s Eclipse plugin</label>
-			<name>peergreen-platform-eclipse-plugin-guide.xml</name>
+			<name>peergreen-eclipse-plugin-guide.xml</name>
 		</file>
 		<file id="pg-arquillian-junit-tuto">
 			<label>Testing OSGi applications with Arquillian, maven &amp; JUnit</label>
-			<name>peergreen-platform-osgi-arquillian-junit-guide.xml</name>
+			<name>peergreen-server-osgi-arquillian-junit-guide.xml</name>
 		</file>
 		<file id="pg-paxexam-junit-tuto">
 			<label>Testing OSGi applications with pax-exam 3, maven &amp; JUnit</label>
-			<name>peergreen-platform-osgi-paxexam-junit-guide.xml</name>
+			<name>peergreen-server-osgi-paxexam-junit-guide.xml</name>
 		</file>
 		<file id="pg-paxexam-testng-tuto">
 			<label>Testing OSGi applications with pax-exam 3, maven &amp; TestNG</label>
-			<name>peergreen-platform-osgi-paxexam-testng-guide.xml</name>
+			<name>peergreen-server-osgi-paxexam-testng-guide.xml</name>
 		</file>
 	</set>
 </files>

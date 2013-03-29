@@ -39,5 +39,9 @@
       California 94305, USA.</para>
     </legalnotice>
   </info>
+  
+  <xi:include href="user-guide/getting-started.xml"/>	
+  <xi:include href="user-guide/deployment-plan.xml"/>
+  <xi:include href="user-guide/command-reference.xml"/>
 
 </book>

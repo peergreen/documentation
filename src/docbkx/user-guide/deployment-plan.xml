@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" 
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <title>Deployment plan</title>
+  
+  <para>Peergreen Plaftom supports 
+  <link xlink:href="http://jonas.ow2.org/JONAS_5_3_0_M7/doc/doc-en/html/deployment-plans_guide.html">
+  JOnAS’s deployment plan</link> enabling to deploy in one unit a whole 
+  set of application modules. Concretely a deployment plan is an XML 
+  file with a sorted list of modules to deploy. The modules can be 
+  retrieved from maven repositories as illustrated in the following 
+  example :</para>
+  
+  <programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;deployment-plan   
+  xmlns="http://jonas.ow2.org/ns/deployment-plan/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+  xmlns:m2="http://jonas.ow2.org/ns/deployment-plan/maven2/1.0"
+  xsi:schemaLocation="http://jonas.ow2.org/ns/deployment-plan/1.0 
+                      http://jonas.ow2.org/ns/deployment-plan/1.0/deployment-plan-1.0.xsd 
+                      http://jonas.ow2.org/ns/deployment-plan/maven2/1.0 
+                      http://jonas.ow2.org/ns/deployment-plan/maven2-deployment-plan-1.0.xsd"
+  atomic="false" id="dp-example">
+
+  &lt;deployment id="org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar" 
+                 xsi:type="m2:maven2-deploymentType" reloadable="false" 
+                 start="true" reference="true" startlevel="1" starttransient="true">
+    &lt;m2:groupId>org.apache.geronimo.specs&lt;/m2:groupId>
+    &lt;m2:artifactId>geronimo-jms_1.1_spec&lt;/m2:artifactId>
+    &lt;m2:version>1.1.1&lt;/m2:version>
+    &lt;m2:type>jar&lt;/m2:type>
+  &lt;/deployment>
+
+  &lt;deployment id="org.apache.geronimo.specs:geronimo-servlet_2.5_spec:jar" 
+                 xsi:type="m2:maven2-deploymentType" reloadable="false" 
+                 start="true" reference="true" startlevel="1" starttransient="true">
+    &lt;m2:groupId>org.apache.geronimo.specs&lt;/m2:groupId>
+    &lt;m2:artifactId>geronimo-servlet_2.5_spec&lt;/m2:artifactId>
+    &lt;m2:version>1.2&lt;/m2:version>
+    &lt;m2:type>jar&lt;/m2:type>
+  &lt;/deployment>
+
+  &lt;deployment id="org.apache.commons:com.springsource.org.apache.commons.beanutils:jar" 
+                 xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" 
+                 reference="true" startlevel="1" starttransient="true">
+    &lt;m2:groupId>org.apache.commons&lt;/m2:groupId>
+    &lt;m2:artifactId>com.springsource.org.apache.commons.beanutils&lt;/m2:artifactId>
+    &lt;m2:version>1.8.3&lt;/m2:version>
+    &lt;m2:type>jar&lt;/m2:type>
+  &lt;/deployment>
+
+  &lt;deployment id="org.apache.commons:com.springsource.org.apache.commons.collections:jar" 
+                 xsi:type="m2:maven2-deploymentType" reloadable="false" start="true" reference="true" 
+                 startlevel="1" starttransient="true">    
+    &lt;m2:groupId>org.apache.commons&lt;/m2:groupId>
+    &lt;m2:artifactId>com.springsource.org.apache.commons.collections&lt;/m2:artifactId>
+    &lt;m2:version>3.2.1&lt;/m2:version>
+    &lt;m2:type>jar&lt;/m2:type>
+  &lt;/deployment>
+  ...
+&lt;/deployment-plan></programlisting>
+</chapter>

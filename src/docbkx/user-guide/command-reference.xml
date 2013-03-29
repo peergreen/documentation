@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" 
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <title>Command reference</title>
+  
+  <para>You can get the complet command reference by using <literal>help</literal> 
+  command in Peergreen Server's shell :</para>
+  <screen>boukadam@peergreen-platform$ help</screen>
+  
+  <section>
+  	<title>Scope 'gogo'</title>
+  	<screen>Scope 'gogo' (20 commands)
+-----------------------------------
+  gogo:format
+  gogo:format
+  gogo:getopt
+  gogo:new
+  gogo:set
+  gogo:tac
+  gogo:type
+  gogo:gosh
+  gogo:sh
+  gogo:source
+  gogo:cat
+  gogo:if
+  gogo:not
+  gogo:throw
+  gogo:throw
+  gogo:throw
+  gogo:try
+  gogo:try
+  gogo:until
+  gogo:while</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'obr</title>
+  	<screen>Scope 'obr' (6 commands)
+-----------------------------------
+  obr:deploy                               deploy resource from repository
+  obr:info                                 retrieve resource description from repository
+  obr:javadoc                              retrieve resource JavaDoc from repository
+  obr:list                                 list repository resources
+  obr:repos                                manage repositories
+  obr:source                               retrieve resource source code from repository</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'arch'</title>
+  	<screen>Scope 'arch' (5 commands)
+-----------------------------------
+  arch:handlers                            List the handlers factories
+  arch:instance                            Display information about one given Component instance
+  arch:factories                           List the iPOJO component factories.
+  arch:factory                             Display information about one given Component Factory
+  arch:instances                           List the component instances</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'shelbie'</title>
+  	<screen>Scope 'shelbie' (9 commands)
+-----------------------------------
+  shelbie:echo                             Echoes or prints arguments to STDOUT.
+  shelbie:grep                             Prints lines matching the given pattern.
+  shelbie:clear                            Clear the console.
+  shelbie:exit                             Exit from the current session (and shutdown 
+                                           the system if the shell is local)
+  shelbie:each                             Execute a closure on a list of arguments.
+  shelbie:shutdown                         Shutdown the OSGi platform
+  shelbie:history                          Manage the session's history.
+  shelbie:help                             Display command's help
+  shelbie:unset                            Unset the value from a variable (remove it)</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'config'</title>
+  	<screen>Scope 'config' (6 commands)
+-----------------------------------
+  config:delete                            Delete Configurations
+  config:set                               Update a given Configuration with given properties
+  config:details                           Print the content of a Configurations
+  config:list                              List configurations
+  config:del                               Delate a given set of property from a given 
+                                           Configuration.
+  config:create                            Create Configurations</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'newsfeed'</title>
+  	<screen>Scope 'newsfeed' (1 commands)
+-----------------------------------
+  newsfeed:get-news                        Gets the latest Peergreen news.</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'deployment'</title>
+  	<screen>Scope 'deployment' (5 commands)
+-----------------------------------
+  deployment:undeploy-artifact             Undeploy the given artifact in the system.
+  deployment:list                          List managed artifacts in the system.
+  deployment:deploy-artifact               Deploy the given artifact in the system.
+  deployment:report-artifact               Display report of an artifact deployed in the system.
+  deployment:update-artifact               Update the given artifact in the system.</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'felix'</title>
+  	<screen>Scope 'felix' (23 commands)
+-----------------------------------
+  felix:bundlelevel                        set bundle start level or initial bun dle start level
+  felix:bundlelevel                        query bundle start level
+  felix:frameworklevel                     query framework active start level
+  felix:frameworklevel                     set framework active start level
+  felix:headers                            display bundle headers
+  felix:install                            install bundle using URLs
+  felix:lb                                 list installed bundles matching a substring
+  felix:lb                                 list all installed bundles
+  felix:log                                display some matching log entries
+  felix:log                                display all matching log entries
+  felix:refresh                            refresh bundles
+  felix:resolve                            resolve bundles
+  felix:start                              start bundles
+  felix:stop                               stop bundles
+  felix:uninstall                          uninstall bundles
+  felix:update                             update bundle from URL
+  felix:update                             update bundle
+  felix:which                              determines from where a bundle loads a class
+  felix:inspect                            inspects bundle capabilities and requirements
+  felix:cd                                 change current directory
+  felix:cd                                 get current directory
+  felix:ls                                 get specified path contents
+  felix:ls                                 get current directory contents</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'telnetd'</title>
+  	<screen>Scope 'telnetd' (2 commands)
+-----------------------------------
+  telnetd:info
+  telnetd:connections</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'javavm'</title>
+  	<screen>Scope 'javavm' (6 commands)
+-----------------------------------
+  javavm:memory                            Display details of the JVM's memory usage.
+  javavm:thread-dump                       List Thread(s) and their stack traces.
+  javavm:threads                           Display the hierarchy of Threads and ThreadGroup 
+                                           containers.
+  javavm:dead-locks                        Display deadlocks (if any)
+  javavm:thread-list                       List Thread(s) and their stack traces.
+  javavm:kill-thread                       Try to force Thread exit.</screen>
+  </section>
+  
+  <section>
+  	<title>Scope 'info'</title>
+  	<screen>Scope 'info' (8 commands)
+-----------------------------------
+  info:platform
+  info:runtime
+  info:event
+  info:events
+  info:events
+  info:elapsed
+  info:elapsed
+  info:elapsed</screen>
+  </section>
+</chapter>
