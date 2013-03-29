@@ -48,7 +48,7 @@
   <!--  empty paragraphs will be inserted in several contexts -->
   <xsl:param name="spacing.paras" select="'1'"></xsl:param>
   <!-- depth to which recursive sections should appear in the TOC -->
-  <xsl:param name="toc.section.depth">2</xsl:param>
+  <xsl:param name="toc.section.depth">0</xsl:param>
   <xsl:param name="simplesect.in.toc" select="0"></xsl:param>
   <!--
     - fix the build for thoses who couldn't build
@@ -95,7 +95,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#"><img src="images/community-documentation.png" style="border:none;height:24px"/></a>
+          <a class="brand" href="http://docs.peergreen.com"><img src="images/community-documentation.png" style="border:none;height:24px"/></a>
           <div class="nav-collapse collapse">
 		  	<ul class="nav">
 			   <li class="active">

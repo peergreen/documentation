@@ -110,7 +110,6 @@
           <useExtensions>1</useExtensions>
           <!-- callouts -->
           <calloutsExtension>1</calloutsExtension>
-          <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
         </configuration>
       </plugin>
     </plugins>
