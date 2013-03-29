@@ -69,42 +69,42 @@ import org.osgi.service.log.LogService;
 
 public class BasicLogService implements LogService {
 
-	public void log(int level, String message) {
-		log(null, level, message, null);
-	}
+    public void log(int level, String message) {
+        log(null, level, message, null);
+    }
 
-	public void log(int level, String message, Throwable exception) {
-		log(null, level, message, exception);
-	}
+    public void log(int level, String message, Throwable exception) {
+        log(null, level, message, exception);
+    }
 
-	public void log(ServiceReference sr, int level, String message) {
-		log(sr, level, message, null);
-	}
+    public void log(ServiceReference sr, int level, String message) {
+        log(sr, level, message, null);
+    }
 
-	public void log(ServiceReference serviceReference, int level, String message, Throwable exception) {
-		String userLevel = null;
+    public void log(ServiceReference serviceReference, int level, String message, Throwable exception) {
+        String userLevel = null;
 
-		if (exception != null) {
-			message += ", exception:" + exception.getCause();
-		}
+        if (exception != null) {
+            message += ", exception:" + exception.getCause();
+        }
 
-		switch (level) {
-		case LogService.LOG_ERROR:
-			userLevel = "ERROR";
-			break;
-		case LogService.LOG_WARNING:
-			userLevel = "WARNING";
-			break;
-		case LogService.LOG_INFO:
-			userLevel = "INFO";
-			break;
-		case LogService.LOG_DEBUG:
-			userLevel = "DEBUG";
-			break;
-		}
+        switch (level) {
+        case LogService.LOG_ERROR:
+            userLevel = "ERROR";
+            break;
+        case LogService.LOG_WARNING:
+            userLevel = "WARNING";
+            break;
+        case LogService.LOG_INFO:
+            userLevel = "INFO";
+            break;
+        case LogService.LOG_DEBUG:
+            userLevel = "DEBUG";
+            break;
+        }
 
-		System.out.println("[" + userLevel + "] " + message);
-	}
+        System.out.println("[" + userLevel + "] " + message);
+    }
 
 }</programlisting>
 	<para>To start the service at the bundle activation, we need an Activator :</para>
@@ -139,11 +139,11 @@ import org.osgi.service.log.LogService;
  */
 public class Activator implements BundleActivator {
 
-	private ServiceRegistration&lt;LogService&gt; serviceRegistration;
+    private ServiceRegistration&lt;LogService> serviceRegistration;
 
     public void start(BundleContext bundleContext) {
         LogService logService = new BasicLogService();
-        Dictionary&lt;String, String&gt; properties = new Hashtable&lt;String, String&gt;();
+        Dictionary&lt;String, String> properties = new Hashtable&lt;String, String>();
         properties.put("nature", "basic");
         serviceRegistration = bundleContext.registerService(LogService.class, logService, properties);
         System.out.println("service started");
@@ -337,107 +337,108 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.log.LogService;
 
 /**
- * Deploy the bundle and check if all is fine with the deployment on Peergreen server.
+ * Deploy the bundle and check if all is fine with the deployment on Peergreen platform.
  * @author Florent Benoit
  */
 @RunWith(Arquillian.class)
 public class TestWithJUnitMyBundle {
 
-	/**
-	 * Symbolic Name.
-	 */
-	private static final String SYMBOLIC_NAME = "my-bundle";
+    /**
+     * Symbolic Name.
+     */
+    private static final String SYMBOLIC_NAME = "my-bundle";
 
-	/**
-	 * LDAP filter for selecting our implementation of the log service.
-	 */
-	private static final String FILTER = "(&amp;(" + Constants.OBJECTCLASS + "=" + LogService.class.getName() + ")(nature=basic))";
+    /**
+     * LDAP filter for selecting our implementation of the log service.
+     */
+    private static final String FILTER = "(&amp;(" + Constants.OBJECTCLASS + "=" + LogService.class.getName()
+            + ")(nature=basic))";
 
-	/**
-	 * Injects the bundle context.
-	 */
-	@ArquillianResource
-	public BundleContext bundleContext;
+    /**
+     * Injects the bundle context.
+     */
+    @ArquillianResource
+    public BundleContext bundleContext;
 
-	/**
-	 * Injects the bundle.
-	 */
-	@ArquillianResource
-	public Bundle bundle;
+    /**
+     * Injects the bundle.
+     */
+    @ArquillianResource
+    public Bundle bundle;
 
-	/**
-	 * Creates a new Java Archive.
-	 * @return the archive
-	 */
-	@Deployment
-	public static JavaArchive createdeployment() {
-		final JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "mybundle.jar");
-		archive.setManifest(new Asset() {
-			public InputStream openStream() {
-				// Adds OSGi entries
-				OSGiManifestBuilder builder = OSGiManifestBuilder.newInstance();
-				builder.addBundleManifestVersion(2);
-				builder.addBundleSymbolicName(SYMBOLIC_NAME);
-				builder.addBundleVersion("1.0.0");
+    /**
+     * Creates a new Java Archive.
+     * 
+     * @return the archive
+     */
+    @Deployment
+    public static JavaArchive createdeployment() {
+        final JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "mybundle.jar");
+        archive.setManifest(new Asset() {
+            public InputStream openStream() {
+                // Adds OSGi entries
+                OSGiManifestBuilder builder = OSGiManifestBuilder.newInstance();
+                builder.addBundleManifestVersion(2);
+                builder.addBundleSymbolicName(SYMBOLIC_NAME);
+                builder.addBundleVersion("1.0.0");
 
-				// Import the LogService package
-				builder.addImportPackages(LogService.class);
+                // Import the LogService package
+                builder.addImportPackages(LogService.class);
 
-				// Adds an activator
-				builder.addBundleActivator(Activator.class.getName());
-				return builder.openStream();
-			}
-		});
+                // Adds an activator
+                builder.addBundleActivator(Activator.class.getName());
+                return builder.openStream();
+            }
+        });
 
-		return archive.addClasses(Activator.class, BasicLogService.class);
-	}
+        return archive.addClasses(Activator.class, BasicLogService.class);
+    }
 
-	@Test
-	public void testBundleContextInjection() {
-		assertNotNull("BundleContext injected", bundleContext);
-	}
+    @Test
+    public void testBundleContextInjection() {
+        assertNotNull("BundleContext injected", bundleContext);
+    }
 
-	@Test
-	public void testBundleInjection() throws Exception {
-		assertNotNull("Bundle injected", bundle);
-		assertEquals("Bundle RESOLVED", Bundle.RESOLVED, bundle.getState());
-		bundle.start();
-		assertEquals("Bundle ACTIVE", Bundle.ACTIVE, bundle.getState());
-	}
+    @Test
+    public void testBundleInjection() throws Exception {
+        assertNotNull("Bundle injected", bundle);
+        assertEquals("Bundle RESOLVED", Bundle.RESOLVED, bundle.getState());
+        bundle.start();
+        assertEquals("Bundle ACTIVE", Bundle.ACTIVE, bundle.getState());
+    }
 
+    @Test
+    public void testSymbolicNameAvailable() throws InvalidSyntaxException {
+        assertNotNull(bundleContext);
+        Bundle[] bundles = bundleContext.getBundles();
+        boolean found = false;
+        int b = 0;
+        while (b &lt; bundles.length &amp;&amp; !found) {
+            Bundle bundle = bundles[b];
+            String symbolicName = bundle.getSymbolicName();
+            if (SYMBOLIC_NAME.equals(symbolicName)) {
+                found = true;
+                break;
+            }
+            b++;
+        }
+        assertTrue(found);
 
-	@Test
-	public void testSymbolicNameAvailable() throws InvalidSyntaxException {
-		assertNotNull(bundleContext);
-		Bundle[] bundles = bundleContext.getBundles();
-		boolean found = false;
-		int b = 0;
-		while (b &lt; bundles.length &amp;&amp; !found) {
-			Bundle bundle = bundles[b];
-			String symbolicName = bundle.getSymbolicName();
-			if (SYMBOLIC_NAME.equals(symbolicName)) {
-				found = true;
-				break;
-			}
-			b++;
-		}
-		assertTrue(found);
+    }
 
-	}
+    @Test
+    public void testService() throws InvalidSyntaxException {
 
+        // Gets the service reference
+        Collection&lt;ServiceReference&lt;LogService>> logServiceReferences = bundleContext.getServiceReferences(
+                LogService.class, FILTER);
+        assertNotNull("service references is null", logServiceReferences);
 
-	@Test
-	public void testService() throws InvalidSyntaxException {
+        // We should have only one reference matching this filter
+        assertEquals(1, logServiceReferences.size());
 
-		// Gets the service reference
-        Collection&lt;ServiceReference&lt;LogService&gt;&gt; logServiceReferences =  bundleContext.getServiceReferences(LogService.class, FILTER);
-		assertNotNull("service references is null", logServiceReferences);
-
-		// We should have only one reference matching this filter
-		assertEquals(1, logServiceReferences.size());
-
-		// takes the first element
-		ServiceReference&lt;LogService&gt; logServiceReference = logServiceReferences.iterator().next();
+        // takes the first element
+        ServiceReference&lt;LogService> logServiceReference = logServiceReferences.iterator().next();
 
         // check service property
         String nature = (String) logServiceReference.getProperty("nature");
@@ -445,19 +446,19 @@ public class TestWithJUnitMyBundle {
         assertEquals("basic", nature);
 
         // Check that the service is here
-		LogService logService = bundleContext.getService(logServiceReference);
-		assertNotNull("Log service not Found", logService);
+        LogService logService = bundleContext.getService(logServiceReference);
+        assertNotNull("Log service not Found", logService);
 
-		// use it
-		logService.log(LogService.LOG_DEBUG, "test");
+        // use it
+        logService.log(LogService.LOG_DEBUG, "test");
 
-	}
+    }
 
-	@Test
-	public void testStop() throws Exception {
-		bundle.stop();
-		assertEquals("Bundle RESOLVED", Bundle.RESOLVED, bundle.getState());
-	}
+    @Test
+    public void testStop() throws Exception {
+        bundle.stop();
+        assertEquals("Bundle RESOLVED", Bundle.RESOLVED, bundle.getState());
+    }
 
 }</programlisting>
 	
