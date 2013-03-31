@@ -50,6 +50,7 @@
                     <include name="**/*.gif"/>
                     <include name="**/*.jpg"/>
                     <include name="**/*.js"/>
+                    <include name="**/*.ico"/>
                   </fileset>
                 </copy>
               </postProcess>

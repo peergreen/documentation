@@ -82,6 +82,7 @@
   <!--==============================================-->
   <xsl:template name="user.head.content">
   	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+  	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
   </xsl:template>
   
   <xsl:template name="user.header.content">
@@ -98,7 +99,7 @@
           <a class="brand" href="http://docs.peergreen.com"><img src="images/community-documentation.png" style="border:none;height:24px"/></a>
           <div class="nav-collapse collapse">
 		  	<ul class="nav">
-			   <li class="active">
+			   <li class="">
 					<a class="brand" target="_blank" href="http://www.peergreen.com/" title="Peergreen"><img alt="Peergreen logo" src="images/peergreen-logo-white.png" /></a>
 			   </li>
 			    <xsl:variable name="current-name">
@@ -256,7 +257,7 @@
 							<a xmlns:cc="http://creativecommons.org/ns#" href="http://www.peergreen.com" property="cc:attributionName" rel="cc:attributionURL">
 							Peergreen</a> documentation</span> is available under the terms of 
 							<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.fr">
-							the Creative Commons Attribution - Noncommercial - No Derivative Works 3.0 not transposed.</a>.
+							the Creative Commons Attribution - Non commercial - No Derivative Works 3.0 not transposed.</a>.
 						</div>
 					</div>
 				</div>
