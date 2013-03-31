@@ -24,6 +24,7 @@
     </authorgroup>
 
     <date><?eval ${date}?></date>
+    <releaseinfo><?eval ${project.version} ?></releaseinfo>
   </info>
   
   <chapter>
