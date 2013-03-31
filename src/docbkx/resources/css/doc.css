@@ -1068,3 +1068,12 @@ form.bs-docs-example {
     padding-bottom: 20px;
   }
 }
+
+/* Social sharing */
+.social_sharing {
+	padding-top: 30px;
+}
+
+iframe {
+	border: none;
+}

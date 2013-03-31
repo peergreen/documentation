@@ -40,6 +40,18 @@
 	      		<div class="span9">
 	      			<!-- Insert HTML content -->
 	      			<xsl:apply-templates select="."/>
+	      			<div class="social_sharing">
+	      				<h5>Find this guide useful? Share the knowledge</h5>
+		      			<a href="https://twitter.com/share" class="twitter-share-button" data-via="peergreeninfo"  data-hashtags="peergreen">
+		      				<xsl:attribute name="data-text">
+		      					<xsl:text>Just read </xsl:text>
+		      					<xsl:value-of select="d:info/d:title"></xsl:value-of>
+		      				</xsl:attribute>
+		      				Tweet
+	      				</a>
+		      			<div class="g-plusone" data-annotation="inline" data-width="300"></div><br />
+		      			<div class="fb-like" data-send="true" data-width="450" data-show-faces="true" data-action="recommend"></div>
+	      			</div>
 	      		</div>
 	      	</div>
 	      </div>
