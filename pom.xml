@@ -14,6 +14,7 @@
     <xsl.draft.mode>yes</xsl.draft.mode>
     <guide.name>*-guide.xml</guide.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<peergreenServerVersion>1.0.0-M1</peergreenServerVersion>
   </properties>
 
   <build>

@@ -27,7 +27,7 @@
     </authorgroup>
 
     <date><?eval ${date}?></date>
-    <releaseinfo><?eval ${project.version} ?></releaseinfo>
+    <releaseinfo><?eval ${peergreenServerVersion} ?></releaseinfo>
   </info>
   
 	

@@ -23,7 +23,7 @@
 
     <date><?eval ${date}?></date>
 
-    <releaseinfo><?eval ${project.version} ?></releaseinfo>
+    <releaseinfo><?eval ${peergreenServerVersion}?></releaseinfo>
 
     <legalnotice>
       <para>This work is licensed under the Creative Commons
