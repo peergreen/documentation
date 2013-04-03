@@ -4,12 +4,14 @@
       xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
       xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <title>Peergreen :: User Guide</title>
+    <title>Peergreen Server :: User Guide</title>
 
-    <productname>Peergreen</productname>
+    <productname>Peergreen Server</productname>
 
     <copyright>
       <year>2013</year>
+
+      <holder>Peergreen SAS</holder>
     </copyright>
 
     <authorgroup>
@@ -21,9 +23,9 @@
     <releaseinfo><?eval ${peergreenServerVersion}?></releaseinfo>
 
     <legalnotice>
-      <para>This work is licensed under the Creative Commons Attribution-ShareAlike License. To view a copy of this
-      license,visit <link
-      xlink:href="http://creativecommons.org/licenses/by-sa/2.0/deed.en">http://creativecommons.org/licenses/by-sa/2.0/deed.en</link>
+      <para>This work is licensed under the Attribution-NonCommercial-NoDerivs 3.0 Unported License (CC BY-NC-ND 3.0).
+      To view a copy of this license,visit <link
+      xlink:href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</link>
       or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.</para>
     </legalnotice>
   </info>

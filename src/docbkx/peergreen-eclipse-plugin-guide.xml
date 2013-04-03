@@ -8,6 +8,12 @@
 
     <productname>Peergreen Eclipse Plugin</productname>
 
+    <copyright>
+      <year>2013</year>
+
+      <holder>Peergreen SAS</holder>
+    </copyright>
+
     <authorgroup>
       <author>
         <personname/>
@@ -21,6 +27,13 @@
     <date><?eval ${date}?></date>
 
     <releaseinfo><?eval ${peergreenServerVersion} ?></releaseinfo>
+
+    <legalnotice>
+      <para>This work is licensed under the Attribution-NonCommercial-NoDerivs 3.0 Unported License (CC BY-NC-ND 3.0).
+      To view a copy of this license,visit <link
+      xlink:href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</link>
+      or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.</para>
+    </legalnotice>
   </info>
 
   <chapter>
