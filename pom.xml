@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+ Copyright 2013 Peergreen
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <groupId>com.peergreen</groupId>
+    <artifactId>peergreen-pom</artifactId>
+    <version>1</version>
+  </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.peergreen</groupId>
-  <artifactId>pg_doc</artifactId>
+  <groupId>com.peergreen.documentation</groupId>
+  <artifactId>documentation</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>Peergreen Documentation Testing</name>
 
 
   <properties>
-    <!-- This value is overridden by the no-draft profile -->
-    <xsl.draft.mode>yes</xsl.draft.mode>
+    <!-- This value is overridden by the draft profile -->
+    <xsl.draft.mode>no</xsl.draft.mode>
     <guide.name>*-guide.xml</guide.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<peergreenServerVersion>1.0.0-M1</peergreenServerVersion>
+    <peergreenServerVersion>1.0.0-M1</peergreenServerVersion>
   </properties>
+
+
+  <scm>
+    <connection>scm:git:https://forge.peergreen.com/git/git/documentation/documentation.git</connection>
+    <developerConnection>scm:git:https://forge.peergreen.com/git/git/documentation/documentation.git</developerConnection>
+    <url>https://forge.peergreen.com/git/summary/?r=documentation/documentation.git</url>
+    <tag>HEAD</tag>
+  </scm>
 
   <build>
     <plugins>
@@ -119,9 +144,9 @@
 
   <profiles>
     <profile>
-      <id>no-draft</id>
+      <id>draft</id>
       <properties>
-        <xsl.draft.mode>no</xsl.draft.mode>
+        <xsl.draft.mode>yes</xsl.draft.mode>
       </properties>
     </profile>
     <profile>
@@ -131,4 +156,20 @@
       </properties>
     </profile>
   </profiles>
+
+  <repositories>
+    <repository>
+      <id>peergreen.release</id>
+      <name>Peergreen Release Nexus</name>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://forge.peergreen.com/nexus/content/repositories/releases/</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
+
 </project>
