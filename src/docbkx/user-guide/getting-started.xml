@@ -73,8 +73,10 @@ Peergreen wins two OW2 Awards : http://www.peergreen.com/Blog/Peergreen+Won+Two+
 OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meeting?language=en
 </prompt></screen>
 
-    <para>At the first launch, the kernel uncompress the pack200 jar file and creates the server’s directory
-    tree.</para>
+    <note>
+      <para>At the first launch, the kernel uncompress the pack200 jar files and creates the server’s directory tree.
+      That may take some time on slow machines.</para>
+    </note>
   </section>
 
   <section>
