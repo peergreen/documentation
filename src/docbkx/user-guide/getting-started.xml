@@ -8,7 +8,7 @@
   <section>
     <title>Introduction</title>
 
-    <para>The goal of the book is to get you up and running Peergreen Server as quickly as possible. It provides basic
+    <para>The goal of this document is to get you up to run a Peergreen server as quickly as possible. It provides basic
     steps described in the following sections. Note that you may need to refer other guides for further
     information.</para>
   </section>
@@ -16,9 +16,9 @@
   <section>
     <title>What is Peergreen Server ?</title>
 
-    <para>Peergreen Server is an OSGi based “à la carte” and cloud native application server targeting both the PaaS and
-    the Internet of Things requirements. Its low footprint enables its deployment from server in data-centers to
-    embedded gateways.</para>
+    <para>Peergreen server is an OSGi based " a la carte"  and cloud native application server compliant to both  Platform 
+	as a Service (PaaS) and Internet of Things requirements.. Its low footprint enables its deployment from server in 
+	data-centers to embedded gateways.</para>
 
     <para>Peergreen is a software company started by the core team who developed JOnAS the OW2 Java EE Application
     Server.</para>

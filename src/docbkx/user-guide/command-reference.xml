@@ -5,7 +5,7 @@
          xmlns:db="http://docbook.org/ns/docbook">
   <title>Command reference</title>
 
-  <para>You can get the complet command reference by using <literal>help</literal> command in Peergreen Server's shell
+  <para>You can get the full command reference by using <literal>help</literal> command in Peergreen Server's shell
   :</para>
 
   <screen>boukadam@peergreen-platform$ help</screen>
