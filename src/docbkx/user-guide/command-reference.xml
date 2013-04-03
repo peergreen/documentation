@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<chapter version="5.0" 
-      xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      xmlns:xi="http://www.w3.org/2001/XInclude"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml"
-      xmlns:db="http://docbook.org/ns/docbook">
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:db="http://docbook.org/ns/docbook">
   <title>Command reference</title>
-  
-  <para>You can get the complet command reference by using <literal>help</literal> 
-  command in Peergreen Server's shell :</para>
+
+  <para>You can get the complet command reference by using <literal>help</literal> command in Peergreen Server's shell
+  :</para>
+
   <screen>boukadam@peergreen-platform$ help</screen>
-  
+
   <section>
-  	<title>Scope 'gogo'</title>
-  	<screen>Scope 'gogo' (20 commands)
+    <title>Scope 'gogo'</title>
+
+    <screen>Scope 'gogo' (20 commands)
 -----------------------------------
   gogo:format
   gogo:format
@@ -38,10 +36,11 @@
   gogo:until
   gogo:while</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'obr</title>
-  	<screen>Scope 'obr' (6 commands)
+    <title>Scope 'obr</title>
+
+    <screen>Scope 'obr' (6 commands)
 -----------------------------------
   obr:deploy                               deploy resource from repository
   obr:info                                 retrieve resource description from repository
@@ -50,10 +49,11 @@
   obr:repos                                manage repositories
   obr:source                               retrieve resource source code from repository</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'arch'</title>
-  	<screen>Scope 'arch' (5 commands)
+    <title>Scope 'arch'</title>
+
+    <screen>Scope 'arch' (5 commands)
 -----------------------------------
   arch:handlers                            List the handlers factories
   arch:instance                            Display information about one given Component instance
@@ -61,10 +61,11 @@
   arch:factory                             Display information about one given Component Factory
   arch:instances                           List the component instances</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'shelbie'</title>
-  	<screen>Scope 'shelbie' (9 commands)
+    <title>Scope 'shelbie'</title>
+
+    <screen>Scope 'shelbie' (9 commands)
 -----------------------------------
   shelbie:echo                             Echoes or prints arguments to STDOUT.
   shelbie:grep                             Prints lines matching the given pattern.
@@ -77,10 +78,11 @@
   shelbie:help                             Display command's help
   shelbie:unset                            Unset the value from a variable (remove it)</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'config'</title>
-  	<screen>Scope 'config' (6 commands)
+    <title>Scope 'config'</title>
+
+    <screen>Scope 'config' (6 commands)
 -----------------------------------
   config:delete                            Delete Configurations
   config:set                               Update a given Configuration with given properties
@@ -90,17 +92,19 @@
                                            Configuration.
   config:create                            Create Configurations</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'newsfeed'</title>
-  	<screen>Scope 'newsfeed' (1 commands)
+    <title>Scope 'newsfeed'</title>
+
+    <screen>Scope 'newsfeed' (1 commands)
 -----------------------------------
   newsfeed:get-news                        Gets the latest Peergreen news.</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'deployment'</title>
-  	<screen>Scope 'deployment' (5 commands)
+    <title>Scope 'deployment'</title>
+
+    <screen>Scope 'deployment' (5 commands)
 -----------------------------------
   deployment:undeploy-artifact             Undeploy the given artifact in the system.
   deployment:list                          List managed artifacts in the system.
@@ -108,10 +112,11 @@
   deployment:report-artifact               Display report of an artifact deployed in the system.
   deployment:update-artifact               Update the given artifact in the system.</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'felix'</title>
-  	<screen>Scope 'felix' (23 commands)
+    <title>Scope 'felix'</title>
+
+    <screen>Scope 'felix' (23 commands)
 -----------------------------------
   felix:bundlelevel                        set bundle start level or initial bun dle start level
   felix:bundlelevel                        query bundle start level
@@ -137,18 +142,20 @@
   felix:ls                                 get specified path contents
   felix:ls                                 get current directory contents</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'telnetd'</title>
-  	<screen>Scope 'telnetd' (2 commands)
+    <title>Scope 'telnetd'</title>
+
+    <screen>Scope 'telnetd' (2 commands)
 -----------------------------------
   telnetd:info
   telnetd:connections</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'javavm'</title>
-  	<screen>Scope 'javavm' (6 commands)
+    <title>Scope 'javavm'</title>
+
+    <screen>Scope 'javavm' (6 commands)
 -----------------------------------
   javavm:memory                            Display details of the JVM's memory usage.
   javavm:thread-dump                       List Thread(s) and their stack traces.
@@ -158,10 +165,11 @@
   javavm:thread-list                       List Thread(s) and their stack traces.
   javavm:kill-thread                       Try to force Thread exit.</screen>
   </section>
-  
+
   <section>
-  	<title>Scope 'info'</title>
-  	<screen>Scope 'info' (8 commands)
+    <title>Scope 'info'</title>
+
+    <screen>Scope 'info' (8 commands)
 -----------------------------------
   info:platform
   info:runtime

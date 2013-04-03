@@ -1,52 +1,48 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<book version="5.0" xml:id="pg-arquillian-junit-tuto"
-      xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      xmlns:xi="http://www.w3.org/2001/XInclude"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml"
-      xmlns:db="http://docbook.org/ns/docbook">
+<book version="5.0" xml:id="pg-arquillian-junit-tuto" xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <title>Testing OSGi applications with Arquillian, maven &amp; JUnit</title>
-	<productname>Peergreen Server</productname>
+
+    <productname>Peergreen Server</productname>
+
     <copyright>
       <year>2013</year>
     </copyright>
 
     <authorgroup>
-
       <author>
-        <personname></personname>
+        <personname/>
 
         <affiliation>
-          <orgname></orgname>
+          <orgname/>
         </affiliation>
       </author>
-
     </authorgroup>
 
     <date><?eval ${date}?></date>
+
     <releaseinfo><?eval ${peergreenServerVersion} ?></releaseinfo>
   </info>
-  
-	
-  
+
   <chapter>
-	<title>Introduction</title>
-	<para>Arquillian (<link	xlink:href="http://arquillian.org">http://arquillian.org
-	</link>) is a testing framework for both OSGi and Java EE applications. This 
-	tutorial focuses on OSGi applications and describes how to write a unit test 
-	with Arquillian, maven and JUnit on Peergreen Server.</para>	
+    <title>Introduction</title>
+
+    <para>Arquillian (<link xlink:href="http://arquillian.org">http://arquillian.org </link>) is a testing framework for
+    both OSGi and Java EE applications. This tutorial focuses on OSGi applications and describes how to write a unit
+    test with Arquillian, maven and JUnit on Peergreen Server.</para>
   </chapter>
+
   <chapter>
-	<title>BasicLogService, the OSGi application to test</title>
-	<para>We need an application to test. You can download the basic example 
-	<emphasis>BasicLogService</emphasis> <link 
-	xlink:href="https://github.com/peergreen/arquillian">here</link>. It implements 
-	the OSGi's LogService interface.</para>
-	
-	<programlisting language="java">/**
+    <title>BasicLogService, the OSGi application to test</title>
+
+    <para>We need an application to test. You can download the basic example <emphasis>BasicLogService</emphasis> <link
+    xlink:href="https://github.com/peergreen/arquillian">here</link>. It implements the OSGi's LogService
+    interface.</para>
+
+    <programlisting language="java">/**
  * Copyright 2013 Peergreen S.A.S.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -108,8 +104,10 @@ public class BasicLogService implements LogService {
     }
 
 }</programlisting>
-	<para>To start the service at the bundle activation, we need an Activator :</para>
-	<programlisting language="java">/**
+
+    <para>To start the service at the bundle activation, we need an Activator :</para>
+
+    <programlisting language="java">/**
  * Copyright 2013 Peergreen S.A.S.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -140,11 +138,11 @@ import org.osgi.service.log.LogService;
  */
 public class Activator implements BundleActivator {
 
-    private ServiceRegistration&lt;LogService> serviceRegistration;
+    private ServiceRegistration&lt;LogService&gt; serviceRegistration;
 
     public void start(BundleContext bundleContext) {
         LogService logService = new BasicLogService();
-        Dictionary&lt;String, String> properties = new Hashtable&lt;String, String>();
+        Dictionary&lt;String, String&gt; properties = new Hashtable&lt;String, String&gt;();
         properties.put("nature", "basic");
         serviceRegistration = bundleContext.registerService(LogService.class, logService, properties);
         System.out.println("service started");
@@ -158,19 +156,17 @@ public class Activator implements BundleActivator {
         }
     }
 }</programlisting>
-	</chapter>
-	
-	<chapter>
-		<title>Arquillian/ JUnit Test</title>
-		<para>The test is provided in the same maven project as an unit 
-		test (under the src/test directory). In this Maven project, we 
-		use the dependencies for using arquillian OSGi adapter in the 
-		<link xlink:href="https://docs.jboss.org/author/display/JBOSGI/Arquillian+Test+Framework">
-		embedded mode</link>. We also define a dependency on the Peergreen 
-		Server itself on which we will run the test.</para>
-	
-	
-	<programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  </chapter>
+
+  <chapter>
+    <title>Arquillian/ JUnit Test</title>
+
+    <para>The test is provided in the same maven project as an unit test (under the src/test directory). In this Maven
+    project, we use the dependencies for using arquillian OSGi adapter in the <link
+    xlink:href="https://docs.jboss.org/author/display/JBOSGI/Arquillian+Test+Framework"> embedded mode</link>. We also
+    define a dependency on the Peergreen Server itself on which we will run the test.</para>
+
+    <programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!--
  Copyright 2013 Peergreen S.A.S.
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -292,12 +288,11 @@ public class Activator implements BundleActivator {
   &lt;/build&gt;
 
 &lt;/project&gt;</programlisting>
-	
-	<para>The test itself consists in checking the bundle state and the 
-	service injection. The deployment method creates the application bundle 
-	with the application classes and the LogService interface.</para>
-	
-	<programlisting language="java">/**
+
+    <para>The test itself consists in checking the bundle state and the service injection. The deployment method creates
+    the application bundle with the application classes and the LogService interface.</para>
+
+    <programlisting language="java">/**
  * Copyright 2013 Peergreen S.A.S.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -431,7 +426,7 @@ public class TestWithJUnitMyBundle {
     public void testService() throws InvalidSyntaxException {
 
         // Gets the service reference
-        Collection&lt;ServiceReference&lt;LogService>> logServiceReferences = bundleContext.getServiceReferences(
+        Collection&lt;ServiceReference&lt;LogService&gt;&gt; logServiceReferences = bundleContext.getServiceReferences(
                 LogService.class, FILTER);
         assertNotNull("service references is null", logServiceReferences);
 
@@ -439,7 +434,7 @@ public class TestWithJUnitMyBundle {
         assertEquals(1, logServiceReferences.size());
 
         // takes the first element
-        ServiceReference&lt;LogService> logServiceReference = logServiceReferences.iterator().next();
+        ServiceReference&lt;LogService&gt; logServiceReference = logServiceReferences.iterator().next();
 
         // check service property
         String nature = (String) logServiceReference.getProperty("nature");
@@ -462,10 +457,10 @@ public class TestWithJUnitMyBundle {
     }
 
 }</programlisting>
-	
-	<para>When we launch the test, we got the expected result:</para>
-	
-	<screen><prompt>-------------------------------------------------------
+
+    <para>When we launch the test, we got the expected result:</para>
+
+    <screen><prompt>-------------------------------------------------------
  T E S T S
 -------------------------------------------------------
 Running com.peergreen.example.mybundle.junit.arquillian.TestMyBundle

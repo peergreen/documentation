@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<book version="5.0" xml:id="user-guide"
-      xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      xmlns:xi="http://www.w3.org/2001/XInclude"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml"
+<book version="5.0" xml:id="user-guide" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
       xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <title>Peergreen :: User Guide</title>
-	<productname>Peergreen</productname>
+
+    <productname>Peergreen</productname>
+
     <copyright>
       <year>2013</year>
     </copyright>
 
     <authorgroup>
-
-      <author>
-      </author>
-
+      <author/>
     </authorgroup>
 
     <date><?eval ${date}?></date>
@@ -26,17 +21,16 @@
     <releaseinfo><?eval ${peergreenServerVersion}?></releaseinfo>
 
     <legalnotice>
-      <para>This work is licensed under the Creative Commons
-      Attribution-ShareAlike License. To view a copy of this license,visit
-      <link
+      <para>This work is licensed under the Creative Commons Attribution-ShareAlike License. To view a copy of this
+      license,visit <link
       xlink:href="http://creativecommons.org/licenses/by-sa/2.0/deed.en">http://creativecommons.org/licenses/by-sa/2.0/deed.en</link>
-      or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford,
-      California 94305, USA.</para>
+      or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.</para>
     </legalnotice>
   </info>
-  
-  <xi:include href="user-guide/getting-started.xml"/>	
-  <xi:include href="user-guide/deployment-plan.xml"/>
-  <xi:include href="user-guide/command-reference.xml"/>
 
+  <xi:include href="user-guide/getting-started.xml"/>
+
+  <xi:include href="user-guide/deployment-plan.xml"/>
+
+  <xi:include href="user-guide/command-reference.xml"/>
 </book>
