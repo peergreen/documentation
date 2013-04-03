@@ -32,6 +32,8 @@
 
   <xi:include href="user-guide/getting-started.xml"/>
 
+  <xi:include href="user-guide/administration.xml"/>
+
   <xi:include href="user-guide/deployment-plan.xml"/>
 
   <xi:include href="user-guide/command-reference.xml"/>

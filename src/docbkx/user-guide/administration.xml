@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xml:id="administration" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook">
+  <title>Administration</title>
+
+  <para/>
+
+  <section>
+    <title>Configuration</title>
+
+    <section>
+      <title>Properties</title>
+
+      <para>Theses configuration properties are System properties and must be set on the <command>java</command> command
+      line.</para>
+
+      <para><example>
+          <title>Launching Peergreen Server with Java System properties</title>
+
+          <para><screen>guillaume@machine ~ $ java <emphasis>-Dcom.peergreen.bootstrap.system.exit=true</emphasis> -jar peergreen-server.jar</screen></para>
+        </example></para>
+
+      <para><glosslist>
+          <glossentry>
+            <glossterm>com.peergreen.bootstrap.thread.check.reportonly</glossterm>
+
+            <glossdef>
+              <para>If this System property is set to <literal>true</literal>, the bootstrap will only print a report on
+              remaining alive thread when bootstap <methodname>start()</methodname> method is done. If
+              <literal>false</literal>, stop of these threads is performed. Default is <literal>false</literal>: all
+              remaining threads are stopped.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>com.peergreen.bootstrap.system.exit</glossterm>
+
+            <glossdef>
+              <para>If this System property is set to <literal>true</literal>, the bootstrap will force JVM's shutdown
+              with <methodname>System.exit(int)</methodname>. By default, <methodname>exit()</methodname> is not
+              called.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist></para>
+    </section>
+  </section>
+
+  <section>
+    <title>Deployment</title>
+
+    <para>Peergreen Server incorporates an advanced deployment system tailored to take advantages of (nowadays common)
+    multi-core architectures, providing a massively parallel archive processing. This system is highly modular and can
+    be extended to support any type of archives (beyond natively supported types). Deployment system also supports
+    persistence of archive deployment.</para>
+
+    <section>
+      <title>Natively supported artifacts</title>
+
+      <para>As Peergreen Server is built from scratch on top of OSGi, bundles are first class citizen in the deployment
+      system.</para>
+
+      <para>The platform also natively support 2 other artifact types: OW2 JOnAS deployment plans (more to read here)
+      and OW2 JOnAS Configuration Admin XML files.</para>
+    </section>
+
+    <section>
+      <title>Persistence</title>
+
+      <para>Persistence support means that an archive marked as persistent will be re-installed automatically at each
+      server restart. On the contrary, unpersisted archives will never be re-installed at server restarts.</para>
+    </section>
+
+    <section>
+      <title>Basics</title>
+
+      <section>
+        <title>Dropins deployment</title>
+
+        <para>When launching the server, a <filename class="directory">deploy/</filename> directory is automatically
+        created (if not already present). This directory is observed/scanned periodically and all detected changes (new
+        files and deletions) are handed over the deployment system for processing (respectively for deployment and
+        undeployment). Archives placed in this directory are non-persistent.</para>
+
+        <warning>
+          <para>Dropins archives are <emphasis>not persistent</emphasis> and are properly
+          <emphasis>undeployed</emphasis> between server restarts.</para>
+        </warning>
+      </section>
+
+      <section>
+        <title>Command line interface</title>
+
+        <para>Peergreen Server comes bundled with shell commands for deployment system management.</para>
+
+        <para>Theses commands can be used to:<itemizedlist>
+            <listitem>
+              <para>Deploy new artifacts</para>
+
+              <para><screen>guillaume@peergreen-platform$ deployment:deploy-artifact file:///Users/guillaume/.../bundle.jar
+03/04/13 14:36:27 (I) BasicDeploymentService.__M_process : Artifacts '[Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaume/.../bundle.jar, mode=DEPLOY]]' in '92' ms.
+Report: 
+file:///Users/guillaume/.../bundle.jar:	OK
+Process done in '92' ms.
+</screen></para>
+            </listitem>
+
+            <listitem>
+              <para>List currently deployed artifacts</para>
+
+              <para><screen>guillaume@peergreen-platform$ deployment:list 
+  file:///Users/guillaume/.../bundle.jar
+</screen></para>
+            </listitem>
+
+            <listitem>
+              <para>Undeploy previously installed artifacts</para>
+
+              <para><screen>guillaume@peergreen-platform$ deployment:undeploy-artifact file:///Users/guillaume/.../bundle.jar
+03/04/13 14:55:04 (I) BasicDeploymentService.__M_process : Artifacts '[Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaume/.../bundle.jar, mode=UNDEPLOY]]' in '12' ms.
+Report: 
+file:///Users/guillaume/.../bundle.jar:	OK
+Process done in '12' ms.
+</screen></para>
+            </listitem>
+
+            <listitem>
+              <para>Display a detailed report for a given deployed artifact</para>
+
+              <para><screen>guillaume@peergreen-platform$ deployment:report-artifact file:///Users/guillaume/.../bundle.jar
+Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaume/.../bundle.jar, totalTime='6' ms]
+  |-Facet[name=com.peergreen.deployment.facet.archive.Archive, addedBy=com.peergreen.deployment.internal.processor.uriresolver.FileURIProcessor]
+  |-Facet[name=org.osgi.framework.Bundle, addedBy=com.peergreen.deployment.internal.facet.osgibundle.processor.OSGiBundleInstallProcessor]
+  |-Facet[name=com.peergreen.deployment.facet.archive.OSGiBundle, addedBy=com.peergreen.deployment.internal.facet.osgibundle.processor.OSGiBundleArchiveProcessor]
+  |-Processor[name=com.peergreen.deployment.internal.facet.osgibundle.processor.OSGiBundleArchiveProcessor, phase=FACET_SCANNER, duration='0' ms]
+  |-Processor[name=com.peergreen.deployment.internal.facet.osgibundle.processor.OSGiBundleStartProcessor, phase=START, duration='1' ms]
+  |-Processor[name=com.peergreen.deployment.internal.facet.osgibundle.processor.OSGiBundleInstallProcessor, phase=INSTALL, duration='2' ms]
+  |-Processor[name=com.peergreen.deployment.internal.processor.uriresolver.FileURIProcessor, phase=URI_RESOLVER, duration='1' ms]
+</screen></para>
+            </listitem>
+          </itemizedlist></para>
+
+        <para/>
+      </section>
+
+      <section>
+        <title>Monitored artifacts</title>
+
+        <para>When deployed, artifacts become managed artifacts, a monitoring Thread tries to detect (periodically) if
+        the artifact has changed, if so, it notifies the deployment system of the change, propagating an UPDATE
+        order.</para>
+      </section>
+    </section>
+  </section>
+
+  <section>
+    <title>Remote management</title>
+
+    <para>Peergreen Server provides a simple Telnet daemon that can be used to connect to a running instance.</para>
+
+    <para>By default, it opens the <literal>10023</literal> port and listen for connections on all network
+    interfaces.</para>
+
+    <para>Maximum concurrent number of clients cannot be changed and is set to <literal>2</literal>.</para>
+
+    <para><glosslist>
+        <glossentry>
+          <glossterm>com.peergreen.telnetd.ports</glossterm>
+
+          <glossdef>
+            <para>Comma separated list of ports to use for listening (if empty default <literal>10023</literal> port
+            will be used)</para>
+          </glossdef>
+        </glossentry>
+      </glosslist></para>
+
+    <section>
+      <title>Connecting</title>
+
+      <para>When a connection attempt is made to one of the bound address, the daemon simply creates a new shell console
+      and connects connection's input and output stream into the console. Any <literal>telnet</literal> client can be
+      used to connect to this daemon. Type <command>exit</command> for exiting the session (without shutdowning the
+      platform).</para>
+
+      <para><screen>guillaume@peergreen ~/$ telnet localhost 10023
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
+ ____                                           ____                           
+|  _ \ ___  ___ _ __ __ _ _ __ ___  ___ _ __   / ___|  ___ _ ____   _____ _ __ 
+| |_) / _ \/ _ \ '__/ _` | '__/ _ \/ _ \ '_ \  \___ \ / _ \ '__\ \ / / _ \ '__|
+|  __/  __/  __/ | | (_| | | |  __/  __/ | | |  ___) |  __/ |   \ V /  __/ |   
+|_|   \___|\___|_|  \__, |_|  \___|\___|_| |_| |____/ \___|_|    \_/ \___|_|   
+                    |___/____                                      _ _         
+                        / ___|___  _ __ ___  _ __ ___  _   _ _ __ (_) |_ _   _ 
+                       | |   / _ \| '_ ` _ \| '_ ` _ \| | | | '_ \| | __| | | |
+                       | |__| (_) | | | | | | | | | | | |_| | | | | | |_| |_| |
+                        \____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|_|\__|\__, |
+                                                _____    _ _ _   _       |___/ 
+                                               | ____|__| (_) |_(_) ___  _ __  
+                                               |  _| / _` | | __| |/ _ \| '_ \ 
+                                               | |__| (_| | | |_| | (_) | | | |
+                                               |_____\__,_|_|\__|_|\___/|_| |_|
+
+Welcome on Peergreen Server:
+  - Enter help or hit TAB key to list available commands.
+  - Enter shutdown or hit CTRL^D key to shutdown the platform.
+
+System.out redirected to /Users/guillaume/Downloads/peergreen/logs/system.out
+System.err redirected to /Users/guillaume/Downloads/peergreen/logs/system.err
+
+Peergreen News
+Peergreen wins two OW2 Awards : http://www.peergreen.com/Blog/Peergreen+Won+Two+Awards+During+OW2CON+2012?language=en
+OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meeting?language=en
+
+guillaume@peergreen-platform$ 
+</screen></para>
+    </section>
+
+    <section>
+      <title>Telnetd commands</title>
+
+      <para>Peergreen's Telnetd comes bundled with 2 commands to inspect the daemon and its connections status:
+      <command>telnetd:info</command> and <command>telnetd:connections</command>.<itemizedlist>
+          <listitem>
+            <para><command>info</command> is useful to see telnetd configuration (open ports, ...) and statistic
+            informations on connections (current, failed, ...).</para>
+          </listitem>
+
+          <listitem>
+            <para><command>connections</command> gives informations about each currently open connection (origin,
+            opening date)</para>
+          </listitem>
+        </itemizedlist></para>
+
+      <note>
+        <para>Detailed command information are available in the command reference guide.</para>
+      </note>
+    </section>
+  </section>
+</chapter>
