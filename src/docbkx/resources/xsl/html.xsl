@@ -83,6 +83,20 @@
   <xsl:template name="user.head.content">
   	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
   	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+  	<!-- Google Analytics -->
+  	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-34638166-1']);
+		_gaq.push(['_setDomainName', 'peergreen.com']);
+		_gaq.push(['_setAllowLinker', true]);
+		_gaq.push(['_trackPageview']);
+		
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
   </xsl:template>
   
   <xsl:template name="user.header.content">
@@ -199,6 +213,10 @@
 		            </xsl:if>
 		            <xsl:if test="db:info/db:releaseinfo != ''">
 						Version : <xsl:value-of select="db:info/db:releaseinfo"/>
+						<br />
+		            </xsl:if>
+		            <xsl:if test="db:info/db:date != ''">
+						Latest update : <xsl:value-of select="db:info/db:date"/>
 						<br />
 		            </xsl:if>
 		            </p>
