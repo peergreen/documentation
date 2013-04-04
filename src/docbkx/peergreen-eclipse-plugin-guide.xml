@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<book version="5.0" xml:id="pg-eclipse-plugin" xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
-      xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook">
+<book version="5.0" xml:id="pg-eclipse-plugin"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <title>Developing OSGi applications with Peergreen’s Eclipse plugin</title>
+    <title>Developing OSGi applications with Peergreen’s Eclipse
+    plugin</title>
 
     <productname>Peergreen Eclipse Plugin</productname>
 
@@ -29,30 +34,33 @@
     <releaseinfo><?eval ${peergreenServerVersion} ?></releaseinfo>
 
     <legalnotice>
-      <para>This work is licensed under the Attribution-NonCommercial-NoDerivs 3.0 Unported License (CC BY-NC-ND 3.0).
-      To view a copy of this license,visit <link
+      <para>This work is licensed under the Attribution-NonCommercial-NoDerivs
+      3.0 Unported License (CC BY-NC-ND 3.0). To view a copy of this
+      license,visit <link
       xlink:href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</link>
-      or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.</para>
+      or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford,
+      California 94305, USA.</para>
     </legalnotice>
   </info>
 
   <chapter>
     <title>Introduction</title>
 
-    <para><link xlink:href="http://www.eclipse.org/">Eclipse</link> is a multi-language software development environment
-    with an extensible plugins system. <emphasis>Peergreen Platform Eclipse plugin</emphasis> provides an efficient tool
-    for developing OSGi applications within Eclipse IDE. With Peergreen Platform plugin, developers are able to :
-    <itemizedlist>
+    <para><link xlink:href="http://www.eclipse.org/">Eclipse</link> is a
+    multi-language software development environment with an extensible plugins
+    system. <emphasis>Peergreen Server Eclipse plugin</emphasis> provides an
+    efficient tool for developing OSGi applications within Eclipse IDE. With
+    Peergreen Server plugin, developers are able to : <itemizedlist>
         <listitem>
-          launch Peergreen platform from the IDE as an OSGi framework.
+           launch Peergreen server from the IDE as an OSGi framework. 
         </listitem>
 
         <listitem>
-          deploy the application bundle to test it.
+           deploy the application bundle to test it. 
         </listitem>
 
         <listitem>
-          retrieve new version of the platform.
+           retrieve new version of the server. 
         </listitem>
       </itemizedlist></para>
 
@@ -64,9 +72,11 @@
   <chapter>
     <title>The application project</title>
 
-    <para>We’re using the OSGi application example, named Hello Service, available <link
-    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service"> here</link>. The maven project defines
-    a bundle which implements a single service Hello :</para>
+    <para>We’re using the OSGi application example, named Hello Service,
+    available <link
+    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">
+    here</link>. The maven project defines a bundle which implements a single
+    service Hello :</para>
 
     <programlisting language="java">package com.peergreen.example.ipojo.hello.api;
 
@@ -76,11 +86,11 @@ public interface Hello {
 
     <para>The <literal>pom.xml</literal> includes : <itemizedlist>
         <listitem>
-          the maven bundle plugin to generate the OSGi bundle.
+           the maven bundle plugin to generate the OSGi bundle. 
         </listitem>
 
         <listitem>
-          the maven ipojo plugin to enhance the classes with the IPOJO service management container.
+           the maven ipojo plugin to enhance the classes with the IPOJO service management container. 
         </listitem>
       </itemizedlist></para>
 
@@ -113,7 +123,8 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot1.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot1.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
   </chapter>
@@ -121,7 +132,8 @@ public interface Hello {
   <chapter>
     <title>Plugin installation</title>
 
-    <para>In the <emphasis>« Help menu »</emphasis>, select <emphasis>« Install New Software »</emphasis>.</para>
+    <para>In the <emphasis>« Help menu »</emphasis>, select <emphasis>«
+    Install New Software »</emphasis>.</para>
 
     <mediaobject>
       <imageobject role="html">
@@ -129,7 +141,8 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot2.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot2.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
@@ -143,13 +156,15 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot3.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot3.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
     <para>Set the name to <emphasis>Peergreen update site</emphasis>.</para>
 
-    <para>Set the location to <emphasis>http://www.peergreen.com/eclipse</emphasis>.</para>
+    <para>Set the location to <link
+    xlink:href="http://eclipse.peergreen.com/juno/">http://eclipse.peergreen.com/juno/</link></para>
 
     <para>And then click on the <emphasis>«OK»</emphasis> button.</para>
 
@@ -159,14 +174,16 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot4.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot4.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
-    <para>Select <emphasis>Peergreen Repository / OSGi framework extension for Peergreen Platform. </emphasis></para>
+    <para>Select <emphasis>Peergreen Repository / OSGi framework extension for
+    Peergreen Server. </emphasis></para>
 
-    <para>Unselect the entry <emphasis>‘Contact all update site during install to find required software’
-    </emphasis>.</para>
+    <para>Unselect the entry <emphasis>‘Contact all update site during install
+    to find required software’ </emphasis>.</para>
 
     <para>Click on <emphasis>«Next»</emphasis> button.</para>
 
@@ -176,7 +193,8 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot5.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot5.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
@@ -188,11 +206,13 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot6.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot6.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
-    <para>Accept the terms of the license agreement and click on the <emphasis>«Finish»</emphasis> button.</para>
+    <para>Accept the terms of the license agreement and click on the
+    <emphasis>«Finish»</emphasis> button.</para>
 
     <mediaobject>
       <imageobject role="html">
@@ -200,11 +220,13 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot7.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot7.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
-    <para>Ignore the security warning about unsigned content by clicking on <emphasis>«Ok»</emphasis> button.</para>
+    <para>Ignore the security warning about unsigned content by clicking on
+    <emphasis>«Ok»</emphasis> button.</para>
 
     <mediaobject>
       <imageobject role="html">
@@ -212,11 +234,13 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot8.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot8.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
-    <para>Accept to restart Eclipse to finish the install by clicking on the <emphasis>«Yes»</emphasis> button.</para>
+    <para>Accept to restart Eclipse to finish the install by clicking on the
+    <emphasis>«Yes»</emphasis> button.</para>
 
     <mediaobject>
       <imageobject role="html">
@@ -224,7 +248,8 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot9.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot9.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
@@ -234,10 +259,11 @@ public interface Hello {
   <chapter>
     <title>Run the application</title>
 
-    <para>Once the plugin is installed, you can run your application from the IDE.</para>
+    <para>Once the plugin is installed, you can run your application from the
+    IDE.</para>
 
-    <para>For that, select <emphasis>«Run As/Run Configurations...»</emphasis> in the contextual menu of your project
-    (right click).</para>
+    <para>For that, select <emphasis>«Run As/Run Configurations...»</emphasis>
+    in the contextual menu of your project (right click).</para>
 
     <mediaobject>
       <imageobject role="html">
@@ -245,12 +271,14 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot10.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot10.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
-    <para>Deselect all the bundle and then select only the application bundle (here, select
-    <emphasis>com.peergreen.example.hello-service</emphasis> bundle).</para>
+    <para>Deselect all the bundle and then select only the application bundle
+    (here, select <emphasis>com.peergreen.example.hello-service</emphasis>
+    bundle).</para>
 
     <para>Click on the <emphasis>«Run»</emphasis> button.</para>
 
@@ -260,11 +288,13 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot11.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot11.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
-    <para>The peergreen platform is launched and the application is deployed.</para>
+    <para>The peergreen server is launched and the application is
+    deployed.</para>
 
     <para>You have access to the shell in the console view.</para>
 
@@ -274,12 +304,14 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot12.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot12.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
-    <para>You can type the <literal>lb</literal> command to get the bundles list and check your application bundle (see
-    here the hello-service bundle).</para>
+    <para>You can type the <literal>lb</literal> command to get the bundles
+    list and check your application bundle (see here the hello-service
+    bundle).</para>
 
     <mediaobject>
       <imageobject role="html">
@@ -287,17 +319,18 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot13.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot13.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
   </chapter>
 
   <chapter>
-    <title>Retrieve a new version of Peergreen Platform</title>
+    <title>Retrieve a new version of Peergreen Server</title>
 
     <para>Go to the menu <emphasis>Window/Preferences</emphasis>.</para>
 
-    <para>Select the <emphasis>Peergreen Platform</emphasis> entry.</para>
+    <para>Select the <emphasis>Peergreen Server</emphasis> entry.</para>
 
     <mediaobject>
       <imageobject role="html">
@@ -305,13 +338,15 @@ public interface Hello {
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot14.png" scale="40"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot14.png"
+                   scale="40"/>
       </imageobject>
     </mediaobject>
 
-    <para>Select the version to use in the list or select a local platform that was installed somewhere else.</para>
+    <para>Select the version to use in the list or select a local server that
+    was installed somewhere else.</para>
 
-    <para>Click on the <emphasis>«Apply»</emphasis> Button and on the <emphasis>«Ok»</emphasis> button to activate the
-    new version.</para>
+    <para>Click on the <emphasis>«Apply»</emphasis> Button and on the
+    <emphasis>«Ok»</emphasis> button to activate the new version.</para>
   </chapter>
 </book>
