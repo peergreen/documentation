@@ -44,6 +44,24 @@
 
   <build>
     <plugins>
+	  <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+		<version>1.8</version>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <goals>
+              <goal>timestamp-property</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+		  <name>currentDate</name>
+		  <locale>en,US</locale>
+		  <pattern>MMM d, Y</pattern>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>com.agilejava.docbkx</groupId>
         <artifactId>docbkx-maven-plugin</artifactId>

@@ -18,7 +18,7 @@
       <author/>
     </authorgroup>
 
-    <date><?eval ${date}?></date>
+    <date><?eval ${currentDate}?></date>
 
     <releaseinfo><?eval ${peergreenServerVersion}?></releaseinfo>
 
