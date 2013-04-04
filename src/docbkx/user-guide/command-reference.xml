@@ -13,34 +13,23 @@
   <para>Moreover, it is possible to display help for each command using the <literal>help</literal> command followed by 
   the name of the desired command</para>
   
-  <screen>$ help felix:log
+  <screen>Mohammed@peergreen-platform$ help shelbie:echo
 
 Name
-  log - display all matching log entries
+  echo - Echoes or prints arguments to STDOUT.
 
 Syntax
-  felix:log  [argument(s)]...
+  shelbie:echo [option(s)]... [argument(s)]...
+
+Option(s)
+  -n
+    type: boolean
+    Do not print the trailing newline character
 
 Argument(s)
-  index: 0 [required]
-    type: java.lang.String
-    minimum log level [ debug | info | warn | error ]
-
------------------------------------
-
-Name
-  log - display some matching log entries
-
-Syntax
-  felix:log  [argument(s)]...
-
-Argument(s)
-  index: 0 [required]
-    type: int
-    maximum number of entries
-  index: 1 [required]
-    type: java.lang.String
-    minimum log level [ debug | info | warn | error ]
+  index: 0 [multi-valued]
+    type: java.util.List
+    Arguments to display separated by whitespaces
 
 -----------------------------------</screen>
   
