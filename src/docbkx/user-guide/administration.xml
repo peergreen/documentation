@@ -28,7 +28,7 @@
 
             <glossdef>
               <para>If this System property is set to <literal>true</literal>, the bootstrap will only print a report on
-              remaining alive thread when bootstap <methodname>start()</methodname> method is done. If
+              remaining alive thread when bootstap <methodname>start()</methodname> method is returning. If
               <literal>false</literal>, stop of these threads is performed. Default is <literal>false</literal>: all
               remaining threads are stopped.</para>
             </glossdef>
@@ -39,8 +39,8 @@
 
             <glossdef>
               <para>If this System property is set to <literal>true</literal>, the bootstrap will force JVM's shutdown
-              with <methodname>System.exit(int)</methodname>. By default, <methodname>exit()</methodname> is not
-              called.</para>
+              with <methodname>System.exit(int)</methodname>. By default (<literal>false</literal>),
+              <methodname>exit()</methodname> is not called.</para>
             </glossdef>
           </glossentry>
         </glosslist></para>
@@ -97,7 +97,7 @@
 
         <para>Theses commands can be used to:<itemizedlist>
             <listitem>
-              <para>Deploy new artifacts</para>
+              <para>Deploy new artifacts (persistently or not)</para>
 
               <para><screen>guillaume@peergreen-platform$ deployment:deploy-artifact file:///Users/guillaume/.../bundle.jar
 03/04/13 14:36:27 (I) BasicDeploymentService.__M_process : Artifacts '[Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaume/.../bundle.jar, mode=DEPLOY]]' in '92' ms.
@@ -105,6 +105,11 @@ Report:
 file:///Users/guillaume/.../bundle.jar:	OK
 Process done in '92' ms.
 </screen></para>
+
+              <para><note>
+                  <para>Use the <literal>-p</literal> (<literal>--persistent-mode</literal>) command flag to activate
+                  persistent deployment (<literal>false</literal> by default)</para>
+                </note></para>
             </listitem>
 
             <listitem>
