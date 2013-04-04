@@ -6,10 +6,44 @@
   <title>Command reference</title>
 
   <para>You can get the full command reference by using <literal>help</literal> command in Peergreen Server's shell
-  :</para>
+  or hitting the <literal>tab</literal> key:</para>
 
   <screen>boukadam@peergreen-platform$ help</screen>
+  
+  <para>Moreover, it is possible to display help for each command using the <literal>help</literal> command followed by 
+  the name of the desired command</para>
+  
+  <screen>$ help felix:log
 
+Name
+  log - display all matching log entries
+
+Syntax
+  felix:log  [argument(s)]...
+
+Argument(s)
+  index: 0 [required]
+    type: java.lang.String
+    minimum log level [ debug | info | warn | error ]
+
+-----------------------------------
+
+Name
+  log - display some matching log entries
+
+Syntax
+  felix:log  [argument(s)]...
+
+Argument(s)
+  index: 0 [required]
+    type: int
+    maximum number of entries
+  index: 1 [required]
+    type: java.lang.String
+    minimum log level [ debug | info | warn | error ]
+
+-----------------------------------</screen>
+  
   <section>
     <title>Scope 'gogo'</title>
 

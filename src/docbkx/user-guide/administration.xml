@@ -61,7 +61,8 @@
       <para>As Peergreen Server is built from scratch on top of OSGi, bundles are first class citizen in the deployment
       system.</para>
 
-      <para>The platform also natively support 2 other artifact types: OW2 JOnAS deployment plans (more to read here)
+      <para>The platform also natively support 2 other artifact types: OW2 JOnAS deployment plans (more to read 
+	  <link xlink:href="http://jonas.ow2.org/JONAS_5_3_0_M7/doc/doc-en/html/deployment-plans_guide.html">here</link>)
       and OW2 JOnAS Configuration Admin XML files.</para>
     </section>
 
@@ -162,7 +163,7 @@ Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaum
     <para>By default, it opens the <literal>10023</literal> port and listen for connections on all network
     interfaces.</para>
 
-    <para>Maximum concurrent number of clients cannot be changed and is set to <literal>2</literal>.</para>
+    <para>Peergreen server supports up to <literal>2</literal> concurrent telnet connections.</para>
 
     <para><glosslist>
         <glossentry>

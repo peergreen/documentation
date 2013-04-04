@@ -37,7 +37,9 @@
   <section>
     <title>Download</title>
 
-    <para>Peergreen Server can be downloaded from the Peergreen Web site here. The jar file is compressed with <link
+    <para>Peergreen Server can be downloaded from the Peergreen Web site <link
+    xlink:href="http://www.peergreen.org/Download/PeergreenServer">
+	here</link>. The jar file is compressed with <link
     xlink:href="http://docs.oracle.com/javase/1.5.0/docs/guide/deployment/deployment-guide/pack200.html"> pack200</link>
     to reduce the download time. It will be unpacked automatically at the first launch.</para>
   </section>
@@ -47,9 +49,9 @@
 
     <para>To start Peergreen Server, run the java command :</para>
 
-    <screen><prompt>java -jar peergreen-server-1.0.0.jar.</prompt></screen>
+    <screen><prompt>java -jar peergreen-server-1.0.0.jar</prompt></screen>
 
-    <para>The kernel is started :</para>
+    <para>The server starts :</para>
 
     <screen><prompt> ____                                           ____                           
 |  _ \ ___  ___ _ __ __ _ _ __ ___  ___ _ __   / ___|  ___ _ ____   _____ _ __ 
@@ -98,7 +100,7 @@ OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meet
   <section>
     <title>Directory tree</title>
 
-    <para>The Peergreen Server directories tree contains the following elements :</para>
+    <para>The Peergreen Server directory tree contains the following elements :</para>
 
     <table frame="none">
       <title>Directory tree</title>
@@ -181,7 +183,7 @@ Scope 'shelbie' (9 commands)
     <para>The following table describes a few commands:</para>
 
     <table frame="none">
-      <title>Commands description</title>
+      <title>Some useful commands</title>
 
       <tgroup align="justify" cols="2" colsep="1" rowsep="1">
         <colspec colname="c1" colwidth="1*"/>
@@ -285,7 +287,7 @@ Scope 'shelbie' (9 commands)
     xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service"> here</link>. Once compiled, you can
     deploy the application by dropping the bundle into the deploy directory.</para>
 
-    <screen><prompt>cp target/hello-service-1.0.0-SNAPSHOT.jar &lt;your-install-dir&gt;/deploy.</prompt></screen>
+    <screen><prompt>cp target/hello-service-1.0.0-SNAPSHOT.jar &lt;your-install-dir&gt;/deploy</prompt></screen>
 
     <para>You can check the installation of the bundle with the lb command in the shell console:</para>
 
@@ -357,7 +359,7 @@ START LEVEL 1
   <section>
     <title>Logging</title>
 
-    <para>Standard and error outputs are redirected in files under the
+    <para>Standard and error outputs are redirected into files under the
     <emphasis>&lt;your-dir&gt;/peergreen/logs</emphasis> directory :</para>
 
     <screen><prompt>system.out
@@ -373,7 +375,7 @@ system.err</prompt></screen>
 
     <screen><prompt>osgi:shutdown</prompt></screen>
 
-    <para>Whenever some application threads don’t stop, the server print a message and kill all the remaining threads.
+    <para>Whenever some application threads don’t stop, the server prints a message, then kills all the remaining threads.
     You can disable this behavior with the java property :</para>
 
     <screen><prompt>-Dcom.peergreen.bootstrap.thread.check.reportonly=true</prompt></screen>
