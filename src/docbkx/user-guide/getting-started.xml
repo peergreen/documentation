@@ -16,9 +16,9 @@
   <section>
     <title>What is Peergreen Server ?</title>
 
-    <para>Peergreen server is an OSGi based " a la carte"  and cloud native application server compliant to both  Platform 
-	as a Service (PaaS) and Internet of Things requirements.. Its low footprint enables its deployment from server in 
-	data-centers to embedded gateways.</para>
+    <para>Peergreen server is an OSGi-based "a la carte" and cloud native application server compliant to both Platform
+    as a Service (PaaS) and Internet of Things requirements. Its low footprint enables its deployment from server in
+    data-centers to embedded gateways.</para>
 
     <para>Peergreen is a software company started by the core team who developed JOnAS the OW2 Java EE Application
     Server.</para>
@@ -37,10 +37,10 @@
   <section>
     <title>Download</title>
 
-    <para>Peergreen Server can be downloaded from the Peergreen Web site <link
-    xlink:href="http://www.peergreen.org/Download/PeergreenServer">
-	here</link>. The jar file is compressed with <link
-    xlink:href="http://docs.oracle.com/javase/1.5.0/docs/guide/deployment/deployment-guide/pack200.html"> pack200</link>
+    <para>Peergreen Server can be <link
+    xlink:href="http://www.peergreen.com/Download/Community+Peergreen+Server">downloaded from the Peergreen web
+    site</link>. The jar file is compressed with <link
+    xlink:href="http://docs.oracle.com/javase/1.5.0/docs/guide/deployment/deployment-guide/pack200.html">pack200</link>
     to reduce the download time. It will be unpacked automatically at the first launch.</para>
   </section>
 
@@ -169,16 +169,17 @@ OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meet
 
     <para>You can use the help command to get an overview of the commands :</para>
 
-    <screen><prompt>…
+    <screen><prompt>...
 Scope 'shelbie' (9 commands)
 -----------------------------------
   shelbie:shutdown     Shutdown the OSGi platform
   shelbie:each         Execute a closure on a list of arguments.
   shelbie:help         Display command's help
- …</prompt></screen>
+...
+</prompt></screen>
 
-    <para>The commands are categorized with a prefix for easier search and uniqueness. For example, commands related to
-    the underlying JVM resources are prefixed with <literal>javavm:</literal>.</para>
+    <para>The commands are categorized with a prefix (scope) for easier search and uniqueness. For example, commands
+    related to the underlying JVM resources are prefixed with <literal>javavm:</literal>.</para>
 
     <para>The following table describes a few commands:</para>
 
@@ -274,8 +275,8 @@ Scope 'shelbie' (9 commands)
     <title>Remote access</title>
 
     <para>Peergreen Server provides a shell remote access through a simple telnet interface. By default, the server
-    listens on the 10023 port number for all the network interfaces. So you can connect to the server shell with the
-    following command:</para>
+    listens on the <literal>10023</literal> port number for all the network interfaces. So you can connect to the server
+    shell with the following command:</para>
 
     <screen><prompt>telnet localhost 10023</prompt></screen>
   </section>
@@ -284,7 +285,7 @@ Scope 'shelbie' (9 commands)
     <title>Deploy a sample application</title>
 
     <para>You can get a sample application HelloService on github <link
-    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service"> here</link>. Once compiled, you can
+    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">here</link>. Once compiled, you can
     deploy the application by dropping the bundle into the deploy directory.</para>
 
     <screen><prompt>cp target/hello-service-1.0.0-SNAPSHOT.jar &lt;your-install-dir&gt;/deploy</prompt></screen>
@@ -375,8 +376,8 @@ system.err</prompt></screen>
 
     <screen><prompt>osgi:shutdown</prompt></screen>
 
-    <para>Whenever some application threads don’t stop, the server prints a message, then kills all the remaining threads.
-    You can disable this behavior with the java property :</para>
+    <para>Whenever some application threads don’t stop, the server prints a message, then kills all the remaining
+    threads. You can disable this behavior with the following java property :</para>
 
     <screen><prompt>-Dcom.peergreen.bootstrap.thread.check.reportonly=true</prompt></screen>
   </section>
