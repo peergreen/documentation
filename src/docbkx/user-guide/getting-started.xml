@@ -200,68 +200,68 @@ Scope 'shelbie' (9 commands)
 
         <tbody>
           <row>
-            <entry>shelbie:help</entry>
+            <entry><command>shelbie:help</command></entry>
 
             <entry>List the available command</entry>
           </row>
 
           <row>
-            <entry>shelbie:history</entry>
+            <entry><command>shelbie:history</command></entry>
 
             <entry>List commands historic</entry>
           </row>
 
           <row>
-            <entry>shelbie:shutdown</entry>
+            <entry><command>shelbie:shutdown</command></entry>
 
             <entry>Shutdown the underlying OSGi gateway</entry>
           </row>
 
           <row>
-            <entry>info:events</entry>
+            <entry><command>info:events</command></entry>
 
             <entry>Print relevant platform events with timestamps.</entry>
           </row>
 
           <row>
-            <entry>info:elapsed &lt;e1&gt; &lt;e2&gt;</entry>
+            <entry><command>info:elapsed &lt;e1&gt; &lt;e2&gt;</command></entry>
 
             <entry>Compute the elapsed time between e2 and e1</entry>
           </row>
 
           <row>
-            <entry>javavm:threads</entry>
+            <entry><command>javavm:threads</command></entry>
 
-            <entry>Display threads list</entry>
+            <entry>Display threads list (in their container ThreadGroup)</entry>
           </row>
 
           <row>
-            <entry>javavm:thread-dump</entry>
+            <entry><command>javavm:thread-dump</command></entry>
 
             <entry>Get a threads dump</entry>
           </row>
 
           <row>
-            <entry>deployment:list</entry>
+            <entry><command>deployment:list</command></entry>
 
             <entry>List deployed artefacts with uri</entry>
           </row>
 
           <row>
-            <entry>deployment:deploy-artefact &lt;uri&gt;</entry>
+            <entry><command>deployment:deploy-artefact &lt;uri&gt;</command></entry>
 
-            <entry>deploy an artefact. The ‘-p’ flag enables to persist the deployment and recover it after a JVM
+            <entry>Deploy an artefact. The ‘-p’ flag enables to persist the deployment and recover it after a JVM
             reboot.</entry>
           </row>
 
           <row>
-            <entry>deployment:undeploy-artefact</entry>
+            <entry><command>deployment:undeploy-artefact</command></entry>
 
-            <entry>undeploy an artefact</entry>
+            <entry>Undeploy an artefact</entry>
           </row>
 
           <row>
-            <entry>felix:lb</entry>
+            <entry><command>felix:lb</command></entry>
 
             <entry>List installed bundles</entry>
           </row>
