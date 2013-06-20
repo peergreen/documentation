@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xml:id="administration"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:db="http://docbook.org/ns/docbook">
+  <title>Deployment Extension</title>
+
+  <para>Deployment of artifacts in Peergreen is managed by the deployment
+  service. This service allows to plug new processors that adds some logic and
+  allows to deploy new features</para>
+
+  <section>
+    <title>Definitions</title>
+
+    <section>
+      <title>Artifact</title>
+
+      <para>Artifact is the deployment unit of Peergreen deployment service.
+      Artifact is represented by</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>a <emphasis>URI</emphasis> : URI referencing the artifact that
+          needs to be deployed on the server. (ie :
+          f<uri>ile:///my/path/my.archive</uri>.... or
+          <uri>mvn://gId:aId:1.0.0</uri> or
+          <uri>http://mywebsite.com/my.archive</uri></para>
+        </listitem>
+
+        <listitem>
+          <para>a <emphasis>name</emphasis> : A logical name for the given
+          artifact</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>The artifact contains facets that provides some metadata about the
+      artifact being processed.</para>
+
+      <para>For example, it will include the <varname>Archive</varname> facet
+      if the archive is a Java ARchive (.jar) while it will include
+      <varname>Content</varname> facet if it's a content file. XML file will
+      provide the <varname>XMLContent</varname> facet, etc.</para>
+    </section>
+
+    <section>
+      <title>Phase</title>
+
+      <para>Due to parallel and modular deployment, the facets are added at
+      different phases. A phase allows to group processors that needs to be
+      executed at the same step.</para>
+
+      <para>For example, processors that detect the nature of the artifact
+      (Archive or Content) needs to be run before the processors that will ask
+      these facets.</para>
+
+      <para>There are two kind of phases :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>First phases are the discovery phases that includes a
+          pre-defined set of phases. These phases allow to discover the nature
+          of an artifact (WAR, EJB, etc)</para>
+
+          <para>Discovery phases are these ordered phases:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para> <emphasis>URI_FETCHER</emphasis> : Manage to
+              download/fetch artifacts. For example it can download/fetch
+              maven2 resources</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>URI_RESOLVER</emphasis> : URI resolver is in
+              general applied on a local resource (file, bundle) on which the
+              type can be detected (Archive or Content).</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>FACET_SCANNER</emphasis> : Scanners are called
+              on the selected artifact. It will flag the archive or content
+              with expected facets.</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>FACET_CONFLICTS</emphasis> : Try to Remove or
+              add facets on artifacts if some of the facets are not compliant
+              together.</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>DEPENDENCY_FINDER</emphasis> : It tries to find
+              all dependencies of a selected artifact. (for example a
+              deployment plan can reference several other artifacts)</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>The next phases are dependent of the nature of the artifact
+          that has been processed</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Processor</title>
+
+      <para>A processor is executed in a phase and can read and add facets on
+      a given Artifact or can deploy an archive in a container, etc.</para>
+
+      <para>A processor is providing capabilities and is executed only if its
+      requirements are satisfied. </para>
+    </section>
+  </section>
+
+  <section>
+    <title>How to write a new processor</title>
+
+    <para>Adding a processor is very easy as it only consits in annotating a
+    class.</para>
+
+    <section>
+      <title>Writing the logic</title>
+
+      <para>Here is an example of a processor that will print the URI of an
+      artifact. The class is annotated with a @Processor annotation and the
+      expected signature of the method is : <function>handle(&lt;Object of the
+      artifact expected&gt;, ProcessorContext processorContext) throws
+      ProcessorException</function></para>
+
+      <programlisting>@Processor
+public class MyPrintProcessor {
+
+    public void handle(Artifact artifact, ProcessorContext processorContext) throws ProcessorException {
+        System.out.println(artifact.uri());
+    }
+}
+ </programlisting>
+    </section>
+
+    <section>
+      <title>Defining the phase</title>
+
+      <para>If the processor needs to be executed at START phase here is the
+      annotation to add : @Phase("START")</para>
+
+      <programlisting>@Processor
+@Phase("START")
+public class MyPrintProcessor {
+
+    public void handle(Artifact artifact, ProcessorContext processorContext) throws ProcessorException {
+        System.out.println(artifact.uri());
+    }
+}
+ </programlisting>
+    </section>
+
+    <section>
+      <title>Compiling and executing</title>
+
+      <para>In order to execute and run this processor, it needs to be
+      packaged with Apache Felix maven bundle-plugin and the Apache Felix
+      iPOJO plugin. Then the bundle needs to be added on the platform.</para>
+    </section>
+  </section>
+
+  <section>
+    <title>Annotation model</title>
+
+    <para/>
+  </section>
+</chapter>

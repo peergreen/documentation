@@ -37,4 +37,6 @@
   <xi:include href="user-guide/deployment-plan.xml"/>
 
   <xi:include href="user-guide/command-reference.xml"/>
+
+  <xi:include href="user-guide/deployment-extension.xml"/>
 </book>
