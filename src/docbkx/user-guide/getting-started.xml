@@ -110,7 +110,7 @@
       </listitem>
 
       <listitem>
-        <para>OSGi Enterprise R5 Server</para>
+        <para>Peergreen OSGi Enterprise R5 Server</para>
 
         <para>This profiles targets the OSGi developers that needs more than
         just the OSGi gateway</para>
@@ -123,7 +123,7 @@
           </listitem>
 
           <listitem>
-            <para>Sub systems</para>
+            <para>SubSystems</para>
           </listitem>
 
           <listitem>
