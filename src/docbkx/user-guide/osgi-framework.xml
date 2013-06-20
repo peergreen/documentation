@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xml:id="osgi-framework"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:db="http://docbook.org/ns/docbook">
+  <title>Peergreen server as an OSGi Framework</title>
+
+  <para>Peergreen server is acting as an OSGi Framework and can be a drop-in
+  replacement of any OSGi framework server.</para>
+
+  <section>
+    <title>Framework Factory</title>
+
+    <para>Peergreen all-in-one jar servers are implementing
+    <property>META-INF/services/org.osgi.framework.launch.FrameworkFactory
+    </property>and then can be used by tools as any other OSGi
+    framework.</para>
+  </section>
+
+  <section>
+    <title>Obtaining a new Framework</title>
+
+    <para>By adding the peergreen server in an existing JAVA CLASSPATH, a call
+    to <methodname>FrameworkFactory.newFramework()</methodname> method will
+    instantiate the Peergreen server and start it. Unless simple OSGi
+    framework, it comes with additional bundles that provides ready-to-use
+    services. It could be easier to use this drop-in replacement as services
+    are already provided.</para>
+  </section>
+</chapter>

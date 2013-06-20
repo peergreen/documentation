@@ -42,4 +42,5 @@
 
   <xi:include href="user-guide/hybrid.xml"/>
 
+  <xi:include href="user-guide/osgi-framework.xml"/>
 </book>
