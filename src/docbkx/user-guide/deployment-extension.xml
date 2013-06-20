@@ -137,10 +137,9 @@
 public class MyPrintProcessor {
 
     public void handle(Artifact artifact, ProcessorContext processorContext) throws ProcessorException {
-        System.out.println(artifact.uri());
+        System.out.println("MyPrintProcessor : Artifact found is : " + artifact.uri());
     }
-}
- </programlisting>
+}</programlisting>
     </section>
 
     <section>
@@ -154,10 +153,9 @@ public class MyPrintProcessor {
 public class MyPrintProcessor {
 
     public void handle(Artifact artifact, ProcessorContext processorContext) throws ProcessorException {
-        System.out.println(artifact.uri());
+        System.out.println("MyPrintProcessor : Artifact found is : " + artifact.uri());
     }
-}
- </programlisting>
+}</programlisting>
     </section>
 
     <section>
@@ -167,11 +165,62 @@ public class MyPrintProcessor {
       packaged with Apache Felix maven bundle-plugin and the Apache Felix
       iPOJO plugin. Then the bundle needs to be added on the platform.</para>
     </section>
+
+    <section>
+      <title>Clone an existing example</title>
+
+      <para>A working example can be found on the GitHub platform. It is
+      available on <link
+      xlink:href="https://github.com/peergreen/deployment-processor-example">https://github.com/peergreen/deployment-processor-example</link>
+      repository.</para>
+    </section>
   </section>
 
   <section>
     <title>Annotation model</title>
 
     <para/>
+
+    <section>
+      <title>@Attribute</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>@Discovery</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>@Manifest</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>@Phase</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>@Processor</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>@Uri</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>@XmlNamespace</title>
+
+      <para/>
+    </section>
   </section>
 </chapter>
