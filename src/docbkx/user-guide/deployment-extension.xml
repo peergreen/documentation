@@ -47,6 +47,17 @@
     </section>
 
     <section>
+      <title>Facet</title>
+
+      <para>The <varname>Facets</varname> are stored in the artifact. A Facet
+      is retrieved by doing artifact.as(FacetInterface.class). If the facet is
+      available, the instance of the facet will be returned else null will be
+      returned. Facets are added by processors and add data that can retrieved
+      later in the deployment process. For example, a Facet can be completed
+      at each phase of the deployment process.</para>
+    </section>
+
+    <section>
       <title>Phase</title>
 
       <para>Due to parallel and modular deployment, the facets are added at
@@ -115,6 +126,14 @@
 
       <para>A processor is providing capabilities and is executed only if its
       requirements are satisfied. </para>
+    </section>
+
+    <section>
+      <title>ProcessorContext</title>
+
+      <para>ProcessorContext interface allows to interfact on a given
+      artifact. The processor context is available for each processor in their
+      handle() method.</para>
     </section>
   </section>
 
