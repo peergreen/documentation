@@ -1,47 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<chapter version="5.0" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-         xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
-         xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
          xmlns:db="http://docbook.org/ns/docbook">
   <title>Getting started with Peergreen Server</title>
 
   <section>
     <title>Introduction</title>
 
-    <para>The goal of this document is to get you up to run a Peergreen server as quickly as possible. It provides basic
-    steps described in the following sections. Note that you may need to refer other guides for further
+    <para>The goal of this document is to get you up to run a Peergreen server
+    as quickly as possible. It provides basic steps described in the following
+    sections. Note that you may need to refer other guides for further
     information.</para>
   </section>
 
   <section>
     <title>What is Peergreen Server ?</title>
 
-    <para>Peergreen server is an OSGi-based "a la carte" and cloud native application server compliant to both Platform
-    as a Service (PaaS) and Internet of Things requirements. Its low footprint enables its deployment from server in
-    data-centers to embedded gateways.</para>
+    <para>Peergreen server is an OSGi-based "a la carte" and cloud native
+    application server compliant to both Platform as a Service (PaaS) and
+    Internet of Things requirements. Its low footprint enables its deployment
+    from server in data-centers to embedded gateways.</para>
 
-    <para>Peergreen is a software company started by the core team who developed JOnAS the OW2 Java EE Application
-    Server.</para>
+    <para>Peergreen is a software company started by the core team who
+    developed JOnAS the OW2 Java EE Application Server.</para>
   </section>
 
   <section>
     <title>Prerequisites</title>
 
-    <para>Peergreen Server requires a Java SE 7 environment to run. You may refer to Oracle web site (<link
-    xlink:href="http://www.oracle.com/technetwork/java/javase/overview/index.html"> Java SE</link> or <link
-    xlink:href="http://www.oracle.com/technetwork/java/embedded/overview/getstarted/index.html"> Java SE
-    Embedded</link>) or any others compliant JVM products documentations for details on how to download and install Java
-    SE 7 or greater.</para>
+    <para>Peergreen Server requires a Java SE 7 environment to run. You may
+    refer to Oracle web site (<link
+    xlink:href="http://www.oracle.com/technetwork/java/javase/overview/index.html">
+    Java SE</link> or <link
+    xlink:href="http://www.oracle.com/technetwork/java/embedded/overview/getstarted/index.html">
+    Java SE Embedded</link>) or any others compliant JVM products
+    documentations for details on how to download and install Java SE 7 or
+    greater.</para>
   </section>
 
   <section>
     <title>Download</title>
 
     <para>Peergreen Server can be <link
-    xlink:href="http://www.peergreen.com/Download/Community+Peergreen+Server">downloaded from the Peergreen web
-    site</link>. The jar file is compressed with <link
+    xlink:href="http://www.peergreen.com/Download/">downloaded from the
+    Peergreen web site</link>. The jar file is compressed with <link
     xlink:href="http://docs.oracle.com/javase/1.5.0/docs/guide/deployment/deployment-guide/pack200.html">pack200</link>
-    to reduce the download time. It will be unpacked automatically at the first launch.</para>
+    to reduce the download time. It will be unpacked automatically at the
+    first launch.</para>
+
+    <para>Peergreen server is available for different targets : Embedded and
+    Server mode</para>
+
+    <para>Here are the available profiles for Peergreen server :</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Peergreen kernel</para>
+
+        <para>It provides the OSGi kernel allowing to deploy OSGi bundles. It
+        is the core for all the Peergreen profiles</para>
+      </listitem>
+
+      <listitem>
+        <para>Peergreen Tomcat</para>
+
+        <para>This profile provides an assembly including the latest Tomcat
+        version running on top of the Peergreen kernel. This allows to deploy
+        Web Application (.war files) by dropping them in the Peergreen
+        <filename>deploy</filename> folder. Peergreen hybrid mode is also
+        available as OSGi HTTP service is also provided and BundleContext can
+        be injected in a servlet by applying javax.annotation.Resource on a
+        BundleContext field.</para>
+      </listitem>
+
+      <listitem>
+        <para>Peergreen Web Application Server (WAS)</para>
+
+        <para>It targets developers that needs more than just a web
+        container.</para>
+
+        <para>It includes the Peergreen Tomcat features and it also includes
+        :</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>JAX-RS 2.0 for developping Restful components</para>
+          </listitem>
+
+          <listitem>
+            <para>JPA 2.0 for persisting JPA entities</para>
+          </listitem>
+
+          <listitem>
+            <para>Bean Validation 1.0</para>
+          </listitem>
+
+          <listitem>
+            <para>JTA 1.1 for the transactions</para>
+          </listitem>
+
+          <listitem>
+            <para>H2 java database</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>OSGi Enterprise R5 Server</para>
+
+        <para>This profiles targets the OSGi developers that needs more than
+        just the OSGi gateway</para>
+
+        <para>It provides :</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>HTTP service</para>
+          </listitem>
+
+          <listitem>
+            <para>Sub systems</para>
+          </listitem>
+
+          <listitem>
+            <para>JTA service</para>
+          </listitem>
+
+          <listitem>
+            <para>JNDI service</para>
+          </listitem>
+
+          <listitem>
+            <para>JDBC Datasource Factory</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </orderedlist>
   </section>
 
   <section>
@@ -82,17 +180,19 @@ OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meet
 </prompt></screen>
 
     <note>
-      <para>At the first launch, the kernel uncompress the pack200 jar files and creates the server’s directory tree.
-      That may take some time on slow machines.</para>
+      <para>At the first launch, the kernel uncompress the pack200 jar files
+      and creates the server’s directory tree. That may take some time on slow
+      machines.</para>
     </note>
   </section>
 
   <section>
     <title>Setting the internet proxy</title>
 
-    <para>At each launch, Peergreen Server checks Peergreen’news enabling to be aware of new releases availaibility. For
-    that, it requires an internet connection. If you’re behind an internet proxy, you can set its parameters through the
-    Java properties :</para>
+    <para>At each launch, Peergreen Server checks Peergreen’news enabling to
+    be aware of new releases availaibility. For that, it requires an internet
+    connection. If you’re behind an internet proxy, you can set its parameters
+    through the Java properties :</para>
 
     <screen><prompt>-Dhttp.proxyHost=myproxy.mycompany.com -Dhttp.proxyPort=80</prompt></screen>
   </section>
@@ -100,7 +200,8 @@ OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meet
   <section>
     <title>Directory tree</title>
 
-    <para>The Peergreen Server directory tree contains the following elements :</para>
+    <para>The Peergreen Server directory tree contains the following elements
+    :</para>
 
     <table frame="none">
       <title>Directory tree</title>
@@ -112,9 +213,11 @@ OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meet
 
         <thead>
           <row>
-            <entry align="center"><emphasis role="bold">Directory</emphasis></entry>
+            <entry align="center"><emphasis
+            role="bold">Directory</emphasis></entry>
 
-            <entry align="center"><emphasis role="bold">Description</emphasis></entry>
+            <entry align="center"><emphasis
+            role="bold">Description</emphasis></entry>
           </row>
         </thead>
 
@@ -122,13 +225,15 @@ OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meet
           <row>
             <entry>mvn-cache</entry>
 
-            <entry>Cache of the maven artefacts downloaded during application deployment</entry>
+            <entry>Cache of the maven artefacts downloaded during application
+            deployment</entry>
           </row>
 
           <row>
             <entry>peergreen</entry>
 
-            <entry>Work space of the server . If removed the persistent store is lost.</entry>
+            <entry>Work space of the server . If removed the persistent store
+            is lost.</entry>
           </row>
 
           <row>
@@ -152,9 +257,10 @@ OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meet
           <row>
             <entry>deploy</entry>
 
-            <entry>Application deployment directory (bundles, deployment plan). The directory is periodically scanned .
-            You can drop a file to deploy it or remove it to undeploy it. If the file is touched, the related module is
-            updated.</entry>
+            <entry>Application deployment directory (bundles, deployment
+            plan). The directory is periodically scanned . You can drop a file
+            to deploy it or remove it to undeploy it. If the file is touched,
+            the related module is updated.</entry>
           </row>
         </tbody>
       </tgroup>
@@ -164,10 +270,11 @@ OpenCloudware Plenary Meeting : http://www.peergreen.com/Blog/OpenCloudWare+Meet
   <section>
     <title>A few useful commands</title>
 
-    <para>Peergreen Server provides a dynamic shell with native commands. The shell session is automatically started at
-    the server launch.</para>
+    <para>Peergreen Server provides a dynamic shell with native commands. The
+    shell session is automatically started at the server launch.</para>
 
-    <para>You can use the help command to get an overview of the commands :</para>
+    <para>You can use the help command to get an overview of the commands
+    :</para>
 
     <screen><prompt>...
 Scope 'shelbie' (9 commands)
@@ -178,8 +285,9 @@ Scope 'shelbie' (9 commands)
 ...
 </prompt></screen>
 
-    <para>The commands are categorized with a prefix (scope) for easier search and uniqueness. For example, commands
-    related to the underlying JVM resources are prefixed with <literal>javavm:</literal>.</para>
+    <para>The commands are categorized with a prefix (scope) for easier search
+    and uniqueness. For example, commands related to the underlying JVM
+    resources are prefixed with <literal>javavm:</literal>.</para>
 
     <para>The following table describes a few commands:</para>
 
@@ -193,9 +301,11 @@ Scope 'shelbie' (9 commands)
 
         <thead>
           <row>
-            <entry align="center"><emphasis role="bold">Command</emphasis></entry>
+            <entry align="center"><emphasis
+            role="bold">Command</emphasis></entry>
 
-            <entry align="center"><emphasis role="bold">Description</emphasis></entry>
+            <entry align="center"><emphasis
+            role="bold">Description</emphasis></entry>
           </row>
         </thead>
 
@@ -225,7 +335,8 @@ Scope 'shelbie' (9 commands)
           </row>
 
           <row>
-            <entry><command>info:elapsed &lt;e1&gt; &lt;e2&gt;</command></entry>
+            <entry><command>info:elapsed &lt;e1&gt;
+            &lt;e2&gt;</command></entry>
 
             <entry>Compute the elapsed time between e2 and e1</entry>
           </row>
@@ -233,7 +344,8 @@ Scope 'shelbie' (9 commands)
           <row>
             <entry><command>javavm:threads</command></entry>
 
-            <entry>Display threads list (in their container ThreadGroup)</entry>
+            <entry>Display threads list (in their container
+            ThreadGroup)</entry>
           </row>
 
           <row>
@@ -249,10 +361,11 @@ Scope 'shelbie' (9 commands)
           </row>
 
           <row>
-            <entry><command>deployment:deploy-artefact &lt;uri&gt;</command></entry>
+            <entry><command>deployment:deploy-artefact
+            &lt;uri&gt;</command></entry>
 
-            <entry>Deploy an artefact. The ‘-p’ flag enables to persist the deployment and recover it after a JVM
-            reboot.</entry>
+            <entry>Deploy an artefact. The ‘-p’ flag enables to persist the
+            deployment and recover it after a JVM reboot.</entry>
           </row>
 
           <row>
@@ -274,9 +387,10 @@ Scope 'shelbie' (9 commands)
   <section>
     <title>Remote access</title>
 
-    <para>Peergreen Server provides a shell remote access through a simple telnet interface. By default, the server
-    listens on the <literal>10023</literal> port number for all the network interfaces. So you can connect to the server
-    shell with the following command:</para>
+    <para>Peergreen Server provides a shell remote access through a simple
+    telnet interface. By default, the server listens on the
+    <literal>10023</literal> port number for all the network interfaces. So
+    you can connect to the server shell with the following command:</para>
 
     <screen><prompt>telnet localhost 10023</prompt></screen>
   </section>
@@ -285,12 +399,14 @@ Scope 'shelbie' (9 commands)
     <title>Deploy a sample application</title>
 
     <para>You can get a sample application HelloService on github <link
-    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">here</link>. Once compiled, you can
-    deploy the application by dropping the bundle into the deploy directory.</para>
+    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">here</link>.
+    Once compiled, you can deploy the application by dropping the bundle into
+    the deploy directory.</para>
 
     <screen><prompt>cp target/hello-service-1.0.0-SNAPSHOT.jar &lt;your-install-dir&gt;/deploy</prompt></screen>
 
-    <para>You can check the installation of the bundle with the lb command in the shell console:</para>
+    <para>You can check the installation of the bundle with the lb command in
+    the shell console:</para>
 
     <screen><prompt>START LEVEL 1
    ID|State      |Level|Name
@@ -321,7 +437,8 @@ Scope 'shelbie' (9 commands)
    28|Resolved   |    1|Test of exported package (1.0.0.SNAPSHOT)
    <emphasis role="bold">94|Active     |    1|hello-service (1.0.0.SNAPSHOT)</emphasis></prompt></screen>
 
-    <para>Inversely, the bundle is undeployed when you remove the file from the directory.</para>
+    <para>Inversely, the bundle is undeployed when you remove the file from
+    the directory.</para>
 
     <screen><prompt>rm &lt;your-install-dir&gt;/deploy/hello-service-1.0.0-SNAPSHOT.jar</prompt></screen>
 
@@ -370,14 +487,16 @@ system.err</prompt></screen>
   <section>
     <title>Stopping Peergreen Server</title>
 
-    <para>To stop Peergreen server from the console, enter <literal>^D</literal> in the console.</para>
+    <para>To stop Peergreen server from the console, enter
+    <literal>^D</literal> in the console.</para>
 
     <para>Alternatively, you can also run the following command:</para>
 
     <screen><prompt>osgi:shutdown</prompt></screen>
 
-    <para>Whenever some application threads don’t stop, the server prints a message, then kills all the remaining
-    threads. You can disable this behavior with the following java property :</para>
+    <para>Whenever some application threads don’t stop, the server prints a
+    message, then kills all the remaining threads. You can disable this
+    behavior with the following java property :</para>
 
     <screen><prompt>-Dcom.peergreen.bootstrap.thread.check.reportonly=true</prompt></screen>
   </section>
