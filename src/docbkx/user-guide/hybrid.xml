@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xml:id="hybrid" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:db="http://docbook.org/ns/docbook">
+  <title>Java EE/OSGi Hybrid server</title>
+
+  <para>Peergreen servers implements both Java EE and OSGi standards allowing
+  developers to choose their programming model. Also it offers the ability to
+  call Java EE components from the OSGi world and to access OSGi
+  services/BundleContext from Java EE components.</para>
+
+  <section>
+    <title>Tomcat / Servlets</title>
+
+    <para>Tomcat petal is providing web application support and the default
+    port number is 9000. By default the web container is available at
+    http://localhost:9000/</para>
+
+    <section>
+      <title>Java EE</title>
+
+      <para>Tomcat petal deploys all Web Applications (.war) files and is
+      compliant with Servlet 3.0, JSP 2.2 and EL 2.2 specifications.</para>
+    </section>
+
+    <section>
+      <title>OSGi</title>
+
+      <para>Tomcat petal also provides OSGi HTTPService 1.2 service allowing
+      Servlets to be registered.</para>
+    </section>
+
+    <section>
+      <title>Hybrid</title>
+
+      <para>It is possible to inject the OSGi BundleContext into Servlet
+      components by using javax.annotation.Resource annotation on a
+      BundleContext field</para>
+
+      <programlisting>    @Resource
+    private BundleContext bundleContext;
+</programlisting>
+    </section>
+  </section>
+
+  <section>
+    <title>Hibernate / JPA</title>
+
+    <para>Hibernate is used to interact with JPA entities in a
+    database.</para>
+
+    <section>
+      <title>Java EE</title>
+
+      <para>JPA components that are in Web Applications
+      (WEB-INF/classes/META-INF/persistence.xml) will be analyzed and then
+      EntityManager will be injected into Servlet components that are
+      requiring it</para>
+
+      <programlisting>    @PersistenceContext
+    private EntityManager entityManager;</programlisting>
+    </section>
+
+    <section>
+      <title>OSGi</title>
+
+      <para>Each JPA persistence provider (default persistence provider is
+      Hibernate) wrapped by OW2 EasyBeans are registered as OSGi service with
+      the service interface
+      <interfacename>javax.persistence.spi.PersistenceProvider</interfacename></para>
+
+      <para>Thus, it is possible to call
+      <methodname>createEntityManagerFactory()</methodname> method.</para>
+    </section>
+  </section>
+
+  <section>
+    <title>H2 / Java Database</title>
+
+    <para>H2 is a java database that can be used in development mode</para>
+
+    <para>Peergreen adds new feature over H2. It is not needed to configure a
+    database before wanting to use it.</para>
+
+    <para>Just set as JDBC URL :
+    <uri>jdbc:pg+h2:tcp://localhost:5000/mydatabase</uri> and Peergreen will
+    start a H2 database once it is required. When the last connection to this
+    databasse is closed, the H2 server will be stopped.</para>
+
+    <section>
+      <title>OSGi</title>
+
+      <para>A org.osgi.service.jdbc.DataSourceFactory service is available
+      when enabling H2. This allows to create Datasource or XADatsource in
+      OSGi world.</para>
+    </section>
+  </section>
+
+  <section>
+    <title>Jersey / JAX-RS</title>
+
+    <section>
+      <title>Java EE</title>
+
+      <para>JAX-RS applications stored in a war files will be deployed when
+      Jersey petal is enabled.</para>
+
+      <para>Here is an example of a very simple JAX-RS application</para>
+
+      <programlisting>import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
+@ApplicationPath("/rest")
+public class MyApplication extends Application {
+
+    @Override
+    public Set&lt;Object&gt; getSingletons() {
+        Set&lt;Object&gt; set = new HashSet&lt;&gt;();
+        set.add(new MyPath());
+        return set;
+    }
+
+}</programlisting>
+
+      <para/>
+
+      <programlisting>@Path("/store")
+public class MyPath {
+
+    @GET
+    public Response getValue() {
+        return Response.status(200).entity("getValue has been called").build();
+    }
+
+    @GET
+    @Path("/admin")
+    public Response getAdminValue() {
+        return Response.status(200).entity("getAdminValue has been called").build();
+
+    }
+}</programlisting>
+
+      <para>The application will be available at
+      <uri>http://localhost:9000/mywar/rest/store</uri> and
+      <uri>http://localhost:9000/mywar/rest/store/admin</uri></para>
+    </section>
+
+    <section>
+      <title>OSGi</title>
+
+      <para>In the coming release, it will be possible to register
+      javax.ws.rs.core.Application services and then Peergreen server will
+      register these applications into Jersey. </para>
+    </section>
+  </section>
+
+  <section>
+    <title>JOTM / JTA</title>
+
+    <para>OW2 JOTM is used to provide Java Transaction API</para>
+
+    <section>
+      <title>Java EE</title>
+
+      <para>The JTA UserTransaction object can be retrieved by perfoming a
+      lookup on <uri>java:comp/UserTransaction</uri></para>
+    </section>
+
+    <section>
+      <title>OSGi</title>
+
+      <para>JOTM petal registers 3 JTA services as specified in OSGi
+      Enterprise specification :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>javax.transaction.TransactionManager service</para>
+        </listitem>
+
+        <listitem>
+          <para>javax.transaction.UserTransaction service</para>
+        </listitem>
+
+        <listitem>
+          <para>javax.transaction.TransactionSynchronizationRegistry
+          service</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section>
+    <title>JNDI service</title>
+
+    <para>JNDI allows to perform lookup in order to get some services like
+    UserTransaction (<uri>java:comp/UserTransaction</uri>), etc</para>
+
+    <section>
+      <title>Java EE</title>
+
+      <para>In Java EE mode, just do "<methodname>new
+      InitialContext()</methodname>" and then use lookup or bind.</para>
+    </section>
+
+    <section>
+      <title>OSGi</title>
+
+      <para>JNDI service is available through OSGi Enterprise JNDI services
+      like <interfacename>org.osgi.service.jndi.JNDIContextManager and
+      org.osgi.service.jndi.JNDIProviderAdmin</interfacename></para>
+    </section>
+  </section>
+</chapter>
