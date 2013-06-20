@@ -16,9 +16,8 @@
   <section>
     <title>Tomcat / Servlets</title>
 
-    <para>Tomcat petal is providing web application support and the default
-    port number is 9000. By default the web container is available at
-    http://localhost:9000/</para>
+    <para>Tomcat petal is providing web application support and the default port number is 9000. By default the web
+    container is available at <link xlink:href="http://localhost:9000">http://localhost:9000/</link></para>
 
     <section>
       <title>Java EE</title>
@@ -30,8 +29,9 @@
     <section>
       <title>OSGi</title>
 
-      <para>Tomcat petal also provides OSGi HTTPService 1.2 service allowing
-      Servlets to be registered.</para>
+      <para>Tomcat petal also provides <link
+      xlink:href="http://www.osgi.org/javadoc/r5/enterprise/org/osgi/service/http/package-summary.html">OSGi HTTPService
+      1.2</link> service allowing Servlets to be registered.</para>
     </section>
 
     <section>
