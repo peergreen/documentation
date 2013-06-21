@@ -209,12 +209,16 @@
     <repository>
       <id>peergreen.release</id>
       <name>Peergreen Release Nexus</name>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
+      <releases><enabled>true</enabled></releases>
+      <snapshots><enabled>false</enabled></snapshots>
+      <url>https://forge.peergreen.com/nexus/content/repositories/releases/</url>
+      <layout>default</layout>
+    </repository>
+    <repository>
+      <id>documentation.release</id>
+      <name>Peergreen Documentation Nexus</name>
+      <releases><enabled>true</enabled></releases>
+      <snapshots><enabled>false</enabled></snapshots>
       <url>https://forge.peergreen.com/nexus/content/repositories/releases/</url>
       <layout>default</layout>
     </repository>
