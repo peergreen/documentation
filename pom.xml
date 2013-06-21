@@ -13,7 +13,8 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <groupId>com.peergreen</groupId>
     <artifactId>peergreen-pom</artifactId>
@@ -159,6 +160,14 @@
         </configuration>
       </plugin>
     </plugins>
+
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav-jackrabbit</artifactId>
+        <version>1.0-beta-6</version>
+      </extension>
+    </extensions>
   </build>
 
   <profiles>
@@ -175,6 +184,14 @@
       </properties>
     </profile>
   </profiles>
+
+
+  <distributionManagement>
+    <site>
+      <id>peergreen.documentation</id>
+      <url>dav:https://forge.peergreen.com/publication-docs/peergreen_server/SNAPSHOT/</url>
+    </site>
+  </distributionManagement>
 
   <repositories>
     <repository>
