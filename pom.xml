@@ -24,7 +24,7 @@
   <groupId>com.peergreen.documentation</groupId>
   <artifactId>documentation</artifactId>
   <version>1.0.0-M2-SNAPSHOT</version>
-  <name>Peergreen Documentation Testing</name>
+  <name>Peergreen Documentation</name>
 
 
   <properties>
