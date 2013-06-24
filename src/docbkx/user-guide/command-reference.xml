@@ -5,14 +5,14 @@
          xmlns:db="http://docbook.org/ns/docbook">
   <title>Command reference</title>
 
-  <para>You can get the full command reference by using <literal>help</literal> command in Peergreen Server's shell
-  or hitting the <literal>tab</literal> key:</para>
+  <para>You can get the full command reference by using <literal>help</literal> command in Peergreen Server's shell or
+  hitting the <literal>tab</literal> key:</para>
 
   <screen>boukadam@peergreen-platform$ help</screen>
-  
-  <para>Moreover, it is possible to display help for each command using the <literal>help</literal> command followed by 
+
+  <para>Moreover, it is possible to display help for each command using the <literal>help</literal> command followed by
   the name of the desired command</para>
-  
+
   <screen>Mohammed@peergreen-platform$ help shelbie:echo
 
 Name
@@ -32,7 +32,7 @@ Argument(s)
     Arguments to display separated by whitespaces
 
 -----------------------------------</screen>
-  
+
   <section>
     <title>Scope 'gogo'</title>
 
@@ -134,6 +134,25 @@ Argument(s)
   deployment:deploy-artifact               Deploy the given artifact in the system.
   deployment:report-artifact               Display report of an artifact deployed in the system.
   deployment:update-artifact               Update the given artifact in the system.</screen>
+  </section>
+
+  <section>
+    <title>Scope 'security'</title>
+
+    <screen>Scope 'security' (11 commands)
+-----------------------------------
+  security:create-account                  Creates a new account in the given account store.
+  security:list-accounts                   List accounts from the given account store.
+  security:set-session-realm               Store the realm name in a shell session's variable to avoid extra typing in security-related commands.
+  security:change-login                    Change login of a given account.
+  security:change-password                 Change password of a given account.
+  security:detail-account                  Details an account from the given account store.
+  security:list-stores                     List AccountStore(s) available in the system.
+  security:show-subject                    Display the Subject in use for this session.
+  security:add-roles                       Assign roles to a given account.
+  security:delete-account                  Deletes a given account in the given account store.
+  security:remove-roles                    Removes roles from a given account.
+</screen>
   </section>
 
   <section>
