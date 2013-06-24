@@ -64,34 +64,34 @@
 
           <itemizedlist>
             <listitem>
-              <para><emphasis>URI_FETCHER</emphasis> : Manage to download/fetch artifacts. For example it can
+              <para><literal>URI_FETCHER</literal> : Manage to download/fetch artifacts. For example it can
               download/fetch maven2 resources</para>
             </listitem>
 
             <listitem>
-              <para><emphasis>URI_RESOLVER</emphasis> : URI resolver is in general applied on a local resource (file,
+              <para><literal>URI_RESOLVER</literal> : URI resolver is in general applied on a local resource (file,
               bundle) on which the type can be detected (Archive or Content).</para>
             </listitem>
 
             <listitem>
-              <para><emphasis>FACET_SCANNER</emphasis> : Scanners are called on the selected artifact. It will flag the
+              <para><literal>FACET_SCANNER</literal> : Scanners are called on the selected artifact. It will flag the
               archive or content with expected facets.</para>
             </listitem>
 
             <listitem>
-              <para><emphasis>FACET_CONFLICTS</emphasis> : Try to Remove or add facets on artifacts if some of the
-              facets are not compliant together.</para>
+              <para><literal>FACET_CONFLICTS</literal> : Try to Remove or add facets on artifacts if some of the facets
+              are not compliant together.</para>
             </listitem>
 
             <listitem>
-              <para><emphasis>DEPENDENCY_FINDER</emphasis> : It tries to find all dependencies of a selected artifact.
+              <para><literal>DEPENDENCY_FINDER</literal> : It tries to find all dependencies of a selected artifact.
               (for example a deployment plan can reference several other artifacts)</para>
             </listitem>
           </itemizedlist>
         </listitem>
 
         <listitem>
-          <para>The next phases are dependent of the nature of the artifact that has been processed</para>
+          <para>The next phases are dependent of the nature of the artifact that has been processed.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -125,7 +125,7 @@
       @Processor annotation and the expected signature of the method is : <function>handle(&lt;Object of the artifact
       expected&gt;, ProcessorContext processorContext) throws ProcessorException</function></para>
 
-      <programlisting>@Processor
+      <programlisting language="java">@Processor
 public class MyPrintProcessor {
 
     public void handle(Artifact artifact, ProcessorContext processorContext) throws ProcessorException {
@@ -139,7 +139,7 @@ public class MyPrintProcessor {
 
       <para>If the processor needs to be executed at START phase here is the annotation to add : @Phase("START")</para>
 
-      <programlisting>@Processor
+      <programlisting language="java">@Processor
 @Phase("START")
 public class MyPrintProcessor {
 
@@ -154,6 +154,25 @@ public class MyPrintProcessor {
 
       <para>In order to execute and run this processor, it needs to be packaged with Apache Felix maven bundle-plugin
       and the Apache Felix iPOJO plugin. Then the bundle needs to be added on the platform.</para>
+
+      <programlisting language="xml">&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
+  &lt;version&gt;${maven-bundle-plugin.version}&lt;/version&gt;
+  &lt;extensions&gt;true&lt;/extensions&gt;
+  &lt;configuration&gt;
+    &lt;instructions&gt;
+      &lt;_plugin&gt;org.apache.felix.ipojo.bnd.PojoizationPlugin&lt;/_plugin&gt;
+    &lt;/instructions&gt;
+  &lt;/configuration&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+      &lt;artifactId&gt;bnd-ipojo-plugin&lt;/artifactId&gt;
+      &lt;version&gt;1.10.1&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/plugin&gt;</programlisting>
     </section>
 
     <section>
@@ -168,48 +187,93 @@ public class MyPrintProcessor {
   <section>
     <title>Annotation model</title>
 
-    <para/>
+    <para>The deployment API provides a set of annotations to write additional deployment processors.</para>
+
+    <para>Each annotations are requirement expressions. Having multiple annotations on the same node must be understood
+    as a logical AND: each of the requirements must be satisfied in order to execute the processor.</para>
 
     <section>
-      <title>@Attribute</title>
+      <title>@Processor</title>
 
-      <para/>
-    </section>
+      <para>This annotation is placed on top of the class that will act as a processor.</para>
 
-    <section>
-      <title>@Discovery</title>
+      <para>It is the only <emphasis>mandatory</emphasis> annotation.</para>
 
-      <para/>
-    </section>
-
-    <section>
-      <title>@Manifest</title>
-
-      <para/>
+      <programlisting language="java">@Processor
+public class AnotherProcessor {}</programlisting>
     </section>
 
     <section>
       <title>@Phase</title>
 
-      <para/>
+      <para>The <literal>@Phase</literal> annotation describe a processor bound to a named phase.</para>
+
+      <programlisting language="java">@Phase("&lt;phase-name&gt;")</programlisting>
     </section>
 
     <section>
-      <title>@Processor</title>
+      <title>@Discovery</title>
 
-      <para/>
+      <para>The <literal>@Discovery</literal> annotation is a shortcut to ease requirement description on a phase
+      located in the <emphasis>discovery</emphasis> global phase.</para>
+
+      <para>It takes a unique value of enum type
+      <literal>com.peergreen.deployment.DiscoveryPhasesLifecycle</literal>.</para>
+
+      <programlisting language="java">@Discovery(DiscoveryPhasesLifecycle.FACET_SCANNER)</programlisting>
+    </section>
+
+    <section>
+      <title>@Manifest</title>
+
+      <para>The <literal>@Manifest</literal> annotation is a simple annotation container for <link
+      linkend="manifest-attribute-annotation">@Attribute</link> values.</para>
+    </section>
+
+    <section xml:id="manifest-attribute-annotation">
+      <title>@Attribute</title>
+
+      <para>This annotation express a requirement on the manifest's attribute.</para>
+
+      <para>It can be used 2 different ways:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>requires only a named attribute to be present.</para>
+
+          <programlisting language="java">@Attribute("Bundle-SymbolicName")</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>requires a named attribute with a given value.</para>
+
+          <programlisting language="java">@Attribute("Header", "SomeValue")</programlisting>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
       <title>@Uri</title>
 
-      <para/>
+      <para>The <literal>@Uri</literal> express a requirement on artifact's uri.</para>
+
+      <para>Developer can restrict their processor to run only for artifact's with a given URI scheme.</para>
+
+      <programlisting language="java">@Uri("mvn")</programlisting>
+
+      <para>Uri extension (<filename class="extension">.jar</filename>, <filename class="extension">.war</filename>,
+      <filename class="extension">.zip</filename>) can also be selected.</para>
+
+      <programlisting language="java">@Uri(extension = ".war")</programlisting>
     </section>
 
     <section>
       <title>@XmlNamespace</title>
 
-      <para/>
+      <para><literal>@XmlNamspace</literal>, as its name imply, can be used to bind processors to an Xml content whose
+      root element's namespace is the given value.</para>
+
+      <programlisting language="java">@XmlNamespace("http://www.w3.org/1999/XSL/Transform")</programlisting>
     </section>
   </section>
 </chapter>
