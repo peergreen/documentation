@@ -40,6 +40,8 @@
 
   <xi:include href="user-guide/deployment-extension.xml"/>
 
+  <xi:include href="user-guide/security.xml" xpointer="element(/1)"/>
+
   <xi:include href="user-guide/hybrid.xml"/>
 
   <xi:include href="user-guide/osgi-framework.xml"/>
