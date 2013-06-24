@@ -15,7 +15,17 @@
     </copyright>
 
     <authorgroup>
-      <author/>
+      <author>
+        <personname>Florent Benoit</personname>
+      </author>
+
+      <author>
+        <personname>Mohammed Boukada</personname>
+      </author>
+
+      <author>
+        <personname>Guillaume Sauthier</personname>
+      </author>
     </authorgroup>
 
     <date><?eval ${currentDate}?></date>
