@@ -32,13 +32,13 @@
           </fo:table-row>
           <fo:table-row height="120mm">
             <fo:table-cell text-align="center" display-align="center">
-              <fo:block font-family="Helvetica" font-size="32pt" padding-before="10mm">
+              <fo:block font-size="32pt" padding-before="10mm">
                 <xsl:value-of select="db:info/db:title"/>
               </fo:block>
-              <fo:block font-family="Helvetica" font-size="12pt" font-style="italic" padding="10mm">
+              <fo:block font-size="12pt" font-style="italic" padding="10mm">
                 <xsl:value-of select="db:info/db:abstract"/>
               </fo:block>
-              <fo:block font-family="Helvetica" font-size="12pt" padding="10mm">
+              <fo:block font-size="12pt" padding="10mm">
                 <xsl:value-of select="db:info/db:releaseinfo"/>
               </fo:block>
             </fo:table-cell>
@@ -46,7 +46,7 @@
           <fo:table-row height="40mm">
             <fo:table-cell text-align="center" display-align="after">
               <xsl:if test="count(db:info/db:authorgroup/*) &gt; 0">
-                <fo:block font-family="Helvetica" font-size="10pt">
+                <fo:block font-size="10pt">
                   <xsl:text>(</xsl:text>
                   <xsl:for-each select="db:info/db:authorgroup/db:author">
                     <!-- Add a comma for all elements except the first -->
@@ -59,7 +59,7 @@
                 </fo:block>
               </xsl:if>
 
-              <fo:block font-family="Helvetica" font-size="8pt" padding="2mm">
+              <fo:block font-size="8pt" padding="2mm">
                 <xsl:text>- </xsl:text>
                 <xsl:value-of select="db:info/db:date"/>
                 <xsl:text> -</xsl:text>
@@ -68,13 +68,13 @@
           </fo:table-row>
           <fo:table-row height="30mm">
             <fo:table-cell text-align="center" display-align="after">
-              <fo:block font-family="Helvetica" font-size="12pt" padding="10mm">
+              <fo:block font-size="12pt" padding="10mm">
                 <xsl:text>Copyright &#169; </xsl:text>
                 <xsl:value-of select="db:info/db:copyright/db:holder"/>
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="db:info/db:copyright/db:year"/>
               </fo:block>
-              <fo:block font-family="Helvetica" font-size="10pt" padding="1mm">
+              <fo:block font-size="10pt" padding="1mm">
                 <xsl:apply-templates mode="chapter.titlepage.recto.auto.mode"
                                      select="db:info/db:legalnotice"/>
               </fo:block>
@@ -102,8 +102,9 @@
   <xsl:param name="fop1.extensions" select="1"/>
 
   <!-- Body font -->
-  <xsl:param name="body.font.family">Helvetica</xsl:param>
-  <xsl:param name="title.font.family">Helvetica</xsl:param>
+  <xsl:param name="body.font.family">Calibri</xsl:param>
+  <xsl:param name="title.font.family">Calibri</xsl:param>
+  <xsl:param name="monospace.font.family">SourceCodePro</xsl:param>
 
   <!--==============================================-->
   <!--        		Table of Contents				-->
@@ -306,7 +307,6 @@
   <!-- The formatting properties for the chapter label. -->
   <xsl:attribute-set name="chapter.label.properties">
     <xsl:attribute name="font-size">36pt</xsl:attribute>
-    <xsl:attribute name="font-family">sans-serif</xsl:attribute>
     <xsl:attribute name="text-align">right</xsl:attribute>
     <xsl:attribute name="space-before.minimum">4cm</xsl:attribute>
     <xsl:attribute name="space-before.optimum">6cm</xsl:attribute>
@@ -316,7 +316,6 @@
   <!-- The formatting properties for the chapter title. -->
   <xsl:attribute-set name="chapter.title.properties">
     <xsl:attribute name="font-size">48pt</xsl:attribute>
-    <xsl:attribute name="font-family">sans-serif</xsl:attribute>
     <xsl:attribute name="text-align">right</xsl:attribute>
     <xsl:attribute name="space-before.minimum">2cm</xsl:attribute>
     <xsl:attribute name="space-before.optimum">4cm</xsl:attribute>
@@ -363,7 +362,6 @@
   <!--  use graphics in admonitions -->
   <xsl:param name="admon.graphics" select="1"/>
   <xsl:param name="admon.graphics.path"><xsl:value-of select="$img.src.path"/>images/admons/</xsl:param>
-  <!--xsl:param name="admon.graphics.extension" select="'.png'"/-->
   <xsl:attribute-set name="graphical.admonition.properties">
     <xsl:attribute name="background-color">#f4f4f4</xsl:attribute>
     <xsl:attribute name="border-width">0.5px</xsl:attribute>
@@ -406,7 +404,8 @@
     <xsl:attribute name="font-size">
       <xsl:value-of select="$body.font.master * 0.80"/>
       <xsl:text>pt</xsl:text>
-    </xsl:attribute> 
+    </xsl:attribute>
+    <!--xsl:attribute name="font-family">SourceCodePro</xsl:attribute-->
     <xsl:attribute name="space-before.minimum">1em</xsl:attribute>
     <xsl:attribute name="space-before.optimum">1em</xsl:attribute>
     <xsl:attribute name="space-before.maximum">1em</xsl:attribute>

@@ -113,6 +113,59 @@
               <highlightSource>1</highlightSource>
               <foCustomization>${basedir}/src/docbkx/resources/xsl/fo.xsl</foCustomization>
               <imgSrcPath>${basedir}/src/docbkx/resources/</imgSrcPath>
+              <fonts>
+                <font>
+                  <name>Calibri</name>
+                  <style>normal</style>
+                  <weight>normal</weight>
+                  <embedFile>${basedir}/src/docbkx/resources/fonts/Calibri.ttf</embedFile>
+                  <metricsFile>${basedir}/src/docbkx/resources/fonts/Calibri.ttf.metrics</metricsFile>
+                </font>
+                <font>
+                  <name>Calibri</name>
+                  <style>italic</style>
+                  <weight>normal</weight>
+                  <embedFile>${basedir}/src/docbkx/resources/fonts/CalibriItalic.ttf</embedFile>
+                  <metricsFile>${basedir}/src/docbkx/resources/fonts/CalibriItalic.ttf.metrics</metricsFile>
+                </font>
+                <font>
+                  <name>Calibri</name>
+                  <style>normal</style>
+                  <weight>bold</weight>
+                  <embedFile>${basedir}/src/docbkx/resources/fonts/CalibriBold.ttf</embedFile>
+                  <metricsFile>${basedir}/src/docbkx/resources/fonts/CalibriBold.ttf.metrics</metricsFile>
+                </font>
+                <font>
+                  <name>Calibri</name>
+                  <style>italic</style>
+                  <weight>bold</weight>
+                  <embedFile>${basedir}/src/docbkx/resources/fonts/CalibriBoldItalic.ttf</embedFile>
+                  <metricsFile>${basedir}/src/docbkx/resources/fonts/CalibriBoldItalic.ttf.metrics</metricsFile>
+                </font>
+
+                <font>
+                  <name>SourceCodePro</name>
+                  <style>normal</style>
+                  <weight>normal</weight>
+                  <embedFile>${basedir}/src/docbkx/resources/fonts/SourceCodePro-Regular.ttf</embedFile>
+                  <metricsFile>${basedir}/src/docbkx/resources/fonts/SourceCodePro-Regular.ttf.metrics</metricsFile>
+                </font>
+                <font>
+                  <!-- There is no italic in SourceCodePro, use light instead -->
+                  <name>SourceCodePro</name>
+                  <style>italic</style>
+                  <weight>normal</weight>
+                  <embedFile>${basedir}/src/docbkx/resources/fonts/SourceCodePro-Light.ttf</embedFile>
+                  <metricsFile>${basedir}/src/docbkx/resources/fonts/SourceCodePro-Light.ttf.metrics</metricsFile>
+                </font>
+                <font>
+                  <name>SourceCodePro</name>
+                  <style>normal</style>
+                  <weight>bold</weight>
+                  <embedFile>${basedir}/src/docbkx/resources/fonts/SourceCodePro-Bold.ttf</embedFile>
+                  <metricsFile>${basedir}/src/docbkx/resources/fonts/SourceCodePro-Bold.ttf.metrics</metricsFile>
+                </font>
+              </fonts>
 
               <postProcess>
                 <!-- Place the generated files in the site -->
