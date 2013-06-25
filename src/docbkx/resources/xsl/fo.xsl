@@ -351,6 +351,9 @@
   <!-- No indentation of Titles -->
   <xsl:param name="title.margin.left">0pc</xsl:param>
 
+  <!-- Separate term and definition on different lines (avoid overlapping) -->
+  <xsl:param name="variablelist.as.blocks">1</xsl:param>
+
   <!--==============================================-->
   <!--               Fonts & Styles                 -->
   <!--==============================================-->
