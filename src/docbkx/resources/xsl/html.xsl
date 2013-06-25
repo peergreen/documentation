@@ -322,7 +322,7 @@
 	</div>
   </xsl:template>
 
-  <xsl:template name="section.titlepage.recto">
+  <!--<xsl:template name="section.titlepage.recto">
 	<div class="section-title">
 		<xsl:attribute name="id">
 			<xsl:call-template name="object.id">
@@ -333,7 +333,7 @@
 			<xsl:apply-templates select="." mode="object.title.markup"/>
 		</h2>
 	</div>
-  </xsl:template>
+  </xsl:template>     -->
 
   <xsl:template name="body.attributes">
   	<xsl:attribute name="data-spy">scroll</xsl:attribute>
