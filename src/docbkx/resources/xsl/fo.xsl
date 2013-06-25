@@ -455,8 +455,12 @@
     </fo:basic-link>
   </xsl:template>
 
-  <!-- Links are printed in footnotes (not just after the link's text) -->
-  <xsl:param name="ulink.footnotes" select="1"/>
+  <!-- 
+    Set to 1 for printing links in footnotes (not just after the link's text)
+    Notice that activating this property may produce some overlapping at
+    the bottom of the pages (to be investigated)
+  -->
+  <xsl:param name="ulink.footnotes" select="0"/>
 
   <xsl:template match="*" mode="simple.xlink.properties">
   <!-- Placeholder template to apply properties to links made from
