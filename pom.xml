@@ -22,7 +22,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.peergreen.documentation</groupId>
   <artifactId>documentation</artifactId>
-  <version>1.0.0-M2</version>
+  <version>1.0.0-M3-SNAPSHOT</version>
   <name>Peergreen Documentation</name>
 
 
@@ -39,7 +39,7 @@
     <connection>scm:git:https://forge.peergreen.com/git/git/documentation/documentation.git</connection>
     <developerConnection>scm:git:https://forge.peergreen.com/git/git/documentation/documentation.git</developerConnection>
     <url>https://forge.peergreen.com/git/summary/?r=documentation/documentation.git</url>
-    <tag>DOCUMENTATION_1_0_0_M2</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <build>
