@@ -195,16 +195,16 @@ Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaum
     <para>Peergreen server supports up to <literal>2</literal> concurrent
     telnet connections.</para>
 
-    <para><glosslist>
-        <glossentry>
-          <glossterm>com.peergreen.telnetd.ports</glossterm>
+    <variablelist>
+      <varlistentry>
+        <term><literal>com.peergreen.telnetd.ports</literal></term>
 
-          <glossdef>
-            <para>Comma separated list of ports to use for listening (if empty
-            default <literal>10023</literal> port will be used)</para>
-          </glossdef>
-        </glossentry>
-      </glosslist></para>
+        <listitem>
+          <para>Comma separated list of ports to use for listening (if empty
+          default <literal>10023</literal> port will be used)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
     <section>
       <title>Connecting</title>
