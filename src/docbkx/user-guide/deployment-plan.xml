@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<chapter version="5.0" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-         xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
-         xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
          xmlns:db="http://docbook.org/ns/docbook">
   <title>Deployment plan</title>
 
   <para>Peergreen Plaftom supports <link
-  xlink:href="http://jonas.ow2.org/JONAS_5_3_0_M7/doc/doc-en/html/deployment-plans_guide.html"> JOnAS’s deployment
-  plan</link> enabling to deploy in one unit a whole set of application modules. Concretely a deployment plan is an XML
-  file with a sorted list of modules to deploy. The modules can be retrieved from maven repositories as illustrated in
-  the following example :</para>
+  xlink:href="http://jonas.ow2.org/JONAS_5_3_0_M7/doc/doc-en/html/deployment-plans_guide.html">JOnAS’s
+  deployment plan</link> enabling to deploy in one unit a whole set of
+  application modules. Concretely a deployment plan is an XML file with a
+  sorted list of modules to deploy. The modules can be retrieved from maven
+  repositories as illustrated in the following example :</para>
 
   <programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;deployment-plan   

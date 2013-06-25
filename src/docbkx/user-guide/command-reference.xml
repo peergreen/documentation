@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<chapter version="5.0" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-         xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
-         xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
          xmlns:db="http://docbook.org/ns/docbook">
   <title>Command reference</title>
 
-  <para>You can get the full command reference by using <literal>help</literal> command in Peergreen Server's shell or
-  hitting the <literal>tab</literal> key:</para>
+  <para>You can get the full command reference by using
+  <literal>help</literal> command in Peergreen Server's shell or hitting the
+  <literal>tab</literal> key:</para>
 
   <screen>boukadam@peergreen-platform$ help</screen>
 
-  <para>Moreover, it is possible to display help for each command using the <literal>help</literal> command followed by
-  the name of the desired command</para>
+  <para>Moreover, it is possible to display help for each command using the
+  <literal>help</literal> command followed by the name of the desired
+  command</para>
 
   <screen>Mohammed@peergreen-platform$ help shelbie:echo
 

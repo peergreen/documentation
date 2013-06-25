@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<chapter version="5.0" xml:id="administration" xmlns="http://docbook.org/ns/docbook"
-         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
-         xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
-         xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook">
+<chapter version="5.0" xml:id="administration"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:db="http://docbook.org/ns/docbook">
   <title>Administration</title>
 
   <para/>
@@ -13,11 +17,12 @@
     <section>
       <title>Properties</title>
 
-      <para>Theses configuration properties are System properties and must be set on the <command>java</command> command
-      line.</para>
+      <para>Theses configuration properties are System properties and must be
+      set on the <command>java</command> command line.</para>
 
       <para><example>
-          <title>Launching Peergreen Server with Java System properties</title>
+          <title>Launching Peergreen Server with Java System
+          properties</title>
 
           <para><screen>guillaume@machine ~ $ java <emphasis>-Dcom.peergreen.bootstrap.system.exit=true</emphasis> -jar peergreen-server.jar</screen></para>
         </example></para>
@@ -27,10 +32,12 @@
             <glossterm>com.peergreen.bootstrap.thread.check.reportonly</glossterm>
 
             <glossdef>
-              <para>If this System property is set to <literal>true</literal>, the bootstrap will only print a report on
-              remaining alive thread when bootstap <methodname>start()</methodname> method is returning. If
-              <literal>false</literal>, stop of these threads is performed. Default is <literal>false</literal>: all
-              remaining threads are stopped.</para>
+              <para>If this System property is set to <literal>true</literal>,
+              the bootstrap will only print a report on remaining alive thread
+              when bootstap <methodname>start()</methodname> method is
+              returning. If <literal>false</literal>, stop of these threads is
+              performed. Default is <literal>false</literal>: all remaining
+              threads are stopped.</para>
             </glossdef>
           </glossentry>
 
@@ -38,9 +45,11 @@
             <glossterm>com.peergreen.bootstrap.system.exit</glossterm>
 
             <glossdef>
-              <para>If this System property is set to <literal>true</literal>, the bootstrap will force JVM's shutdown
-              with <methodname>System.exit(int)</methodname>. By default (<literal>false</literal>),
-              <methodname>exit()</methodname> is not called.</para>
+              <para>If this System property is set to <literal>true</literal>,
+              the bootstrap will force JVM's shutdown with
+              <methodname>System.exit(int)</methodname>. By default
+              (<literal>false</literal>), <methodname>exit()</methodname> is
+              not called.</para>
             </glossdef>
           </glossentry>
         </glosslist></para>
@@ -50,27 +59,32 @@
   <section>
     <title>Deployment</title>
 
-    <para>Peergreen Server incorporates an advanced deployment system tailored to take advantages of (nowadays common)
-    multi-core architectures, providing a massively parallel archive processing. This system is highly modular and can
-    be extended to support any type of archives (beyond natively supported types). Deployment system also supports
-    persistence of archive deployment.</para>
+    <para>Peergreen Server incorporates an advanced deployment system tailored
+    to take advantages of (nowadays common) multi-core architectures,
+    providing a massively parallel archive processing. This system is highly
+    modular and can be extended to support any type of archives (beyond
+    natively supported types). Deployment system also supports persistence of
+    archive deployment.</para>
 
     <section>
       <title>Natively supported artifacts</title>
 
-      <para>As Peergreen Server is built from scratch on top of OSGi, bundles are first class citizen in the deployment
-      system.</para>
+      <para>As Peergreen Server is built from scratch on top of OSGi, bundles
+      are first class citizen in the deployment system.</para>
 
-      <para>The platform also natively support 2 other artifact types: OW2 JOnAS deployment plans (more to read 
-	  <link xlink:href="http://jonas.ow2.org/JONAS_5_3_0_M7/doc/doc-en/html/deployment-plans_guide.html">here</link>)
+      <para>The platform also natively support 2 other artifact types: OW2
+      JOnAS deployment plans (more to read <link
+      xlink:href="http://jonas.ow2.org/JONAS_5_3_0_M7/doc/doc-en/html/deployment-plans_guide.html">here</link>)
       and OW2 JOnAS Configuration Admin XML files.</para>
     </section>
 
     <section>
       <title>Persistence</title>
 
-      <para>Persistence support means that an archive marked as persistent will be re-installed automatically at each
-      server restart. On the contrary, unpersisted archives will never be re-installed at server restarts.</para>
+      <para>Persistence support means that an archive marked as persistent
+      will be re-installed automatically at each server restart. On the
+      contrary, unpersisted archives will never be re-installed at server
+      restarts.</para>
     </section>
 
     <section>
@@ -79,21 +93,26 @@
       <section>
         <title>Dropins deployment</title>
 
-        <para>When launching the server, a <filename class="directory">deploy/</filename> directory is automatically
-        created (if not already present). This directory is observed/scanned periodically and all detected changes (new
-        files and deletions) are handed over the deployment system for processing (respectively for deployment and
-        undeployment). Archives placed in this directory are non-persistent.</para>
+        <para>When launching the server, a <filename
+        class="directory">deploy/</filename> directory is automatically
+        created (if not already present). This directory is observed/scanned
+        periodically and all detected changes (new files and deletions) are
+        handed over the deployment system for processing (respectively for
+        deployment and undeployment). Archives placed in this directory are
+        non-persistent.</para>
 
         <warning>
-          <para>Dropins archives are <emphasis>not persistent</emphasis> and are properly
-          <emphasis>undeployed</emphasis> between server restarts.</para>
+          <para>Dropins archives are <emphasis>not persistent</emphasis> and
+          are properly <emphasis>undeployed</emphasis> between server
+          restarts.</para>
         </warning>
       </section>
 
       <section>
         <title>Command line interface</title>
 
-        <para>Peergreen Server comes bundled with shell commands for deployment system management.</para>
+        <para>Peergreen Server comes bundled with shell commands for
+        deployment system management.</para>
 
         <para>Theses commands can be used to:<itemizedlist>
             <listitem>
@@ -107,8 +126,10 @@ Process done in '92' ms.
 </screen></para>
 
               <para><note>
-                  <para>Use the <literal>-p</literal> (<literal>--persistent-mode</literal>) command flag to activate
-                  persistent deployment (<literal>false</literal> by default)</para>
+                  <para>Use the <literal>-p</literal>
+                  (<literal>--persistent-mode</literal>) command flag to
+                  activate persistent deployment (<literal>false</literal> by
+                  default)</para>
                 </note></para>
             </listitem>
 
@@ -132,7 +153,8 @@ Process done in '12' ms.
             </listitem>
 
             <listitem>
-              <para>Display a detailed report for a given deployed artifact</para>
+              <para>Display a detailed report for a given deployed
+              artifact</para>
 
               <para><screen>guillaume@peergreen-platform$ deployment:report-artifact file:///Users/guillaume/.../bundle.jar
 Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaume/.../bundle.jar, totalTime='6' ms]
@@ -153,9 +175,10 @@ Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaum
       <section>
         <title>Monitored artifacts</title>
 
-        <para>When deployed, artifacts become managed artifacts, a monitoring Thread tries to detect (periodically) if
-        the artifact has changed, if so, it notifies the deployment system of the change, propagating an UPDATE
-        order.</para>
+        <para>When deployed, artifacts become managed artifacts, a monitoring
+        Thread tries to detect (periodically) if the artifact has changed, if
+        so, it notifies the deployment system of the change, propagating an
+        UPDATE order.</para>
       </section>
     </section>
   </section>
@@ -163,20 +186,22 @@ Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaum
   <section>
     <title>Remote management</title>
 
-    <para>Peergreen Server provides a simple Telnet daemon that can be used to connect to a running instance.</para>
+    <para>Peergreen Server provides a simple Telnet daemon that can be used to
+    connect to a running instance.</para>
 
-    <para>By default, it opens the <literal>10023</literal> port and listen for connections on all network
-    interfaces.</para>
+    <para>By default, it opens the <literal>10023</literal> port and listen
+    for connections on all network interfaces.</para>
 
-    <para>Peergreen server supports up to <literal>2</literal> concurrent telnet connections.</para>
+    <para>Peergreen server supports up to <literal>2</literal> concurrent
+    telnet connections.</para>
 
     <para><glosslist>
         <glossentry>
           <glossterm>com.peergreen.telnetd.ports</glossterm>
 
           <glossdef>
-            <para>Comma separated list of ports to use for listening (if empty default <literal>10023</literal> port
-            will be used)</para>
+            <para>Comma separated list of ports to use for listening (if empty
+            default <literal>10023</literal> port will be used)</para>
           </glossdef>
         </glossentry>
       </glosslist></para>
@@ -184,9 +209,11 @@ Artifact[name=file:///Users/guillaume/.../bundle.jar, uri=file:///Users/guillaum
     <section>
       <title>Connecting</title>
 
-      <para>When a connection attempt is made to one of the bound address, the daemon simply creates a new shell console
-      and connects connection's input and output stream into the console. Any <literal>telnet</literal> client can be
-      used to connect to this daemon. Type <command>exit</command> for exiting the session (without shutdowning the
+      <para>When a connection attempt is made to one of the bound address, the
+      daemon simply creates a new shell console and connects connection's
+      input and output stream into the console. Any <literal>telnet</literal>
+      client can be used to connect to this daemon. Type
+      <command>exit</command> for exiting the session (without shutdowning the
       platform).</para>
 
       <para><screen>guillaume@peergreen ~/$ telnet localhost 10023
@@ -227,21 +254,24 @@ guillaume@peergreen-platform$
     <section>
       <title>Telnetd commands</title>
 
-      <para>Peergreen's Telnetd comes bundled with 2 commands to inspect the daemon and its connections status:
-      <command>telnetd:info</command> and <command>telnetd:connections</command>.<itemizedlist>
+      <para>Peergreen's Telnetd comes bundled with 2 commands to inspect the
+      daemon and its connections status: <command>telnetd:info</command> and
+      <command>telnetd:connections</command>.<itemizedlist>
           <listitem>
-            <para><command>info</command> is useful to see telnetd configuration (open ports, ...) and statistic
-            informations on connections (current, failed, ...).</para>
+            <para><command>info</command> is useful to see telnetd
+            configuration (open ports, ...) and statistic informations on
+            connections (current, failed, ...).</para>
           </listitem>
 
           <listitem>
-            <para><command>connections</command> gives informations about each currently open connection (origin,
-            opening date)</para>
+            <para><command>connections</command> gives informations about each
+            currently open connection (origin, opening date)</para>
           </listitem>
         </itemizedlist></para>
 
       <note>
-        <para>Detailed command information are available in the command reference guide.</para>
+        <para>Detailed command information are available in the command
+        reference guide.</para>
       </note>
     </section>
   </section>

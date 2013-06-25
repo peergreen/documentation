@@ -1,49 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter version="5.0" xml:id="security" xmlns="http://docbook.org/ns/docbook"
-         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
-         xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
-         xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook">
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:db="http://docbook.org/ns/docbook">
   <title>Security</title>
 
   <section>
     <title>Secured elements</title>
 
-    <para>Peergreen security module is connected by default to other server's components.</para>
+    <para>Peergreen security module is connected by default to other server's
+    components.</para>
 
     <section>
       <title>Shell console</title>
 
-      <para>The shell that opens by default when launching a server is automatically authenticated as 'admin' (password
-      'peergreen').</para>
+      <para>The shell that opens by default when launching a server is
+      automatically authenticated as 'admin' (password 'peergreen').</para>
 
-      <para>If the administrator decide to change theses credentials, at server relaunch, the console will ask for new
-      valid credentials until success (just like Unix terminals).</para>
+      <para>If the administrator decide to change theses credentials, at
+      server relaunch, the console will ask for new valid credentials until
+      success (just like Unix terminals).</para>
     </section>
 
     <section>
       <title>Web applications</title>
 
-      <para>The integrated web server is connected to the default Peergreen's AcountStore (aka realm, user base,
-      ...).</para>
+      <para>The integrated web server is connected to the default Peergreen's
+      AcountStore (aka realm, user base, ...).</para>
 
-      <para>If the deployed web applications are secured, authentication and authorization requests performed by the web
-      server will go through the connected AccountStore.</para>
+      <para>If the deployed web applications are secured, authentication and
+      authorization requests performed by the web server will go through the
+      connected AccountStore.</para>
     </section>
   </section>
 
   <section>
     <title>Configuration</title>
 
-    <para>Security configuration happen through shell commands. The administrator must open a shell session on the
-    server to be configured before any other actions: either using the shell opened when launching the server or using
-    the telnet shell (<command>telnet localhost 10023</command>).</para>
+    <para>Security configuration happen through shell commands. The
+    administrator must open a shell session on the server to be configured
+    before any other actions: either using the shell opened when launching the
+    server or using the telnet shell (<command>telnet localhost
+    10023</command>).</para>
 
     <section>
       <title>Common commands</title>
 
       <itemizedlist>
         <listitem>
-          <para><command>security:list-stores</command>: List the AccountStore(s) known by the system</para>
+          <para><command>security:list-stores</command>: List the
+          AccountStore(s) known by the system</para>
 
           <programlisting>admin@peergreen-platform$ security:list-stores 
 AccountStore(s) of the system:
@@ -52,16 +61,17 @@ AccountStore(s) of the system:
         </listitem>
 
         <listitem>
-          <para><command>security:set-session-realm</command>: Store the given realm in the shell's session to avoid
-          extra typing for commands</para>
+          <para><command>security:set-session-realm</command>: Store the given
+          realm in the shell's session to avoid extra typing for
+          commands</para>
 
           <programlisting>admin@peergreen-platform$ security:set-session-realm ServerAccountStore
 </programlisting>
         </listitem>
 
         <listitem>
-          <para><command>security:show-subject</command>: Display details about the currently connected subject
-          (username, roles, ...)</para>
+          <para><command>security:show-subject</command>: Display details
+          about the currently connected subject (username, roles, ...)</para>
 
           <programlisting>admin@peergreen-platform$ security:show-subject 
 Objet :
@@ -75,13 +85,14 @@ Objet :
     <section>
       <title>Manage users</title>
 
-      <para>All user's management operations are available as shell commands.</para>
+      <para>All user's management operations are available as shell
+      commands.</para>
 
       <section>
         <title>Display known users</title>
 
-        <para>Use the <command>security:list-accounts</command> command to display basic information about registered
-        users.</para>
+        <para>Use the <command>security:list-accounts</command> command to
+        display basic information about registered users.</para>
 
         <programlisting>admin@peergreen-platform$ security:list-accounts 
 AccountStore 'ServerAccountStore' contains 1 account(s).
@@ -89,7 +100,8 @@ AccountStore 'ServerAccountStore' contains 1 account(s).
 [ enabled]                     admin platform-admin, platform-user
 </programlisting>
 
-        <para>More details can be displayed using the <command>security:detail-account</command> command.</para>
+        <para>More details can be displayed using the
+        <command>security:detail-account</command> command.</para>
 
         <programlisting>admin@peergreen-platform$ security:detail-account admin
 Login: admin (enabled)
@@ -102,37 +114,42 @@ Roles (2):
       <section>
         <title>Create a new user</title>
 
-        <para>Creating a new account in the store ask the administrator for the login and the password associated with
-        the account.</para>
+        <para>Creating a new account in the store ask the administrator for
+        the login and the password associated with the account.</para>
 
         <programlisting>admin@peergreen-platform$ security:create-account guillaume
   Enter password: 
 </programlisting>
 
         <note>
-          <para>The password entered by the administrator is never echoed on the screen</para>
+          <para>The password entered by the administrator is never echoed on
+          the screen</para>
         </note>
 
         <note>
-          <para>By default, the created account is <emphasis>not</emphasis> associated to any role</para>
+          <para>By default, the created account is <emphasis>not</emphasis>
+          associated to any role</para>
         </note>
       </section>
 
       <section>
         <title>Update user</title>
 
-        <para>Accounts are representing user's and there attributes can be changed over time.</para>
+        <para>Accounts are representing user's and there attributes can be
+        changed over time.</para>
 
         <warning>
-          <para>Changing account's attributes may not be reflected in real time (currently logged users will not be
-          impacted until next login).</para>
+          <para>Changing account's attributes may not be reflected in real
+          time (currently logged users will not be impacted until next
+          login).</para>
         </warning>
 
         <section>
           <title>Change password and/or login</title>
 
-          <para>Password and login ID are account's attributes that can be modified dynamically. Notice that changing
-          the login will remove the old login ID: it will not be usable anymore.</para>
+          <para>Password and login ID are account's attributes that can be
+          modified dynamically. Notice that changing the login will remove the
+          old login ID: it will not be usable anymore.</para>
 
           <programlisting>admin@peergreen-platform$ security:change-login guillaume
 Attention, this will change the security identifier of 'guillaume'
@@ -148,8 +165,8 @@ Notice that currently open connections using this account will not bechanged and
         <section>
           <title>Add and remove roles</title>
 
-          <para>This is the most common operation on accounts: being associated with a role gives additional
-          permissions.</para>
+          <para>This is the most common operation on accounts: being
+          associated with a role gives additional permissions.</para>
 
           <programlisting>admin@peergreen-platform$ security:add-roles florent architect webmaster
 admin@peergreen-platform$ security:detail-account florent
@@ -160,8 +177,9 @@ Roles (2):
 </programlisting>
 
           <note>
-            <para>Any number of additional roles can be provided at once. If the role is already associated to the
-            account it will not be stored twice.</para>
+            <para>Any number of additional roles can be provided at once. If
+            the role is already associated to the account it will not be
+            stored twice.</para>
           </note>
 
           <programlisting>admin@peergreen-platform$ security:remove-roles florent webmaster
@@ -172,8 +190,8 @@ Roles (1):
 </programlisting>
 
           <note>
-            <para>If the administrator tries to dissociate a non-existing role, <command>remove-role</command> will act
-            as no-op.</para>
+            <para>If the administrator tries to dissociate a non-existing
+            role, <command>remove-role</command> will act as no-op.</para>
           </note>
         </section>
       </section>
@@ -181,8 +199,8 @@ Roles (1):
       <section>
         <title>Remove user</title>
 
-        <para>Finally, accounts can be deleted permanently with the <command>security:delete-account</command>
-        command.</para>
+        <para>Finally, accounts can be deleted permanently with the
+        <command>security:delete-account</command> command.</para>
 
         <programlisting>admin@peergreen-platform$ security:delete-account florent
 admin@peergreen-platform$ security:list-accounts 
@@ -197,19 +215,20 @@ AccountStore 'ServerAccountStore' contains 1 account(s).
   <section>
     <title>Securing Web applications</title>
 
-    <para><literal>BASIC</literal> and <literal>FORM</literal> are the 2 currently supported authentication
-    methods.</para>
+    <para><literal>BASIC</literal> and <literal>FORM</literal> are the 2
+    currently supported authentication methods.</para>
 
-    <para>To secure the webapp the <filename>WEB-INF/web.xml</filename> needs to have a <tag>&lt;login-config&gt;</tag>
-    element using either <literal>FORM</literal> or <literal>BASIC</literal> as <tag>&lt;auth-method&gt;</tag>
-    value.</para>
+    <para>To secure the webapp the <filename>WEB-INF/web.xml</filename> needs
+    to have a <tag>&lt;login-config&gt;</tag> element using either
+    <literal>FORM</literal> or <literal>BASIC</literal> as
+    <tag>&lt;auth-method&gt;</tag> value.</para>
 
     <section>
       <title>Basic Authentication</title>
 
-      <para>When using Basic authentication, the user's credentials are just <link
-      xlink:href="https://en.wikipedia.org/wiki/Base64">Base64</link> encoded by the browser before being sent to the
-      server.</para>
+      <para>When using Basic authentication, the user's credentials are just
+      <link xlink:href="https://en.wikipedia.org/wiki/Base64">Base64</link>
+      encoded by the browser before being sent to the server.</para>
 
       <programlisting language="xml">  &lt;login-config&gt;
     &lt;auth-method&gt;BASIC&lt;/auth-method&gt;
@@ -220,8 +239,10 @@ AccountStore 'ServerAccountStore' contains 1 account(s).
     <section>
       <title>Form Authentifcation</title>
 
-      <para>Form authentication is a Basic authentication evolution: instead of having the browser opening a model
-      window asking for username/password, the web site can provide its own authentication page.</para>
+      <para>Form authentication is a Basic authentication evolution: instead
+      of having the browser opening a model window asking for
+      username/password, the web site can provide its own authentication
+      page.</para>
 
       <programlisting language="xml">  &lt;login-config&gt;
     &lt;auth-method&gt;FORM&lt;/auth-method&gt;
@@ -232,7 +253,8 @@ AccountStore 'ServerAccountStore' contains 1 account(s).
   &lt;/login-config&gt;
 </programlisting>
 
-      <para>With the corresponding JSP page (action and name's value are important):</para>
+      <para>With the corresponding JSP page (action and name's value are
+      important):</para>
 
       <programlisting language="xml">&lt;form action="<emphasis>j_security_check</emphasis>" method="get"&gt;
   &lt;label for="username"&gt;Username: &lt;/label&gt;
