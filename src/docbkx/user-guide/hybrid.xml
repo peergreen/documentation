@@ -180,15 +180,17 @@ public class MyPath {
 
       <itemizedlist>
         <listitem>
-          <para>javax.transaction.TransactionManager service</para>
+          <para><literal>javax.transaction.TransactionManager</literal>
+          service</para>
         </listitem>
 
         <listitem>
-          <para>javax.transaction.UserTransaction service</para>
+          <para><literal>javax.transaction.UserTransaction</literal>
+          service</para>
         </listitem>
 
         <listitem>
-          <para>javax.transaction.TransactionSynchronizationRegistry
+          <para><literal>javax.transaction.TransactionSynchronizationRegistry</literal>
           service</para>
         </listitem>
       </itemizedlist>
