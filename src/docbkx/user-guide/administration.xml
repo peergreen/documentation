@@ -24,35 +24,35 @@
           <title>Launching Peergreen Server with Java System
           properties</title>
 
-          <para><screen>guillaume@machine ~ $ java <emphasis>-Dcom.peergreen.bootstrap.system.exit=true</emphasis> -jar peergreen-server.jar</screen></para>
+          <para><screen>guillaume@machine ~ $ java <emphasis role="strong">-Dcom.peergreen.bootstrap.system.exit=true</emphasis> -jar peergreen-server.jar</screen></para>
         </example></para>
 
-      <para><glosslist>
-          <glossentry>
-            <glossterm>com.peergreen.bootstrap.thread.check.reportonly</glossterm>
+      <para><variablelist>
+          <varlistentry>
+            <term><literal>com.peergreen.bootstrap.thread.check.reportonly</literal></term>
 
-            <glossdef>
+            <listitem>
               <para>If this System property is set to <literal>true</literal>,
               the bootstrap will only print a report on remaining alive thread
               when bootstap <methodname>start()</methodname> method is
               returning. If <literal>false</literal>, stop of these threads is
               performed. Default is <literal>false</literal>: all remaining
               threads are stopped.</para>
-            </glossdef>
-          </glossentry>
+            </listitem>
+          </varlistentry>
 
-          <glossentry>
-            <glossterm>com.peergreen.bootstrap.system.exit</glossterm>
+          <varlistentry>
+            <term><literal>com.peergreen.bootstrap.system.exit</literal></term>
 
-            <glossdef>
+            <listitem>
               <para>If this System property is set to <literal>true</literal>,
               the bootstrap will force JVM's shutdown with
               <methodname>System.exit(int)</methodname>. By default
               (<literal>false</literal>), <methodname>exit()</methodname> is
               not called.</para>
-            </glossdef>
-          </glossentry>
-        </glosslist></para>
+            </listitem>
+          </varlistentry>
+        </variablelist></para>
     </section>
   </section>
 
