@@ -21,11 +21,15 @@
 
     <authorgroup>
       <author>
-        <personname/>
+        <personname>Florent Benoit</personname>
+      </author>
 
-        <affiliation>
-          <orgname/>
-        </affiliation>
+      <author>
+        <personname>Mohammed Boukada</personname>
+      </author>
+
+      <author>
+        <personname>Guillaume Sauthier</personname>
       </author>
     </authorgroup>
 
