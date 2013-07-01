@@ -252,7 +252,7 @@ public class Activator implements BundleActivator {
     &lt;!-- Peergreen server --&gt;
     &lt;dependency&gt;
       &lt;groupId&gt;com.peergreen.community&lt;/groupId&gt;
-      &lt;artifactId&gt;peergreen-server-light&lt;/artifactId&gt;
+      &lt;artifactId&gt;peergreen-kernel&lt;/artifactId&gt;
       &lt;version&gt;${peergreen-server.version}&lt;/version&gt;
       &lt;scope&gt;test&lt;/scope&gt;
     &lt;/dependency&gt;
