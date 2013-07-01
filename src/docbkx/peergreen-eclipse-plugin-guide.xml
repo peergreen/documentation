@@ -51,16 +51,16 @@
     <title>Introduction</title>
 
     <para><link xlink:href="http://www.eclipse.org/">Eclipse</link> is a
-    multi-language software development environment with an extensible plugins
-    system. <emphasis>Peergreen Server Eclipse plugin</emphasis> provides an
-    efficient tool for developing OSGi applications within Eclipse IDE. With
-    Peergreen Server plugin, developers are able to : <itemizedlist>
+    multi-language integrated development environment (IDE) with an extensible
+    plugins system. <emphasis>Peergreen Server Eclipse plugin</emphasis>
+    provides an efficient tool for developing OSGi applications within Eclipse
+    IDE. With Peergreen Server plugin, developers are able to : <itemizedlist>
         <listitem>
            launch Peergreen server from the IDE as an OSGi framework. 
         </listitem>
 
         <listitem>
-           deploy the application bundle to test it. 
+           deploy the application bundle(s) to test it. 
         </listitem>
 
         <listitem>
@@ -78,9 +78,9 @@
 
     <para>We’re using the OSGi application example, named Hello Service,
     available <link
-    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">
-    here</link>. The maven project defines a bundle which implements a single
-    service Hello :</para>
+    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">here</link>.
+    The maven project defines a bundle which implements a single service Hello
+    :</para>
 
     <programlisting language="java">package com.peergreen.example.ipojo.hello.api;
 
@@ -88,13 +88,13 @@ public interface Hello {
     String sayHello(String name);
 }</programlisting>
 
-    <para>The <literal>pom.xml</literal> includes : <itemizedlist>
+    <para>The <filename>pom.xml</filename> includes : <itemizedlist>
         <listitem>
            the maven bundle plugin to generate the OSGi bundle. 
         </listitem>
 
         <listitem>
-           the maven ipojo plugin to enhance the classes with the IPOJO service management container. 
+           the maven ipojo plugin to enhance the classes with the IPOJO service management container.
         </listitem>
       </itemizedlist></para>
 

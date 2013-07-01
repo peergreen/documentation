@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<book version="5.0" xml:id="pg-arquillian-junit-tuto" xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
-      xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook">
+<book version="5.0" xml:id="pg-arquillian-junit-tuto"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <title>Testing OSGi applications with Arquillian, maven &amp; JUnit</title>
+    <title>Testing OSGi applications with Arquillian, maven &amp;
+    JUnit</title>
 
     <productname>Peergreen Server</productname>
 
@@ -33,27 +38,32 @@
     <releaseinfo><?eval ${peergreenServerVersion} ?></releaseinfo>
 
     <legalnotice>
-      <para>This work is licensed under the Attribution-NonCommercial-NoDerivs 3.0 Unported License (CC BY-NC-ND 3.0).
-      To view a copy of this license,visit <link
+      <para>This work is licensed under the Attribution-NonCommercial-NoDerivs
+      3.0 Unported License (CC BY-NC-ND 3.0). To view a copy of this
+      license,visit <link
       xlink:href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</link>
-      or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.</para>
+      or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford,
+      California 94305, USA.</para>
     </legalnotice>
   </info>
 
   <chapter>
     <title>Introduction</title>
 
-    <para>Arquillian (<link xlink:href="http://arquillian.org">http://arquillian.org </link>) is a testing framework for
-    both OSGi and Java EE applications. This tutorial focuses on OSGi applications and describes how to write a unit
-    test with Arquillian, maven and JUnit on Peergreen Server.</para>
+    <para>Arquillian (<link
+    xlink:href="http://arquillian.org">http://arquillian.org </link>) is a
+    testing framework for both OSGi and Java EE applications. This tutorial
+    focuses on OSGi applications and describes how to write a unit test with
+    Arquillian, maven and JUnit on Peergreen Server.</para>
   </chapter>
 
   <chapter>
     <title>BasicLogService, the OSGi application to test</title>
 
-    <para>We need an application to test. You can download the basic example <emphasis>BasicLogService</emphasis> <link
-    xlink:href="https://github.com/peergreen/arquillian">here</link>. It implements the OSGi's LogService
-    interface.</para>
+    <para>We need an application to test. You can download the basic example
+    <emphasis>BasicLogService</emphasis> <link
+    xlink:href="https://github.com/peergreen/arquillian">here</link>. It
+    implements the OSGi's LogService interface.</para>
 
     <programlisting language="java">/**
  * Copyright 2013 Peergreen S.A.S.
@@ -118,7 +128,8 @@ public class BasicLogService implements LogService {
 
 }</programlisting>
 
-    <para>To start the service at the bundle activation, we need an Activator :</para>
+    <para>To start the service at the bundle activation, we need an Activator
+    :</para>
 
     <programlisting language="java">/**
  * Copyright 2013 Peergreen S.A.S.
@@ -174,10 +185,12 @@ public class Activator implements BundleActivator {
   <chapter>
     <title>Arquillian/ JUnit Test</title>
 
-    <para>The test is provided in the same maven project as an unit test (under the src/test directory). In this Maven
-    project, we use the dependencies for using arquillian OSGi adapter in the <link
-    xlink:href="https://docs.jboss.org/author/display/JBOSGI/Arquillian+Test+Framework"> embedded mode</link>. We also
-    define a dependency on the Peergreen Server itself on which we will run the test.</para>
+    <para>The test is provided in the same maven project as an unit test
+    (under the src/test directory). In this Maven project, we use the
+    dependencies for using arquillian OSGi adapter in the <link
+    xlink:href="https://docs.jboss.org/author/display/JBOSGI/Arquillian+Test+Framework">
+    embedded mode</link>. We also define a dependency on the Peergreen Server
+    itself on which we will run the test.</para>
 
     <programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!--
@@ -302,8 +315,9 @@ public class Activator implements BundleActivator {
 
 &lt;/project&gt;</programlisting>
 
-    <para>The test itself consists in checking the bundle state and the service injection. The deployment method creates
-    the application bundle with the application classes and the LogService interface.</para>
+    <para>The test itself consists in checking the bundle state and the
+    service injection. The deployment method creates the application bundle
+    with the application classes and the LogService interface.</para>
 
     <programlisting language="java">/**
  * Copyright 2013 Peergreen S.A.S.

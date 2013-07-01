@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<book version="5.0" xml:id="pg-paxexam-junit-tuto" xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
-      xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook">
+<book version="5.0" xml:id="pg-paxexam-junit-tuto"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <title>Testing OSGi applications with pax-exam 3, maven &amp; JUnit</title>
+    <title>Testing OSGi applications with pax-exam 3, maven &amp;
+    JUnit</title>
 
     <productname>Peergreen Server</productname>
 
@@ -33,26 +38,31 @@
     <releaseinfo><?eval ${peergreenServerVersion} ?></releaseinfo>
 
     <legalnotice>
-      <para>This work is licensed under the Attribution-NonCommercial-NoDerivs 3.0 Unported License (CC BY-NC-ND 3.0).
-      To view a copy of this license,visit <link
+      <para>This work is licensed under the Attribution-NonCommercial-NoDerivs
+      3.0 Unported License (CC BY-NC-ND 3.0). To view a copy of this
+      license,visit <link
       xlink:href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</link>
-      or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.</para>
+      or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford,
+      California 94305, USA.</para>
     </legalnotice>
   </info>
 
   <chapter>
     <title>Introduction</title>
 
-    <para>Pax Exam is a testing framework for both OSGi and Java EE applications. This tutorial focuses on OSGi
-    applications and describes how to write a test with Pax Exam, maven and JUnit on Peergreen Server.</para>
+    <para>Pax Exam is a testing framework for both OSGi and Java EE
+    applications. This tutorial focuses on OSGi applications and describes how
+    to write a test with Pax Exam, maven and JUnit on Peergreen Server.</para>
   </chapter>
 
   <chapter>
     <title>Hello service</title>
 
-    <para>We need an application to test. You can download the basic example <emphasis>HelloService</emphasis> <link
-    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">here</link>. It implements the Hello
-    interface by relying on IPOJO service component model. The interface contains a single method named
+    <para>We need an application to test. You can download the basic example
+    <emphasis>HelloService</emphasis> <link
+    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">here</link>.
+    It implements the Hello interface by relying on IPOJO service component
+    model. The interface contains a single method named
     <emphasis>sayHello()</emphasis>.</para>
 
     <programlisting language="java">public interface Hello {
@@ -63,13 +73,16 @@
   <chapter>
     <title>Pax Exam / JUnit Test</title>
 
-    <para>The test is provided in a separated maven project as an integration test (it). You can download it here. In
-    this Maven project, we use Pax Exam 3 with a native container which uses the OSGi FrameworkFactory API to look up an
-    OSGi framework for running the tests. The Native Container launches the OSGi framework in the same VM. We basically
-    use the dependencies from the <link
+    <para>The test is provided in a separated maven project as an integration
+    test (it). You can download it here. In this Maven project, we use Pax
+    Exam 3 with a native container which uses the OSGi FrameworkFactory API to
+    look up an OSGi framework for running the tests. The Native Container
+    launches the OSGi framework in the same VM. We basically use the
+    dependencies from the <link
     xlink:href="https://ops4j1.jira.com/wiki/display/PAXEXAM3/Maven+Dependencies#MavenDependencies-NativeContainerExample">
-    Pax Exam documentation</link>. We also define a dependency on the Peergreen Server itself on which we will run the
-    test and another dependency on the HelloService application.</para>
+    Pax Exam documentation</link>. We also define a dependency on the
+    Peergreen Server itself on which we will run the test and another
+    dependency on the HelloService application.</para>
 
     <programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!--
@@ -180,14 +193,17 @@
 
 &lt;/project&gt;</programlisting>
 
-    <para>The test itself is pretty simple and it is just used to check the HelloService bundle presence and state, to
-    check the HelloService availability and finally to check the sayHello() method return. The annotations are described
-    in the Pax Exam documentation <link xlink:href="https://ops4j1.jira.com/wiki/display/PAXEXAM3/JUnit+Driver">
-    here</link>.</para>
+    <para>The test itself is pretty simple and it is just used to check the
+    HelloService bundle presence and state, to check the HelloService
+    availability and finally to check the <methodname>sayHello()</methodname>
+    method return. The annotations are described in the <link
+    xlink:href="https://ops4j1.jira.com/wiki/display/PAXEXAM3/JUnit+Driver">Pax
+    Exam documentation</link>.</para>
 
-    <para>In the <emphasis>@Config method</emphasis>, in one hand one reduces the log level to make Pax Exam a bit less
-    verbose and in another hand, one defines the bundles list to deploy on the OSGi platform (JUnit and Hello
-    Service).</para>
+    <para>In the <classname>@Configuration</classname> method, in one hand one
+    reduces the log level to make Pax Exam a bit less verbose and in another
+    hand, one defines the bundles list to deploy on the OSGi platform (JUnit
+    and Hello Service).</para>
 
     <programlisting language="java">/**
  * Copyright 2013 Peergreen S.A.S.
@@ -286,7 +302,7 @@ public class HelloServiceTest {
     @Test
     public void getHelloService() {
         assertEquals("hello test", helloService.sayHello("test"));
-	}
+    }
 }</programlisting>
 
     <para>When we launch the test, we got the expected result:</para>
