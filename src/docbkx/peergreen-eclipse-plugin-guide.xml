@@ -69,68 +69,8 @@
       </itemizedlist></para>
 
     <para><note>
-        <para>This tutorial was written with Eclipse Juno.</para>
+        <para>This tutorial was written with Eclipse Kepler.</para>
       </note></para>
-  </chapter>
-
-  <chapter>
-    <title>The application project</title>
-
-    <para>We’re using the OSGi application example, named Hello Service,
-    available <link
-    xlink:href="https://github.com/peergreen/pax-exam/tree/master/hello-service">here</link>.
-    The maven project defines a bundle which implements a single service Hello
-    :</para>
-
-    <programlisting language="java">package com.peergreen.example.ipojo.hello.api;
-
-public interface Hello {
-    String sayHello(String name);
-}</programlisting>
-
-    <para>The <filename>pom.xml</filename> includes : <itemizedlist>
-        <listitem>
-           the maven bundle plugin to generate the OSGi bundle. 
-        </listitem>
-
-        <listitem>
-           the maven ipojo plugin to enhance the classes with the IPOJO service management container.
-        </listitem>
-      </itemizedlist></para>
-
-    <programlisting language="xml">&lt;build&gt;
-  &lt;plugins&gt;
-    &lt;plugin&gt;
-      &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
-      &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
-      &lt;version&gt;2.3.7&lt;/version&gt;
-      &lt;extensions&gt;true&lt;/extensions&gt;
-    &lt;/plugin&gt;
-    &lt;plugin&gt;
-      &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
-      &lt;artifactId&gt;maven-ipojo-plugin&lt;/artifactId&gt;
-      &lt;version&gt;1.10.1&lt;/version&gt;
-      &lt;executions&gt;
-        &lt;execution&gt;
-          &lt;goals&gt;
-            &lt;goal&gt;ipojo-bundle&lt;/goal&gt;
-          &lt;/goals&gt;
-        &lt;/execution&gt;
-      &lt;/executions&gt;
-    &lt;/plugin&gt;
-  &lt;/plugins&gt;
-&lt;/build&gt;</programlisting>
-
-    <mediaobject>
-      <imageobject role="html">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot1.png"/>
-      </imageobject>
-
-      <imageobject role="fo">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot1.png"
-                   scale="40"/>
-      </imageobject>
-    </mediaobject>
   </chapter>
 
   <chapter>
@@ -168,7 +108,7 @@ public interface Hello {
     <para>Set the name to <emphasis>Peergreen update site</emphasis>.</para>
 
     <para>Set the location to <link
-    xlink:href="http://eclipse.peergreen.com/juno/">http://eclipse.peergreen.com/juno/</link></para>
+    xlink:href="http://eclipse.peergreen.com/juno/">http://eclipse.peergreen.com/kepler/</link></para>
 
     <para>And then click on the <emphasis>«OK»</emphasis> button.</para>
 
@@ -261,6 +201,87 @@ public interface Hello {
   </chapter>
 
   <chapter>
+    <title>Example project</title>
+
+    <para>The Eclipse wizard will be used to create the OSGi example
+    application</para>
+
+    <para>In Eclipse use:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>File/New/Project...</para>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="images/eclipse-plugin-screenshots/selectAwizard.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="images/eclipse-plugin-screenshots/selectAwizard.png"
+                       scale="40"/>
+          </imageobject>
+        </mediaobject>
+      </listitem>
+
+      <listitem>
+        <para>Select "Plug-in Project" wizard</para>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="images/eclipse-plugin-screenshots/newPluginProject.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="images/eclipse-plugin-screenshots/newPluginProject.png"
+                       scale="40"/>
+          </imageobject>
+        </mediaobject>
+      </listitem>
+
+      <listitem>
+        <para>Click on "Next" button</para>
+      </listitem>
+
+      <listitem>
+        <para>Enter a project name like my-demo-bundle</para>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="images/eclipse-plugin-screenshots/newPluginProjectFinish.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="images/eclipse-plugin-screenshots/newPluginProjectFinish.png"
+                       scale="40"/>
+          </imageobject>
+        </mediaobject>
+      </listitem>
+
+      <listitem>
+        <para>Select "an OSGi Framework (Standard)" as Target platform</para>
+      </listitem>
+
+      <listitem>
+        <para>Click on "Next" button</para>
+      </listitem>
+
+      <listitem>
+        <para>Check that a Java SE 7 is selected</para>
+      </listitem>
+
+      <listitem>
+        <para>Check that "Generate an activator" is also selected.
+        (default)</para>
+      </listitem>
+
+      <listitem>
+        <para>Click on "Finish" button</para>
+      </listitem>
+    </orderedlist>
+  </chapter>
+
+  <chapter>
     <title>Run the application</title>
 
     <para>Once the plugin is installed, you can run your application from the
@@ -281,14 +302,24 @@ public interface Hello {
     </mediaobject>
 
     <para>Deselect all the bundle and then select only the application bundle
-    (here, select <emphasis>com.peergreen.example.hello-service</emphasis>
-    bundle).</para>
+    (here, select my-demo-bundle bundle).</para>
 
     <para>Click on the <emphasis>«Run»</emphasis> button.</para>
 
     <mediaobject>
       <imageobject role="html">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot11.png"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/RunConfigurations.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot11.png"
+                   scale="40"/>
+      </imageobject>
+    </mediaobject>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="images/eclipse-plugin-screenshots/runConfigurationsDisableTargetPlatform.png"/>
       </imageobject>
 
       <imageobject role="fo">
@@ -304,7 +335,7 @@ public interface Hello {
 
     <mediaobject>
       <imageobject role="html">
-        <imagedata fileref="images/eclipse-plugin-screenshots/screenshot12.png"/>
+        <imagedata fileref="images/eclipse-plugin-screenshots/RunAsPrompt.png"/>
       </imageobject>
 
       <imageobject role="fo">
