@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>How to contribute to Peergreen web console ?</title>
+
+  <para>Thanks to OSGi, Peergreen Web Console is a modular application. You can develop and contribute with
+    an extension to any extension point provided by other extensions. Following sections will detail how
+    to create an extension an contribute to another extension</para>
+
+</chapter>

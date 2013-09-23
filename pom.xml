@@ -32,6 +32,7 @@
     <guide.name>*-guide.xml</guide.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <peergreenServerVersion>1.0.0-M2</peergreenServerVersion>
+    <peergreenWebConsoleVersion>1.0.0-SNAPSHOT</peergreenWebConsoleVersion>
   </properties>
 
 
@@ -96,6 +97,8 @@
                     <include name="**/*.jpg" />
                     <include name="**/*.js" />
                     <include name="**/*.ico" />
+                    <include name="**/*.svg" />
+                    <include name="**/*.html" />
                   </fileset>
                 </copy>
               </postProcess>

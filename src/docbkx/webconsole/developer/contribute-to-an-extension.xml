@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Contribute to an extension</title>
+
+  <para>To contribute ton an existing extension, follow these steps : </para>
+
+  <orderedlist>
+    <listitem>
+      <para>Identify the extension class you want to contribute for</para>
+    </listitem>
+
+    <listitem>
+      <para>Identify the extension point alias inside the extension class you want to contribute for.
+        The extension point alias is the parameter inside the <literal>@Link</literal> annotation.</para>
+    </listitem>
+
+    <listitem>
+      <para>Now, you have the <emphasis role="bold">extension point id = className.extensionPointAlias</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para>Identify the expected extension type in the method annotated with the wanted <literal>@Link</literal> annotation</para>
+    </listitem>
+
+    <listitem>
+      <para>Create a class that extends this type and add <literal>@Extension</literal> and <literal>@ExtensionPoint</literal> :
+<programlisting language="java">@Extension
+@ExtensionPoint("parentClassName.extensionPointAlias")
+public class MyExtension extends ExpectedType {
+
+}</programlisting>
+      </para>
+    </listitem>
+
+    <listitem>
+      <para>If the parent extension has defined a <literal>@Qualifier</literal> annotation, add it on your class and fill required parameters.</para>
+    </listitem>
+
+    <listitem>
+      <para>Write you extension content</para>
+    </listitem>
+
+    <listitem>
+      <para>Compile, build and deploy your extension's bundle.</para>
+    </listitem>
+
+    <listitem>
+      <para>If no problem occurs during deployment, your extension will be added to the given extension point</para>
+    </listitem>
+  </orderedlist>
+
+</chapter>

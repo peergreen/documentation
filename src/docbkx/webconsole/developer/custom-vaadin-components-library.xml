@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Custom Vaadin components libraries</title>
+
+  <para>In Peergreen Web Console API, you can find some useful custom vaadin components :</para>
+
+  <section>
+    <title>Default window</title>
+
+    <para>Default window is a Vaadin Window with a predefined style.</para>
+
+<programlisting language="java">/**
+* Create a default window
+* @param caption window caption
+* @param content window content. Vaadin component
+* @param footerButtons list of buttons in footer
+*/
+public DefaultWindow(String caption, Component content, Button... footerButtons) {
+  // ...
+}</programlisting>
+
+    <para>Here is an example of default window in Home Scope (content of a news) : </para>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/defaultWindow.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/defaultWindow.png"/>
+      </imageobject>
+    </mediaobject>
+  </section>
+
+  <section>
+    <title>Confirm dialog</title>
+
+    <para>Confirm dialog component is a special default window with two footer buttons to confirm action, or not.
+      There is several way to create a confirm dialog window :</para>
+<programlisting language="java">/**
+* Show confirm dialog
+*
+* @param parent   parent UI to attach the confirm dialog window
+* @param listener confirmation listener
+*/
+public static void show(UI parent, Listener listener) {
+
+}
+
+/**
+* Show confirm dialog
+*
+* @param parent   parent UI to attach the confirm dialog window
+* @param content  confirm dialog content
+* @param listener confirmation listener
+*/
+public static void show(UI parent, Component content, Listener listener) {
+
+}
+
+/**
+* Show confirm dialog
+*
+* @param parent        parent UI to attach the confirm dialog window
+* @param windowCaption confirm dialog window caption
+* @param content       confirm dialog content
+* @param okCaption     confirm button caption
+* @param cancelCaption cancel button caption
+* @param listener      confirmation listener
+*/
+public static void show(UI parent, String windowCaption, Component content, String okCaption, String cancelCaption, Listener listener) {
+
+}</programlisting>
+
+    <note><para>If one of <literal>show()</literal> method parameter is null, default value is used.</para>
+      <para>Default values :
+<programlisting language="java">String DEFAULT_CAPTION = "Confirm";
+String DEFAULT_MESSAGE = "Are you sure?";
+String DEFAULT_OK_CAPTION = "Ok";
+String DEFAULT_CANCEL_CAPTION = "Cancel";</programlisting>
+      </para></note>
+
+    <para>Here is an example of confirm dialog in Deployment Scope when trying to deploy a directory : </para>
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/confirmDialog.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/confirmDialog.png"/>
+      </imageobject>
+    </mediaobject>
+  </section>
+
+  <section>
+    <title>Tabbed scope</title>
+
+    <para>You may want to create a tabbed scope and add extension as tab, this is your lucky day, there is a
+      component that does it all for you. Just create a class that extends <literal>com.peergreen.webconsole.vaadin.tabs.TabScope</literal>,
+      add, now usual, extension annotations and create a constructor matching super class. Web Scope is based on <literal>TabScope</literal> : </para>
+
+<programlisting language="java">package com.peergreen.webconsole.scope.web;
+
+import com.peergreen.webconsole.Extension;
+import com.peergreen.webconsole.ExtensionPoint;
+import com.peergreen.webconsole.Scope;
+import com.peergreen.webconsole.vaadin.tabs.TabScope;
+
+/**
+* @author Mohammed Boukada
+*/
+@Extension
+@ExtensionPoint("com.peergreen.webconsole.scope")
+@Scope(value = "web", iconClass = "icon-at")
+public class WebScope extends TabScope {
+
+  public WebScope() {
+    // Web   : is the default tab caption
+    // false : says that this scope is not navigable
+    super("Web", false);
+  }
+}</programlisting>
+
+
+    <section>
+      <title>@Tab</title>
+
+      <para><literal>@Tab</literal> annotation is a qualifier for tabbed scope. <literal>value</literal> parameter is the tab caption.
+        <literal>iconPath</literal> parameter is the icon shown in default tab. By default, this is the extension tab icon : </para>
+      <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="../../images/webconsole/default-module-icon.png"/>
+        </imageobject>
+
+        <imageobject role="fo">
+          <imagedata fileref="../../images/webconsole/default-module-icon.png"/>
+        </imageobject>
+      </mediaobject>
+    </section>
+
+    <section>
+      <title>Default tab</title>
+
+      <para>Default tab is a component which the content is the list of scope's extensions children. They are shown as
+        a clickable icons. When you click on an icon, you will navigate to the corresponding tab.</para>
+
+    </section>
+
+    <section>
+      <title>Listeners</title>
+
+      <para>There two predefined listeners : <literal>CloseTabListener</literal> and <literal>SelectedTabListener</literal></para>
+
+      <itemizedlist>
+        <listitem>
+          <para><literal>CloseTabListener</literal> : remove tab from tabs sheet and add a notification <emphasis role="bold">Warning ! You have closed a tab</emphasis></para>
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="../../images/webconsole/closeTab.png"/>
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="../../images/webconsole/closeTab.png"/>
+            </imageobject>
+          </mediaobject>
+        </listitem>
+        <listitem>
+          <para><literal>SelectedTabListener</literal> : useful in case of navigable scope, will update URI fragment on tab selection.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <para>Here is an overview of Web Scope based on <literal>TabScope</literal> : </para>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/tabbedScope.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/tabbedScope.png"
+                   scale="30"/>
+      </imageobject>
+    </mediaobject>
+
+  </section>
+
+</chapter>

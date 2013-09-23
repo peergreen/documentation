@@ -4,7 +4,12 @@
 		<label>User Guide</label>
 		<name>user-guide.xml</name>
 	</file>
-	
+
+  <!--<file id="web-console-guide">-->
+    <!--<label>Web Console</label>-->
+    <!--<name>webconsole-guide.xml</name>-->
+  <!--</file>-->
+
 	<set label="Tutorials">
 		<file id="pg-eclipse-plugin">
 			<label>Peergreen Eclipse plugin</label>

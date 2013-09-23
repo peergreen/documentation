@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Developer guide</title>
+
+  <section>
+    <title>How to contribute to Peergreen web console ?</title>
+
+    <para>Thanks to OSGi, Peergreen Web Console is a modular application. You can develop and contribute with
+      an extension to any extension point provided by other extensions. Following sections will detail how
+      to create an extension an contribute to another extension</para>
+  </section>
+
+  <section>
+    <title>Extensions</title>
+
+    <para>Extension is the base unit of Peergreen Web Console. It is a Vaadin component with special annotations.</para>
+    <para>The All-in-One Peergreen Web Console Archive you downloaded contains some official extensions but it
+    is possible to add your own extension or extends an existing extension. </para>
+  </section>
+  <section>
+    <title>Annotation model</title>
+    <para>The Peergreen Web Console API provides and handles a set of annotations to write extensions</para>
+
+    <section>
+      <title>@Extension</title>
+
+      <para>The <literal>@Extension</literal> annotation define a class as an extension and is combined with
+      <literal>@ExtensionPoint</literal>.</para>
+    </section>
+
+    <section>
+      <title>@ExtensionPoint</title>
+
+      <para><literal>@ExtensionPoint</literal> express the extension point (location) of the annotated
+        extension. An extension point is an unique identifier provided by an extension. <literal>@Link</literal>
+        annotation defines an extension point inside an extension (See <literal>@Link</literal> section)</para>
+
+      <para>The minimum code for an extension :</para>
+      <programlisting  language="java">@Extension
+@ExtensionPoint("com.peergreen.example.Extension.newElement")
+public class MyExtension extends AnyObject {
+  // class body
+}</programlisting>
+    </section>
+
+    <section>
+      <title>@Link</title>
+
+      <note><para>This annotation targets methods.</para></note>
+
+      <para><literal>@Link</literal> defines an extension point inside an extension. It takes a string as
+      parameter and the produced extension point id is <literal>className.extensionPointId</literal>. For
+      the following example : </para>
+
+      <programlisting  language="java">package com.peergreen.example;
+
+@Extension
+@ExtensionPoint("com.peergreen.example.Extension.newElement")
+public class MyExtension extends AnyObject {
+
+  @Link("tab")
+  public void addNewTab(MyTab tab) {
+    // callback link method body
+    // do something, add tab, notify someone ...
+  }
+}</programlisting>
+
+      <para>The produced extension point id is <literal>com.peergreen.example.MyExtension.tab</literal>. </para>
+
+      <para>For each extensions contributing to this extension point (annotated by <literal>@ExtensionPoint("com.peergreen.example.MyExtension.tab")</literal>)
+      and implementing/extending <literal>MyTab</literal>, the method <literal>addNewTab</literal> will be called with the extension object as
+      parameter. </para>
+
+      <note><para>The link callback method should be <literal>public</literal></para></note>
+    </section>
+
+    <section>
+      <title>@Unlink</title>
+
+      <note><para>This annotation targets methods.</para></note>
+
+      <para><literal>@Unlink</literal> annotated is necessary linked to an <literal>@Link</literal> annotation and takes
+      the same extension point id as annotation parameter.</para>
+
+      <programlisting  language="java">package com.peergreen.example;
+
+@Extension
+@ExtensionPoint("com.peergreen.example.Extension.newElement")
+public class MyExtension extends AnyObject {
+
+  @Link("tab")
+  public void addNewTab(MyTab tab) {
+    // callback link method body
+    // do something, add tab, notify someone ...
+  }
+
+  @Unlink("tab")
+  public void removeAddedTab(MyTab tab) {
+    // callback unlink method body
+    // do something, remove tab, notify someone ...
+  }
+}</programlisting>
+
+      <para>Method annotated by <literal>@Unlink</literal> is called when the extension point is no longer available
+      (for example: when its bundle is being uninstalled).</para>
+
+      <note><para>The unlink callback method should be <literal>public</literal></para></note>
+    </section>
+
+    <section>
+      <title>@Inject</title>
+
+      <note><para>This annotation targets fields or setter methods.</para></note>
+
+      <programlisting  language="java">package com.peergreen.example;
+
+@Extension
+@ExtensionPoint("com.peergreen.example.Extension.newElement")
+public class MyExtension extends AnyObject {
+
+  @Inject
+  private INotifierService notifierService;
+  private BundleContext context;
+
+  @Inject
+  public void setBundleContext(BundleContext context) {
+    this.context = context;
+  }
+}</programlisting>
+
+      <para><literal>@Inject</literal> allows mainly to inject OSGi services objects. It automatically filter the right
+      service for your UI. Other types can be inject with this annotation and are :
+        <itemizedlist>
+          <listitem>
+            <para><literal>com.peergreen.webconsole.UIContext</literal></para>
+          </listitem>
+          <listitem>
+            <para><literal>com.peergreen.webconsole.ISecurityManager</literal></para>
+          </listitem>
+          <listitem>
+            <para><literal>com.peergreen.webconsole.navigator.ViewNavigator</literal></para>
+          </listitem>
+          <listitem>
+            <para><literal>org.osgi.framework.BundleContext</literal></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+
+      <warning><para>Fields annotated by <literal>@Inject</literal> should not be used in constructors. </para>
+      <para>If any, create a public method annotated by <literal>@PostConstruct</literal> and use these fields inside.</para></warning>
+
+      <warning><para><literal>@Inject</literal> on fields does not work in super classes, use <literal>@Inject</literal>
+      on setter method.</para>
+      <para>For example, if a class extends the previous <literal>MyExtension</literal> class, the value of
+      <literal>notifierService</literal> will not be injected.</para></warning>
+    </section>
+
+    <section>
+      <title>@PostConstruct</title>
+
+      <para>Methods annotated by <literal>javax.annotation.PostConstruct</literal> are called once the extension
+      is well constructed and fields annotated by <literal>@Inject</literal> are set.</para>
+
+      <programlisting  language="java">package com.peergreen.example;
+
+@Extension
+@ExtensionPoint("com.peergreen.example.Extension.newElement")
+public class MyExtension extends AnyObject {
+
+  @Inject
+  private INotifierService notifierService;
+
+  @PostConstruct
+  public void init() {
+    notifierService.addNotification("Hello world :-) I can use notifier service without NPE !");
+  }
+}</programlisting>
+    </section>
+
+    <section>
+      <title>@PreDestroy</title>
+
+      <para>Methods annotated by <literal>javax.annotation.PreDestroy</literal> are called when the extension
+        is no longer available. Then, do cleaning.</para>
+
+      <programlisting  language="java">package com.peergreen.example;
+
+@Extension
+@ExtensionPoint("com.peergreen.example.Extension.newElement")
+public class MyExtension extends AnyObject {
+
+  @Inject
+  private INotifierService notifierService;
+
+  @PreDestroy
+  public void init() {
+    notifierService.addNotification("Good bye world :-(");
+  }
+}</programlisting>
+    </section>
+
+    <section>
+      <title>@Navigable</title>
+
+      <note><para>This annotation targets types.</para></note>
+
+      <para>Extensions annotated by <literal>@Navigable</literal> are able to use and interpret URI fragments
+        (String after <literal>http://localhost:9000/admin/#!/</literal>). Method annotated by <literal>@Navigate</literal>
+        is then called.</para>
+
+      <para><literal>@Navigable</literal> takes an alias as parameter. It allows to the parent extension to define
+      the next extension to call.</para>
+    </section>
+
+    <section>
+      <title>@Navigate</title>
+
+      <note><para>This annotation targets methods.</para></note>
+
+      <para>Methods annotated by <literal>@Navigate</literal> are called when the first element of URI fragments match
+      the extension alias. They take <literal>NavigationContext</literal> as parameter which contains URI fragments without
+      the fragment already processed and returns the next extension to visit.</para>
+
+      <para>For example, <literal>navigateTo("http://localhost:9000/admin/#!/system/bundles")</literal>. At this point,
+      <emphasis role="bold">URI fragments = "/system/bundles"</emphasis> in NavigationContext. First, method annotated by <literal>@Navigate</literal> in
+      <emphasis role="bold">system</emphasis> extension will be called with <emphasis role="bold">URI fragments = "/bundles"</emphasis> in
+      NavigationContext. The next step depends on the implementation of this method, supposing we have the following navigate method :</para>
+
+<programlisting  language="java">@Navigate
+public Component navigate(NavigationContext context) {
+  // Here we are in system extension, we know all children extension
+
+  // get the child component by its alias
+  Component tab = getComponents().get(UrlFragment.getFirstFragment(context.getPath()));
+  // process the first fragment and sub it from NavigationContext
+  context.setPath(UrlFragment.subFirstFragment(context.getPath()));
+
+  // Here we will select the tab corresponding to the given alias
+  if (tab != null) {
+    setSelectedTab(tab);
+  }
+
+  // return the next extension
+  return tab;
+}</programlisting>
+    </section>
+
+    <section>
+      <title>@Scope</title>
+
+      <note><para>This annotation targets extensions type.</para></note>
+
+      <para><literal>@Scope</literal> is a qualifier expressing an extension as a <emphasis role="bold">Scope</emphasis> and will be accessible from
+      side bar menu (see Web Console Layouts section). It takes a <literal>value</literal> parameter corresponding to the scope name and,
+      optionally, an <literal>iconClass</literal> from those <link xlink:href="html/icons.html">icon classes name</link>.
+
+      </para>
+
+      <para>If <literal>iconClass</literal> is not defined, system will try to find a class with the name
+      <emphasis role="bold">icon-[scopeName]</emphasis>. If not found, use the default icon</para>
+
+<programlisting language="java">@Extension
+@ExtensionPoint("com.peergreen.webconsole.scope")
+@Scope(value = "web", iconClass = "icon-at")
+public class WebScope extends TabScope {
+  // web scope body
+}</programlisting>
+
+      <para>And the result : </para>
+
+      <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="../images/webconsole/webScope.png"/>
+        </imageobject>
+
+        <imageobject role="fo">
+          <imagedata fileref="../images/webconsole/webScope.png"/>
+        </imageobject>
+      </mediaobject>
+    </section>
+
+    <section>
+      <title>@Qualifier</title>
+
+      <note><para>This annotation targets methods.</para></note>
+
+      <para><literal>@Qualifier</literal> is used to define an annotation for configure extensions contributing
+      to a special parent extension. It takes a prefix as parameter.</para>
+
+      <para>All annotation attributes values may be retrieved from a <literal>Dictionary</literal>
+      given as second parameter in methods annotated by <literal>@Link</literal> and <literal>@Unlink</literal>.
+      Parameters names are <emphasis role="bold">prefix.attributeName</emphasis></para>
+
+      <note><para>Default prefix is annotation class name</para></note>
+      <note><para>Annotation annotated by <literal>@Qualifier</literal> should use <emphasis role="bold">runtime retention policy</emphasis></para></note>
+
+      <para>For example, define a scope named <emphasis role="bold">Pictures</emphasis> in which we can contribute with pictures.
+      To configure a picture extension, let create <literal>@Picture</literal> qualifier annotation</para>
+<programlisting language="java">@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Qualifier("picture")
+public @interface Picture {
+  String name();
+  String path();
+}</programlisting>
+
+      <para>Now, we will create an extension named <literal>SchoolPicture</literal></para>
+
+<programlisting language="java">@Extension
+@ExtensionPoint("com.peergreen.example.Pictures.picture")
+@Picture(name = "School Picture", path = "path/to/my/awesome/picture")
+public class SchoolPicture extends Picture {
+  // class body
+}</programlisting>
+
+      <para>Web console system will automatically link <literal>SchoolPicture</literal> to <literal>Pictures</literal>
+      and call <literal>@Link</literal> method : </para>
+
+<programlisting language="java">@Link("picture")
+public void addPicture(Picture picture, Dictionary properties) {
+  // get picture name
+  String pictureName = (String) properties.get("picture.name");
+  // get picture path
+  String picturePath = (String) properties.get("picture.path");
+  // ...
+}</programlisting>
+    </section>
+
+  </section>
+
+  <section>
+    <title>Create a scope</title>
+
+    <para>Scope class is a special extension class annotated with <literal>@Scope</literal> qualifier. Scope class
+    should implements or extends a class that implements <literal>com.vaadin.ui.Component</literal></para>.
+
+    <para>Scope extension point is <literal>com.peergreen.webconsole.scope</literal></para>
+
+<programlisting language="java">@Extension
+@ExtensionPoint("com.peergreen.webconsole.scope")
+@Scope("home")
+public class HomeScope extends VerticalLayout {
+  // home scope body
+}</programlisting>
+
+    <note><para>See <literal>@Scope</literal> section for more details</para></note>
+  </section>
+
+  <section>
+    <title>Contribute to an extension</title>
+
+    <para>To contribute ton an existing extension, follow these steps : </para>
+
+    <orderedlist>
+      <listitem>
+        <para>Identify the extension class you want to contribute for</para>
+      </listitem>
+
+      <listitem>
+        <para>Identify the extension point alias inside the extension class you want to contribute for.
+          The extension point alias is the parameter inside the <literal>@Link</literal> annotation.</para>
+      </listitem>
+
+      <listitem>
+        <para>Now, you have the <emphasis role="bold">extension point id = className.extensionPointAlias</emphasis></para>
+      </listitem>
+
+      <listitem>
+        <para>Identify the expected extension type in the method annotated with the wanted <literal>@Link</literal> annotation</para>
+      </listitem>
+
+      <listitem>
+        <para>Create a class that extends this type and add <literal>@Extension</literal> and <literal>@ExtensionPoint</literal> :
+<programlisting language="java">@Extension
+@ExtensionPoint("parentClassName.extensionPointAlias")
+public class MyExtension extends ExpectedType {
+
+}</programlisting>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>If the parent extension has defined a <literal>@Qualifier</literal> annotation, add it on your class and fill required parameters.</para>
+      </listitem>
+
+      <listitem>
+        <para>Write you extension content</para>
+      </listitem>
+
+      <listitem>
+        <para>Compile, build and deploy your extension's bundle.</para>
+      </listitem>
+
+      <listitem>
+        <para>If no problem occurs during deployment, your extension will be added to the given extension point</para>
+      </listitem>
+    </orderedlist>
+  </section>
+
+  <section>
+    <title>Provide extension point</title>
+
+    <para>Now, you created your extension and you would like to provide extension point. For this :</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Create a public method with as the first parameter the type of the expected extensions and, if you want to
+        get extension properties, as the second parameter a <literal>Dictionary</literal> : </para>
+
+<programlisting language="java">public void addExtension(ExpectedExtensionType extension) {
+
+}</programlisting>
+        <para>Or, </para>
+<programlisting language="java">public void addExtension(ExpectedExtensionType extension, Dictionary properties) {
+
+}</programlisting>
+      </listitem>
+
+      <listitem>
+        <para>Annotate this method with <literal>@Link</literal> and give an extension point alias</para>
+<programlisting language="java">@Link("ext")
+public void addExtension(ExpectedExtensionType extension, Dictionary properties) {
+
+}</programlisting>
+      </listitem>
+
+      <listitem>
+        <para>You just produce the extension point <literal>yourClassName.ext</literal></para>
+      </listitem>
+
+      <listitem>
+        <para>Now, all extensions contributing to this extension point will be given as first parameter to
+        <literal>addExtension()</literal> method</para>
+      </listitem>
+
+      <listitem>
+        <para>If you want to be notified when the extension is no longer available, create a public method with the same
+        parameters types as <literal>addExtension()</literal> method and annotate it with <literal>@Unlink("ext")</literal></para>
+<programlisting language="java">@Unlink("ext")
+public void removeExtension(ExpectedExtensionType extension, Dictionary properties) {
+
+}</programlisting>
+      </listitem>
+    </orderedlist>
+  </section>
+
+  <section>
+    <title>Custom Vaadin components libraries</title>
+
+    <para>In Peergreen Web Console API, you can find some useful custom vaadin components :</para>
+
+    <section>
+      <title>Default window</title>
+
+      <para>Default window is a Vaadin Window with a predefined style.</para>
+
+<programlisting language="java">/**
+* Create a default window
+* @param caption window caption
+* @param content window content. Vaadin component
+* @param footerButtons list of buttons in footer
+*/
+public DefaultWindow(String caption, Component content, Button... footerButtons) {
+  // ...
+}</programlisting>
+
+      <para>Here is an example of default window in Home Scope (content of a news) : </para>
+
+      <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="../images/webconsole/defaultWindow.png"/>
+        </imageobject>
+
+        <imageobject role="fo">
+          <imagedata fileref="../images/webconsole/defaultWindow.png"/>
+        </imageobject>
+      </mediaobject>
+    </section>
+
+    <section>
+      <title>Confirm dialog</title>
+
+      <para>Confirm dialog component is a special default window with two footer buttons to confirm action, or not.
+      There is several way to create a confirm dialog window :</para>
+<programlisting language="java">/**
+* Show confirm dialog
+*
+* @param parent   parent UI to attach the confirm dialog window
+* @param listener confirmation listener
+*/
+public static void show(UI parent, Listener listener) {
+
+}
+
+/**
+* Show confirm dialog
+*
+* @param parent   parent UI to attach the confirm dialog window
+* @param content  confirm dialog content
+* @param listener confirmation listener
+*/
+public static void show(UI parent, Component content, Listener listener) {
+
+}
+
+/**
+* Show confirm dialog
+*
+* @param parent        parent UI to attach the confirm dialog window
+* @param windowCaption confirm dialog window caption
+* @param content       confirm dialog content
+* @param okCaption     confirm button caption
+* @param cancelCaption cancel button caption
+* @param listener      confirmation listener
+*/
+public static void show(UI parent, String windowCaption, Component content, String okCaption, String cancelCaption, Listener listener) {
+
+}</programlisting>
+
+      <note><para>If one of <literal>show()</literal> method parameter is null, default value is used.</para>
+      <para>Default values :
+<programlisting language="java">String DEFAULT_CAPTION = "Confirm";
+String DEFAULT_MESSAGE = "Are you sure?";
+String DEFAULT_OK_CAPTION = "Ok";
+String DEFAULT_CANCEL_CAPTION = "Cancel";</programlisting>
+      </para></note>
+
+      <para>Here is an example of confirm dialog in Deployment Scope when trying to deploy a directory : </para>
+      <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="../images/webconsole/confirmDialog.png"/>
+        </imageobject>
+
+        <imageobject role="fo">
+          <imagedata fileref="../images/webconsole/confirmDialog.png"/>
+        </imageobject>
+      </mediaobject>
+    </section>
+
+    <section>
+      <title>Tabbed scope</title>
+
+      <para>You may want to create a tabbed scope and add extension as tab, this is your lucky day, there is a
+      component that does it all for you. Just create a class that extends <literal>com.peergreen.webconsole.vaadin.tabs.TabScope</literal>,
+      add, now usual, extension annotations and create a constructor matching super class. Web Scope is based on <literal>TabScope</literal> : </para>
+
+<programlisting language="java">package com.peergreen.webconsole.scope.web;
+
+import com.peergreen.webconsole.Extension;
+import com.peergreen.webconsole.ExtensionPoint;
+import com.peergreen.webconsole.Scope;
+import com.peergreen.webconsole.vaadin.tabs.TabScope;
+
+/**
+ * @author Mohammed Boukada
+ */
+@Extension
+@ExtensionPoint("com.peergreen.webconsole.scope")
+@Scope(value = "web", iconClass = "icon-at")
+public class WebScope extends TabScope {
+
+  public WebScope() {
+    // Web   : is the default tab caption
+    // false : says that this scope is not navigable
+    super("Web", false);
+  }
+}</programlisting>
+
+
+      <section>
+        <title>@Tab</title>
+
+        <para><literal>@Tab</literal> annotation is a qualifier for tabbed scope. <literal>value</literal> parameter is the tab caption.
+        <literal>iconPath</literal> parameter is the icon shown in default tab. By default, this is the extension tab icon : </para>
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="../images/webconsole/default-module-icon.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="../images/webconsole/default-module-icon.png"/>
+          </imageobject>
+        </mediaobject>
+      </section>
+
+      <section>
+        <title>Default tab</title>
+
+        <para>Default tab is a component which the content is the list of scope's extensions children. They are shown as
+        a clickable icons. When you click on an icon, you will navigate to the corresponding tab.</para>
+
+      </section>
+
+      <section>
+        <title>Listeners</title>
+
+        <para>There two predefined listeners : <literal>CloseTabListener</literal> and <literal>SelectedTabListener</literal></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><literal>CloseTabListener</literal> : remove tab from tabs sheet and add a notification <emphasis role="bold">Warning ! You have closed a tab</emphasis></para>
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata fileref="../images/webconsole/closeTab.png"/>
+              </imageobject>
+
+              <imageobject role="fo">
+                <imagedata fileref="../images/webconsole/closeTab.png"/>
+              </imageobject>
+            </mediaobject>
+          </listitem>
+          <listitem>
+            <para><literal>SelectedTabListener</literal> : useful in case of navigable scope, will update URI fragment on tab selection.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <para>Here is an overview of Web Scope based on <literal>TabScope</literal> : </para>
+
+      <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="../images/webconsole/tabbedScope.png"/>
+        </imageobject>
+
+        <imageobject role="fo">
+          <imagedata fileref="../images/webconsole/tabbedScope.png"
+                  scale="30"/>
+        </imageobject>
+      </mediaobject>
+
+    </section>
+  </section>
+
+  <section>
+    <title>Advanced</title>
+
+    <para>In Peergreen Server runtime, extension object is an <link xlink:href="http://felix.apache.org/documentation/subprojects/apache-felix-ipojo.html">
+    iPOJO</link> component instance. Actually, <literal>@Extension</literal> annotation is a stereotype of <literal>@org.apache.felix.ipojo.annotations.Component</literal>.
+    If you know iPOJO and you would use its <link xlink:href="http://felix.apache.org/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/how-to-use-ipojo-annotations.html">annotations</link>,
+    it is possible inside extension class. </para>
+  </section>
+</chapter>

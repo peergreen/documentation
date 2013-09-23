@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Advanced</title>
+
+  <para>In Peergreen Server runtime, extension object is an <link xlink:href="http://felix.apache.org/documentation/subprojects/apache-felix-ipojo.html">
+    iPOJO</link> component instance. Actually, <literal>@Extension</literal> annotation is a stereotype of <literal>@org.apache.felix.ipojo.annotations.Component</literal>.
+    If you know iPOJO and you would use its <link xlink:href="http://felix.apache.org/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/how-to-use-ipojo-annotations.html">annotations</link>,
+    it is possible inside extension class. </para>
+
+</chapter>

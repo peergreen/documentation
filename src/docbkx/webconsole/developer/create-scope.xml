@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Create new scope</title>
+
+  <para>Scope class is a special extension class annotated with <literal>@Scope</literal> qualifier. Scope class
+    should implements or extends a class that implements <literal>com.vaadin.ui.Component</literal></para>.
+
+  <para>Scope extension point is <literal>com.peergreen.webconsole.scope</literal></para>
+
+<programlisting language="java">@Extension
+@ExtensionPoint("com.peergreen.webconsole.scope")
+@Scope("home")
+public class HomeScope extends VerticalLayout {
+  // home scope body
+}</programlisting>
+
+  <note><para>See <literal>@Scope</literal> section for more details</para></note>
+</chapter>
