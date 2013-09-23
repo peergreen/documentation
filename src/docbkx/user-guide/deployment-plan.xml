@@ -8,6 +8,20 @@
          xmlns:db="http://docbook.org/ns/docbook">
   <title>Deployment plan</title>
 
+  <section>
+    <title>URLs deployment plan</title>
+
+    <para>Peergreen Server supports simple urls file as deployment plan. Just create a file with the extension
+    <literal>.urls</literal>. This file must contains one URL per line and deploy it.</para>
+    <screen>Mohammed@peergreen-platform$ cat myPlan.urls
+
+mvn:/com.peergreen.example.paxexam/paxexam-hello-service/1.0.0
+file:///path/to/my/local/file</screen>
+  </section>
+
+  <section>
+    <title>OW2 JOnAS deployment plan</title>
+
   <para>Peergreen Plaftom supports <link
   xlink:href="http://jonas.ow2.org/JONAS_5_3_0_M7/doc/doc-en/html/deployment-plans_guide.html">JOnAS’s
   deployment plan</link> enabling to deploy in one unit a whole set of
@@ -63,4 +77,5 @@
   &lt;/deployment&gt;
   ...
 &lt;/deployment-plan&gt;</programlisting>
+  </section>
 </chapter>
