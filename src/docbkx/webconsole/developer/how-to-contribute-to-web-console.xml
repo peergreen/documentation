@@ -3,8 +3,11 @@
          xmlns:xlink="http://www.w3.org/1999/xlink">
   <title>How to contribute to Peergreen web console ?</title>
 
-  <para>Thanks to OSGi, Peergreen Web Console is a modular application. You can develop and contribute with
-    an extension to any extension point provided by other extensions. Following sections will detail how
-    to create an extension an contribute to another extension</para>
+  <para>Thanks to OSGi, Peergreen Web Console is a modular application.</para>
+
+  <para>All components inside Peergreen Console are considered as an <emphasis role="bold">extension</emphasis>.</para>
+
+  <para> You can develop and contribute with an extension to any extension point provided by other extensions.
+    Following sections will detail how to create an extension and how to contribute to another extension</para>
 
 </chapter>

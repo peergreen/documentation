@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Peergreen S.A.S. All rights reserved.
+  ~ Proprietary and confidential.
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<chapter version="5.0" xml:id="examples"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Examples</title>
+
+  <para>You can download <link xlink:href="https://forge.peergreen.com/repository/content/repositories/releases/com/peergreen/community/webconsole/peergreen-console-server/1.0.0-M1/peergreen-console-server-1.0.0-M1.zip">Peergreen Console Server</link>,
+  inside <literal>deploy/</literal> directory, you will find example bundles and ConfigAdmin xml file to instantiate a console. </para>
+
+  <para>First, unzip the file : </para>
+  <screen>unzip peergreen-console-server-1.0.0-M1.zip</screen>
+
+  <para>Then, go inside the folder where you unzipped the file and start the server :</para>
+  <screen>cd peergreen-console-server-1.0.0-M1/
+java -jar peergreen-console-server-1.0.0-M1.jar</screen>
+
+  <para>Access to <link xlink:href="http://localhost:9000/example">http://localhost:9000/example</link></para>
+
+  <para>All examples sources are available on GitHub <link xlink:href="https://github.com/peergreen/webconsole">here</link>.</para>
+
+</chapter>

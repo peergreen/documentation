@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Getting started</title>
+  <section>
+    <title>Web console layouts</title>
+
+    <para>Peergreen web console consists of a set of categories called <emphasis>Scopes</emphasis>.
+    Each <emphasis>scope</emphasis> contains a set of extensions</para>
+
+    <note>
+      <para>A scope is also a special extension</para>
+    </note>
+
+    <para>Each web console instance consists of the followings layouts : </para>
+    <para>
+      <orderedlist>
+        <listitem>
+          <para>Console title</para>
+        </listitem>
+
+        <listitem>
+          <para>Sidebar menu / scopes menu</para>
+        </listitem>
+
+        <listitem>
+          <para>User information</para>
+        </listitem>
+
+        <listitem>
+          <para>Scope content</para>
+        </listitem>
+
+        <listitem>
+          <para>Notifications</para>
+        </listitem>
+      </orderedlist>
+    </para>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/user/layouts.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/user/layouts.png"
+                   scale="40"/>
+      </imageobject>
+    </mediaobject>
+  </section>
+
+  <section>
+    <title>Scopes</title>
+    <section>
+      <title>Home</title>
+
+      <para>Home page is divided in 4 panels. Each panel may contains one or more extensions
+        (arrow buttons provides navigation between extensions in the same pane).</para>
+
+      <para>Home page contains the following extensions :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis role="bold">Host properties</emphasis> : System and JVM properties</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">Platform information</emphasis> : Peergreen Server information</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">Deployed artifacts</emphasis> : List of root deployed URIs</para>
+          <note>
+            <para>In case of a deployment plan, only the deployment plan artifact is visible. It is a
+            root artifact.</para>
+          </note>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">End points</emphasis> : List of end points per artifact</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">Peergreen news</emphasis> : Peergreen news feed from <link
+                  xlink:href="http://www.peergreen.com/Blog/News">http://www.peergreen.com/Blog/News</link></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Deployment</title>
+
+      <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="../../images/webconsole/user/deployment.png"/>
+        </imageobject>
+
+        <imageobject role="fo">
+          <imagedata fileref="../../images/webconsole/user/deployment.png"
+                     scale="30"/>
+        </imageobject>
+      </mediaobject>
+
+      <para>
+        Deployment scope contains tools to manipulate artifacts on the host Peergreen Server. Its possible de
+        deploy, undeploy or create a deployment plan in one mouse movement.
+      </para>
+
+      <section>
+        <title>Deployables</title>
+
+        <para>There two kind of deployable : <literal>FILE</literal> and <literal>MAVEN</literal>.</para>
+
+        <para>Both consist on a tree where root elements are declared repositories. There is an OSGi service for
+        each repository that handle its content. To avoid clogging the memory, repository content are loaded on demand
+        when the user click on the tree element and is stored in a cache.</para>
+
+        <note>
+          <para>For maven repositories, at the first click, you should have a confirm dialog window
+          to confirm downloading index files of the repository. These files are required to list the content of
+          a remote maven repository (It is another way to say you have to click on
+          <emphasis role="bold">Download</emphasis> button :-) ).</para>
+        </note>
+
+        <note>
+          <para>During the download, the repository name item in the
+            tree will be suffixed by <emphasis role="bold">[Updating index ...]</emphasis>. When all files are downloaded,
+            repository name is updated and you can browse is normally.</para>
+        </note>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="../../images/webconsole/user/deployables.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="../../images/webconsole/user/deployables.png"
+                       scale="50"/>
+          </imageobject>
+        </mediaobject>
+
+        <para>
+          To edit repositories, click on <emphasis role="bold">edit repositories</emphasis> link. In
+          <emphasis role="bold">manager</emphasis> tab, all declared repositories are listed. Click on <emphasis role="bold">Details</emphasis>
+          link to show more information about the repository.
+        </para>
+      </section>
+
+      <section>
+        <title>Deployed</title>
+
+        <para>In this view, all deployed root artifacts are listed. Double click on an item to show more information
+        about the artifact.</para>
+
+        <note>
+          <para>If errors happens during the deployment, the artifact is paint with red color.</para>
+        </note>
+
+        <para>To deploy or undeploy an artifact, just drag and drop the selected item from a panel to another. When dragging
+        an element from deployables view and dropping it in deployed view, the element will be deployed in the system and
+        vice versa.</para>
+
+        <note>
+          <para>It is possible to drag and drop element from desktop to any panel in deployment view. The action before
+          depends on the target panel (if it is deployed panel, dropped files will be deployed).</para>
+        </note>
+      </section>
+
+      <section>
+        <title>Deployment plan</title>
+
+        <para>Create a deployment plan has never been as easy as on Peergreen Web Console. Just drag element from anywhere
+        (file or maven deployables, deployed artifacts, from desktop) and drop them in deployment plan drop area : </para>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="../../images/webconsole/user/deployment_plan_area.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="../../images/webconsole/user/deployment_plan_area.png"
+                       scale="50"/>
+          </imageobject>
+        </mediaobject>
+
+        <para>When the deployment plan view is opened, continue to drag and drop artifacts (if necessary) on the
+        deployment plan panel to add item to the list. Give a name to your deployment plan and click on
+        <emphasis role="bold">Create</emphasis> button to create an
+          <link xlink:href="http://docs.peergreen.com/peergreen_server/latest/reference/xhtml-single/user-guide.xhtml#deployment-plan">urls deployment plan</link>.</para>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="../../images/webconsole/user/deployment_plan.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="../../images/webconsole/user/deployment_plan.png"
+                       scale="50"/>
+          </imageobject>
+        </mediaobject>
+
+        <note>
+          <para>You can cancel the deployment plan creation and save a draft of what you have already construct. You
+          can back to the draft construction by clicking on <emphasis role="bold">A draft is under construction</emphasis> link.</para>
+        </note>
+
+      </section>
+    </section>
+
+    <section>
+      <title>Logs</title>
+
+      <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="../../images/webconsole/user/logs.png"/>
+        </imageobject>
+
+        <imageobject role="fo">
+          <imagedata fileref="../../images/webconsole/user/logs.png"
+                     scale="30"/>
+        </imageobject>
+      </mediaobject>
+
+      <para>Logs scope contains all log entries registered in the platform. In addition of logs, Peergreen Server
+      is able to catch the streams <literal>System.out</literal> and <literal>System.err</literal> and
+      provides more information about the producer (e.g. timestamp, class name, etc)</para>
+
+      <para>It is possible to filter log entries per JVM system streams <literal>out</literal> and <literal>err</literal>,
+      by <literal>INFO</literal>, <literal>WARNING</literal> and <literal>ERROR</literal> loggers or by typing a string
+      in filter text field.</para>
+    </section>
+
+    <section>
+      <title>System</title>
+
+      <para>The system scope contains extensions able to communicate with the system. System's extensions are : </para>
+      <itemizedlist>
+        <listitem>
+          <para>OSGi Bundles</para>
+        </listitem>
+
+        <listitem>
+          <para>OSGi Services</para>
+        </listitem>
+
+        <listitem>
+          <para>OSGi Shell</para>
+        </listitem>
+      </itemizedlist>
+
+      <section>
+        <title>OSGi Bundles</title>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="../../images/webconsole/user/bundles.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="../../images/webconsole/user/bundles.png"
+                       scale="30"/>
+          </imageobject>
+        </mediaobject>
+
+        <para>
+          In this view, all bundles installed on the OSGi platform are listed. By double clicking on an item,
+          more information about the bundle are shown in a separated tab as exported/imported packages,
+          registered/used services, manifest content, etc :
+        </para>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="../../images/webconsole/user/bundle_details.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="../../images/webconsole/user/bundle_details.png"
+                       scale="40"/>
+          </imageobject>
+        </mediaobject>
+      </section>
+
+      <section>
+        <title>OSGi Services</title>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="../../images/webconsole/user/services.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="../../images/webconsole/user/services.png"
+                       scale="30"/>
+          </imageobject>
+        </mediaobject>
+
+        <para>In this view, all services registered on the OSGi platform are listed. By double clicking on an item,
+        more information about the service are shown in the same line : </para>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="../../images/webconsole/user/service_details.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="../../images/webconsole/user/service_details.png"
+                       scale="40"/>
+          </imageobject>
+        </mediaobject>
+      </section>
+
+      <section>
+        <title>OSGi Shell</title>
+
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="../../images/webconsole/user/shell.png"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="../../images/webconsole/user/shell.png"
+                       scale="30"/>
+          </imageobject>
+        </mediaobject>
+
+        <para>
+          Based on <link xlink:href="http://shelbie.ow2.org/">OW2 Shelbie</link>, Peergreen Shell is now available
+          in the web console. You will find the same set of commands described
+          <link xlink:href="http://docs.peergreen.com/peergreen_server/latest/reference/xhtml-single/user-guide.xhtml#command-reference/">here</link>.
+        </para>
+      </section>
+    </section>
+
+    <section>
+      <title>Web</title>
+
+      <para>
+        You will find Peergreen web site and Peergreen Documentation web site in this scope.
+      </para>
+    </section>
+  </section>
+</chapter>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+<chapter version="5.0" xml:id="deployment-plan"
+         xmlns="http://docbook.org/ns/docbook"
          xmlns:xlink="http://www.w3.org/1999/xlink"
          xmlns:xi="http://www.w3.org/2001/XInclude"
          xmlns:svg="http://www.w3.org/2000/svg"
@@ -12,10 +13,11 @@
     <title>URLs deployment plan</title>
 
     <para>Peergreen Server supports simple urls file as deployment plan. Just create a file with the extension
-    <literal>.urls</literal>. This file must contains one URL per line and deploy it.</para>
+    <literal>.urls</literal>. This file must contains one URL per line and deploy it. (More to read about
+      <link xlink:href="https://ops4j1.jira.com/wiki/display/paxurl/Mvn+Protocol">Maven URLs</link>) </para>
     <screen>Mohammed@peergreen-platform$ cat myPlan.urls
 
-mvn:/com.peergreen.example.paxexam/paxexam-hello-service/1.0.0
+mvn:com.peergreen.example.paxexam/paxexam-hello-service/1.0.0
 file:///path/to/my/local/file</screen>
   </section>
 

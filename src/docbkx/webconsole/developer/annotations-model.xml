@@ -8,6 +8,8 @@
   <section>
     <title>@Extension</title>
 
+    <note><para>This annotation targets types.</para></note>
+
     <para>The <literal>@Extension</literal> annotation define a class as an extension and is combined with
       <literal>@ExtensionPoint</literal>.</para>
   </section>
@@ -15,9 +17,11 @@
   <section>
     <title>@ExtensionPoint</title>
 
+    <note><para>This annotation targets types.</para></note>
+
     <para><literal>@ExtensionPoint</literal> express the extension point (location) of the annotated
-      extension. An extension point is an unique identifier provided by an extension. <literal>@Link</literal>
-      annotation defines an extension point inside an extension (See <literal>@Link</literal> section)</para>
+      extension class. An extension point is an unique identifier provided by an extension. <literal>@Link</literal>
+      annotation defines an extension point inside an extension class (See <literal>@Link</literal> section)</para>
 
     <para>The minimum code for an extension :</para>
 <programlisting  language="java">@Extension
@@ -32,7 +36,7 @@ public class MyExtension extends AnyObject {
 
     <note><para>This annotation targets methods.</para></note>
 
-    <para><literal>@Link</literal> defines an extension point inside an extension. It takes a string as
+    <para><literal>@Link</literal> defines an extension point inside an extension class. It takes a string as
       parameter and the produced extension point id is <literal>className.extensionPointId</literal>. For
       the following example : </para>
 
@@ -52,7 +56,7 @@ public class MyExtension extends AnyObject {
     <para>The produced extension point id is <literal>com.peergreen.example.MyExtension.tab</literal>. </para>
 
     <para>For each extensions contributing to this extension point (annotated by <literal>@ExtensionPoint("com.peergreen.example.MyExtension.tab")</literal>)
-      and implementing/extending <literal>MyTab</literal>, the method <literal>addNewTab</literal> will be called with the extension object as
+      and implementing/extending <literal>MyTab</literal>, the method <literal>addNewTab</literal> will be called with the right object type as
       parameter. </para>
 
     <note><para>The link callback method should be <literal>public</literal></para></note>
@@ -85,7 +89,7 @@ public class MyExtension extends AnyObject {
   }
 }</programlisting>
 
-    <para>Method annotated by <literal>@Unlink</literal> is called when the extension point is no longer available
+    <para>Method annotated by <literal>@Unlink</literal> is called when the contributing extension is no longer available
       (for example: when its bundle is being uninstalled).</para>
 
     <note><para>The unlink callback method should be <literal>public</literal></para></note>
@@ -113,7 +117,7 @@ public class MyExtension extends AnyObject {
 }</programlisting>
 
     <para><literal>@Inject</literal> allows mainly to inject OSGi services objects. It automatically filter the right
-      service for your UI. Other types can be inject with this annotation and are :
+      service for your console and UI. Other types can be inject with this annotation and are :
       <itemizedlist>
         <listitem>
           <para><literal>com.peergreen.webconsole.UIContext</literal></para>
@@ -190,7 +194,7 @@ public class MyExtension extends AnyObject {
 
     <para>Extensions annotated by <literal>@Navigable</literal> are able to use and interpret URI fragments
       (String after <literal>http://localhost:9000/admin/#!/</literal>). Method annotated by <literal>@Navigate</literal>
-      is then called.</para>
+      is then called when URI fragments match extension alias.</para>
 
     <para><literal>@Navigable</literal> takes an alias as parameter. It allows to the parent extension to define
       the next extension to call.</para>
@@ -235,17 +239,17 @@ public Component navigate(NavigationContext context) {
     <note><para>This annotation targets extensions type.</para></note>
 
     <para><literal>@Scope</literal> is a qualifier expressing an extension as a <emphasis role="bold">Scope</emphasis> and will be accessible from
-      side bar menu (see Web Console Layouts section). It takes a <literal>value</literal> parameter corresponding to the scope name and,
-      optionally, an <literal>iconClass</literal> from those <link xlink:href="html/icons.html">icon classes name</link>.
+      side bar menu (see Web Console Layouts section). It takes a <literal>name</literal> parameter corresponding to the scope name,
+      <literal>domains</literal> parameter to define the target console(s) and, optionally, an <literal>iconClass</literal> from those
+      <link xlink:href="html/icons.html">icon classes name</link>.
 
     </para>
 
-    <para>If <literal>iconClass</literal> is not defined, system will try to find a class with the name
-      <emphasis role="bold">icon-[scopeName]</emphasis>. If not found, use the default icon</para>
+    <para>If <literal>iconClass</literal> is not defined, system will use the default icon <literal>icon-th-large</literal></para>
 
 <programlisting language="java">@Extension
 @ExtensionPoint("com.peergreen.webconsole.scope")
-@Scope(value = "web", iconClass = "icon-at")
+@Scope(name = "web", domains = "peergreen.admin", iconClass = "icon-at")
 public class WebScope extends TabScope {
   // web scope body
 }</programlisting>
@@ -254,11 +258,11 @@ public class WebScope extends TabScope {
 
     <mediaobject>
       <imageobject role="html">
-        <imagedata fileref="../images/webconsole/webScope.png"/>
+        <imagedata fileref="../../images/webconsole/developer/webScope.png"/>
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="../images/webconsole/webScope.png"/>
+        <imagedata fileref="../../images/webconsole/developer/webScope.png"/>
       </imageobject>
     </mediaobject>
   </section>
@@ -266,7 +270,7 @@ public class WebScope extends TabScope {
   <section>
     <title>@Qualifier</title>
 
-    <note><para>This annotation targets methods.</para></note>
+    <note><para>This annotation targets annotation types.</para></note>
 
     <para><literal>@Qualifier</literal> is used to define an annotation for configure extensions contributing
       to a special parent extension. It takes a prefix as parameter.</para>

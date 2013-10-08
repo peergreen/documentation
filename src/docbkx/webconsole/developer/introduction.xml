@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Peergreen S.A.S. All rights reserved.
+  ~ Proprietary and confidential.
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Introduction</title>
+
+  <para>Peergreen Console Kernel is a base of modular and dynamic web application based on Vaadin7 and OSGi.
+  See <link xlink:href="http://www.peergreen.com/videos/demoPeergreenWebConsole.swf">the demonstration video</link>
+  to learn how extensions are managed dynamically by Peergreen Console Kernel.</para>
+
+  <para>Go to <link xlink:href="http://www.peergreen.com/Download/Community+Peergreen+Web+Console">download page</link>
+    to get Peergreen Web Console or try <link xlink:href="http://demo.peergreen.com/console">online demo !</link></para>
+
+  <section>
+    <title>Technologies</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">OSGi :</emphasis> "OSGi technology is a set of specifications that defines a dynamic
+          component system for Java. These specifications reduce software complexity by providing a modular architecture
+          for large-scale distributed systems as well as small, embedded applications."
+          <emphasis>[<link xlink:href="http://www.osgi.org/Technology/HomePage">http://www.osgi.org/Technology/HomePage</link>]</emphasis></para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Vaadin :</emphasis> "Vaadin is a web application framework for Rich Internet Applications
+          (RIA). Vaadin features a complete stack that include a robust server-side programming model as well as
+          client-side development tools based on GWT and HTML5"
+          <emphasis>[<link xlink:href="https://vaadin.com/learn">https://vaadin.com/learn</link>]</emphasis></para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">iPOJO :</emphasis> "iPOJO is a service component runtime aiming to simplify OSGi
+          application development. It natively supports ALL the dynamism of OSGi. iPOJO is made to run the modern
+          applications exhibiting modularity and requiring runtime adaption and autonomic behavior."
+          <emphasis>[<link xlink:href="http://felix.apache.org/documentation/subprojects/apache-felix-ipojo.html">http://felix.apache.org/documentation/subprojects/apache-felix-ipojo.html</link>]</emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section>
+    <title>Use cases</title>
+
+    <para>In addition to being the base of Peergreen Administration Console, Peergreen Console Kernel
+    can be used to develop your own console or any business application. Vaadin integration with OSGI
+    allows to have modular and dynamic applications.</para>
+  </section>
+
+  <section>
+    <title>Modularity &amp; dynamism</title>
+
+    <para>Peergreen Console Kernel is an empty console.</para>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/developer/empty_console.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/developer/empty_console.png"
+                   scale="40"/>
+      </imageobject>
+    </mediaobject>
+
+    <para>You can deploy bundles of extensions without shutting down or restart the server neither refresh
+    the web browser. Matching extensions will be added dynamically to console main view.</para>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/developer/new_scope.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/developer/new_scope.png"
+                   scale="60"/>
+      </imageobject>
+    </mediaobject>
+  </section>
+
+  <section>
+    <title>Architecture</title>
+
+    <para>Peergreen Console Kernel allows to create several instances of web console based
+      on the same kernel. Each instance has its own context root and defines a set of domains.
+      This domains will be used to identify which extension goes to which console.</para>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/developer/kernel_architecture.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/developer/kernel_architecture.png"
+                   scale="60"/>
+      </imageobject>
+    </mediaobject>
+  </section>
+</chapter>

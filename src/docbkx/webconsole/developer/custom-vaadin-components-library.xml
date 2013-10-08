@@ -24,11 +24,12 @@ public DefaultWindow(String caption, Component content, Button... footerButtons)
 
     <mediaobject>
       <imageobject role="html">
-        <imagedata fileref="../../images/webconsole/defaultWindow.png"/>
+        <imagedata fileref="../../images/webconsole/developer/defaultWindow.png"/>
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="../../images/webconsole/defaultWindow.png"/>
+        <imagedata fileref="../../images/webconsole/developer/defaultWindow.png"
+                   scale="60"/>
       </imageobject>
     </mediaobject>
   </section>
@@ -84,11 +85,12 @@ String DEFAULT_CANCEL_CAPTION = "Cancel";</programlisting>
     <para>Here is an example of confirm dialog in Deployment Scope when trying to deploy a directory : </para>
     <mediaobject>
       <imageobject role="html">
-        <imagedata fileref="../../images/webconsole/confirmDialog.png"/>
+        <imagedata fileref="../../images/webconsole/developer/confirmDialog.png"/>
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="../../images/webconsole/confirmDialog.png"/>
+        <imagedata fileref="../../images/webconsole/developer/confirmDialog.png"
+                   scale="60"/>
       </imageobject>
     </mediaobject>
   </section>
@@ -122,6 +124,16 @@ public class WebScope extends TabScope {
   }
 }</programlisting>
 
+    <important>
+      <para>If you want use <literal>TabScope</literal> to develop your tabbed scope component, you need to add
+      <literal>instructions.bnd</literal> file under <literal>bnd</literal> folder (see Maven Project Structure chapter)
+      with the content :
+      </para>
+
+      <screen>Import-Package com.peergreen.webconsole.notifier, *</screen>
+
+      <para>See an example <link xlink:href="https://github.com/peergreen/webconsole/blob/master/scope-example/src/main/bnd/instructions.bnd">here</link>.</para>
+    </important>
 
     <section>
       <title>@Tab</title>
@@ -130,11 +142,11 @@ public class WebScope extends TabScope {
         <literal>iconPath</literal> parameter is the icon shown in default tab. By default, this is the extension tab icon : </para>
       <mediaobject>
         <imageobject role="html">
-          <imagedata fileref="../../images/webconsole/default-module-icon.png"/>
+          <imagedata fileref="../../images/webconsole/developer/default-module-icon.png"/>
         </imageobject>
 
         <imageobject role="fo">
-          <imagedata fileref="../../images/webconsole/default-module-icon.png"/>
+          <imagedata fileref="../../images/webconsole/developer/default-module-icon.png"/>
         </imageobject>
       </mediaobject>
     </section>
@@ -157,11 +169,11 @@ public class WebScope extends TabScope {
           <para><literal>CloseTabListener</literal> : remove tab from tabs sheet and add a notification <emphasis role="bold">Warning ! You have closed a tab</emphasis></para>
           <mediaobject>
             <imageobject role="html">
-              <imagedata fileref="../../images/webconsole/closeTab.png"/>
+              <imagedata fileref="../../images/webconsole/developer/closeTab.png"/>
             </imageobject>
 
             <imageobject role="fo">
-              <imagedata fileref="../../images/webconsole/closeTab.png"/>
+              <imagedata fileref="../../images/webconsole/developer/closeTab.png"/>
             </imageobject>
           </mediaobject>
         </listitem>
@@ -175,11 +187,11 @@ public class WebScope extends TabScope {
 
     <mediaobject>
       <imageobject role="html">
-        <imagedata fileref="../../images/webconsole/tabbedScope.png"/>
+        <imagedata fileref="../../images/webconsole/developer/tabbedScope.png"/>
       </imageobject>
 
       <imageobject role="fo">
-        <imagedata fileref="../../images/webconsole/tabbedScope.png"
+        <imagedata fileref="../../images/webconsole/developer/tabbedScope.png"
                    scale="30"/>
       </imageobject>
     </mediaobject>

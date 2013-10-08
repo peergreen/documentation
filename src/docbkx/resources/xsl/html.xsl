@@ -254,8 +254,8 @@
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
-	
-	<!-- Footer -->
+
+  <!-- Footer -->
 	<div class="footer" >
 		<div class='container content'>
 			<div class="row">

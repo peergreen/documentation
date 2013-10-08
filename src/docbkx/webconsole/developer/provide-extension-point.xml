@@ -38,7 +38,7 @@ public void addExtension(ExpectedExtensionType extension, Dictionary properties)
     </listitem>
 
     <listitem>
-      <para>If you want to be notified when the extension is no longer available, create a public method with the same
+      <para>If you want to be notified when the contributing extension is no longer available, create a public method with the same
         parameters types as <literal>addExtension()</literal> method and annotate it with <literal>@Unlink("ext")</literal></para>
 <programlisting language="java">@Unlink("ext")
 public void removeExtension(ExpectedExtensionType extension, Dictionary properties) {

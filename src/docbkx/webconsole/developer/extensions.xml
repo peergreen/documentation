@@ -4,6 +4,139 @@
   <title>Extensions</title>
 
   <para>Extension is the base unit of Peergreen Web Console. It is a Vaadin component with special annotations.</para>
-  <para>The All-in-One Peergreen Web Console Archive you downloaded contains some official extensions but it
-    is possible to add your own extension or extends an existing extension. </para>
+
+  <section>
+    <title>Console architecture</title>
+    <para>The following diagram describes the architecture of Peergreen Administration console : </para>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/developer/console_architecture.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/developer/console_architecture.png"
+                   scale="50"/>
+      </imageobject>
+    </mediaobject>
+
+    <para>The first level of extensions are called <emphasis role="bold">scopes</emphasis> and can be extensible (as Home,
+    Deployment, System and Web) or a single component (as Logs). Each subextension could defines extension point (as
+      Deployable extension in Deployment scope).</para>
+
+    <para>Take the example of Deployment scope : </para>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/developer/deployment_scope.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/developer/deployment_scope.png"
+                   scale="40"/>
+      </imageobject>
+    </mediaobject>
+  </section>
+
+  <section>
+    <title>Maven Project Structure</title>
+
+    <para>Peergreen Console Kernel and Peergreen Control Center Console are build with
+    <link xlink:href="http://maven.apache.org/">maven</link>. The following diagram is
+    the architecture of Peergreen Console Examples maven project : </para>
+
+    <mediaobject>
+      <imageobject role="html">
+        <imagedata fileref="../../images/webconsole/developer/project_architecture.png"/>
+      </imageobject>
+
+      <imageobject role="fo">
+        <imagedata fileref="../../images/webconsole/developer/project_architecture.png"
+                   scale="50"/>
+      </imageobject>
+    </mediaobject>
+
+    <para>Since Peergreen Console Kernel runs on an OSGi framework, extension jar should be a
+    <link xlink:href="http://www.osgi.org/javadoc/r4v43/core/org/osgi/framework/Bundle.html">bundle</link>.
+    For this, use <literal>maven-bundle-plugin</literal> :
+<programlisting language="xml">&lt;properties&gt;
+  &lt;bnd-plugin.attributes&gt;metadata=${basedir}/src/main/bnd/ipojo.xml;use-local-schemas=true&lt;/bnd-plugin.attributes&gt;
+&lt;/properties&gt;
+
+&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+    &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.3.7&lt;/version&gt;
+    &lt;extensions&gt;true&lt;/extensions&gt;
+    &lt;configuration&gt;
+      &lt;instructions&gt;
+        &lt;_include&gt;-src/main/bnd/instructions.bnd&lt;/_include&gt;
+        &lt;_plugin&gt;org.apache.felix.ipojo.bnd.PojoizationPlugin;${bnd-plugin.attributes}&lt;/_plugin&gt;
+      &lt;/instructions&gt;
+    &lt;/configuration&gt;
+    &lt;dependencies&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+        &lt;artifactId&gt;bnd-ipojo-plugin&lt;/artifactId&gt;
+        &lt;version&gt;1.10.1&lt;/version&gt;
+      &lt;/dependency&gt;
+      &lt;!-- Required when parsing iPOJO XML files --&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;xerces&lt;/groupId&gt;
+        &lt;artifactId&gt;xercesImpl&lt;/artifactId&gt;
+        &lt;version&gt;2.10.0&lt;/version&gt;
+      &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;</programlisting>
+    </para>
+
+    <para>Main dependencies you need to create an extension are <literal>web-console-api</literal> and
+    <literal>vaadin-server</literal> : </para>
+
+<programlisting language="xml">&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.peergreen.community.webconsole&lt;/groupId&gt;
+    &lt;artifactId&gt;peergreen-console-api&lt;/artifactId&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.vaadin&lt;/groupId&gt;
+    &lt;artifactId&gt;vaadin-server&lt;/artifactId&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;
+
+&lt;dependencyManagement&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.peergreen.community.webconsole&lt;/groupId&gt;
+      &lt;artifactId&gt;web-console-bom&lt;/artifactId&gt;
+      &lt;version&gt;1.0.0-M1&lt;/version&gt;
+      &lt;type&gt;pom&lt;/type&gt;
+      &lt;scope&gt;import&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
+
+&lt;repositories&gt;
+  &lt;!-- Peergreen repository --&gt;
+  &lt;repository&gt;
+    &lt;id&gt;peergreen&lt;/id&gt;
+    &lt;name&gt;Peergreen Maven2 Repository&lt;/name&gt;
+    &lt;url&gt;https://forge.peergreen.com/repository/content/groups/public/&lt;/url&gt;
+    &lt;releases&gt;
+      &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;/releases&gt;
+    &lt;snapshots&gt;
+      &lt;enabled&gt;false&lt;/enabled&gt;
+    &lt;/snapshots&gt;
+  &lt;/repository&gt;
+&lt;/repositories&gt;
+</programlisting>
+  </section>
+
 </chapter>

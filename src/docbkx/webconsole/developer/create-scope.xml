@@ -3,16 +3,19 @@
          xmlns:xlink="http://www.w3.org/1999/xlink">
   <title>Create new scope</title>
 
-  <para>Scope class is a special extension class annotated with <literal>@Scope</literal> qualifier. Scope class
-    should implements or extends a class that implements <literal>com.vaadin.ui.Component</literal></para>.
+  <para>Scope is a special extension class annotated by <literal>@Scope</literal> qualifier. Scope
+    should implements or extends a class which implements <literal>com.vaadin.ui.Component</literal>.</para>
 
   <para>Scope extension point is <literal>com.peergreen.webconsole.scope</literal></para>
 
+  <para>To define a logo for a scope, see <link xlink:href="html/icons.html">icon classes name</link> and
+  set <literal>iconClass</literal> in <literal>@Scope</literal> to the name of the icon that you like.</para>
+
 <programlisting language="java">@Extension
 @ExtensionPoint("com.peergreen.webconsole.scope")
-@Scope("home")
-public class HomeScope extends VerticalLayout {
-  // home scope body
+@Scope(name = "myscope", domains="example")
+public class MyScope extends VerticalLayout {
+  // my scope body
 }</programlisting>
 
   <note><para>See <literal>@Scope</literal> section for more details</para></note>

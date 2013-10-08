@@ -32,7 +32,7 @@
     <guide.name>*-guide.xml</guide.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <peergreenServerVersion>1.0.0-M3</peergreenServerVersion>
-    <peergreenWebConsoleVersion>1.0.0-SNAPSHOT</peergreenWebConsoleVersion>
+    <peergreenWebConsoleVersion>1.0.0-M1</peergreenWebConsoleVersion>
   </properties>
 
 
@@ -78,6 +78,27 @@
           <locale>en,US</locale>
           <pattern>MMM d, Y</pattern>
         </configuration>
+      </plugin>
+
+      <!-- License header check -->
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>${apache-rat-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>legal</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <excludes>
+                <exclude>src/**</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>

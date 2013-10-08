@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Peergreen S.A.S. All rights reserved.
+  ~ Proprietary and confidential.
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<chapter version="5.0" xml:id="security"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Security</title>
+
+
+  <para>In production mode, security is always enabled.</para>
+  <para>In development mode, you can choose to skip authentication and define a default user with default roles
+    or enable security too.</para>
+
+  <section>
+    <title>Authenticate service</title>
+
+    <para>To enable security, set <literal>security.service.pid</literal> in config admin xml file to
+      the pid of the wanted security service. Peergreen Console Kernel provides a simple security service with the pid
+      <literal>com.peergreen.webconsole.security.simple.internal.SimpleAuthenticateService</literal></para>
+
+    <para>You can create you own security service by providing a service with the interface
+      <literal>com.peergreen.webconsole.security.AuthenticateService</literal></para>
+
+    <note>
+      <para>Peergreen Server provides a security service using Peergreen Security API. To use it, set
+        <literal>security.service.pid</literal> to <literal>com.peergreen.webconsole.security.base.internal.BaseAuthenticateService</literal></para>
+    </note>
+  </section>
+
+  <section>
+    <title>Roles management</title>
+
+    <para>You can adapt the console view according to the logged in user roles. If you want to enable an extension
+    for special roles, annotate your extension with <literal>@javax.annotation.security.RolesAllowed</literal> :</para>
+<programlisting language="java">@Extension
+@ExtensionPoint("com.peergreen.webconsole.scope")
+@Scope(name = "myscope", domains="example")
+@RolesAllowed("admin")
+public class MyScope extends VerticalLayout {
+  // my scope body
+}</programlisting>
+
+    <para>In this case, <literal>MyScope</literal> will be shown only for users who have <literal>admin</literal> role.</para>
+
+    <para>You may want to show an extension for all but adapt the content according to the logged in user roles. Use
+    <literal>ISecurityManager</literal> methods : </para>
+
+<programlisting language="java">public interface ISecurityManager {
+
+/**
+ * Whether the logged in user has the role
+ *
+ * @param role given role
+ * @return True if user has the given role, false otherwise.
+ */
+boolean isUserInRole(String role);
+
+/**
+ * Whether the logged in user has the roles
+ *
+ * @param roles given roles
+ * @return True if user has the given roles, false otherwise.
+ */
+boolean isUserInRoles(List&lt;String&gt; roles);</programlisting>
+
+    <para>An instance of <literal>ISecurityManager</literal> is created by session. To got it, use : </para>
+
+<programlisting language="java">@Extension
+@ExtensionPoint("com.peergreen.webconsole.scope")
+@Scope(name = "myscope", domains="example")
+public class MyScope extends VerticalLayout {
+
+  @Inject
+  private ISecurityManager securityManager;
+
+  @PostConstruct
+  public void init() {
+    if (securityManager.isUserInRole("admin") {
+      addComponent(new Label("Hello admin"));
+      addComponent(new Button("Only admins can see this button"));
+    } else {
+      addComponent(new Label("Sorry, I have nothing for you"));
+    }
+  }
+
+}</programlisting>
+
+  </section>
+
+</chapter>

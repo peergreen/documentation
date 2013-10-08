@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Peergreen S.A.S. All rights reserved.
+  ~ Proprietary and confidential.
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Create a Peergreen Web Console Instance</title>
+
+  <para>To create an instance of the web console, use config admin xml file.
+    Community edition allows to create web consoles with or without authentication system.
+    In development mode, it is often valuable to avoid unnecessary maneuvers and directly
+    see the results of our developments :-). The following config admin file will
+    create an instance of console with authentication (<literal>/admin</literal>) and
+    another instance without authentication (<literal>/development</literal>):</para>
+
+  <programlisting language="xml">&lt;configadmin xmlns="http://jonas.ow2.org/ns/configadmin/1.0"&gt;
+
+    &lt;factory-configuration pid="com.peergreen.webconsole.development" xml:id="development-mode"&gt;
+      &lt;property name="console.name"&gt;Development Web Console&lt;/property&gt;
+      &lt;property name="console.alias"&gt;/development&lt;/property&gt;
+      &lt;property name="console.domains"&gt;development&lt;/property&gt;
+      &lt;property name="default.roles"&gt;developer&lt;/property&gt;
+    &lt;/factory-configuration&gt;
+
+    &lt;factory-configuration pid="com.peergreen.webconsole.development" xml:id="admin-mode"&gt;
+      &lt;property name="console.name"&gt;Secured Web Console&lt;/property&gt;
+      &lt;property name="console.alias"&gt;/admin&lt;/property&gt;
+      &lt;property name="console.domains"&gt;admin&lt;/property&gt;
+      &lt;property name="security.service.pid"&gt;com.peergreen.webconsole.security.simple.internal.SimpleAuthenticateService&lt;/property&gt;
+    &lt;/factory-configuration&gt;
+
+&lt;/configadmin&gt;</programlisting>
+
+  <para><literal>console.name</literal> is the console title</para>
+  <para><literal>console.alias</literal> is the console context root. Should be unique per instance of Peergreen Console.</para>
+  <para><literal>console.domains</literal> defines set of console domains. Extension (scopes) which target one of these domain
+  will be added to the console. Domains allows isolation between instances of Peergreen Console above the same Peergreen Console Kernel.</para>
+  <para><literal>security.console.pid</literal> defines which security service to use. (Usually, its class name)</para>
+  <para><literal>default.roles</literal> is used only for Development Mode. Defines roles for the default user if security is not enabled.</para>
+
+  <note>
+    <para>To use Peergreen Security System, set <literal>security.service.pid</literal> property to
+    <literal>com.peergreen.webconsole.security.base.internal.BaseAuthenticateService</literal></para>
+  </note>
+
+</chapter>

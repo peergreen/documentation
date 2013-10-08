@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Installation</title>
+
+  <para>Peergreen Control Center Console standalone version could be downloaded from
+  <link xlink:href="https://forge.peergreen.com/repository/content/repositories/releases/com/peergreen/community/webconsole/peergreen-control-point-server/1.0.0-M1/peergreen-control-point-server-1.0.0-M1.jar">here</link>.
+  This archive includes a Peergreen Server Tomcat Profile.</para>
+
+  <para>If you already installed a Peergreen Server, download <link xlink:href="https://forge.peergreen.com/repository/content/repositories/releases/com/peergreen/community/webconsole/peergreen-console-kernel/1.0.0-M1/peergreen-console-kernel-1.0.0-M1.jar">Peergreen Console Kernel</link>
+  and <link xlink:href="https://forge.peergreen.com/repository/content/repositories/releases/com/peergreen/community/webconsole/peergreen-control-center-console/1.0.0-M1/peergreen-control-center-console-1.0.0-M1.jar">Peergreen Control Center Console</link>
+  and copy them inside <literal>deploy/</literal> directory where your Peergreen Server is running.</para>
+
+  <para>Visit <link xlink:href="http://www.peergreen.com/Download/Community+Peergreen+Web+Console">Peergreen Web Console download page</link> for more information.</para>
+
+  <para>Now, Peergreen web console is well installed. You can check by typing
+  <literal>lb</literal> command in server shell and see that the bundle was
+  correctly installed :</para>
+
+  <screen>admin@peergreen-platform$ lb
+
+...
+45|Active     |    1|Peergreen Console Kernel (1.0.0.SNAPSHOT)
+46|Active     |    1|Peergreen Control Center Console (1.0.0.SNAPSHOT)
+...</screen>
+
+  <para>Peergreen Control Center Console is available under the context <literal>/admin</literal>.
+  Go to your favorite web browser and type <literal><link xlink:href="http://localhost:9000/admin">http://localhost:9000/admin</link>
+  </literal>.</para>
+
+  <mediaobject>
+    <imageobject role="html">
+      <imagedata fileref="../../images/webconsole/user/unsecured.png"/>
+    </imageobject>
+
+    <imageobject role="fo">
+      <imagedata fileref="../../images/webconsole/user/unsecured.png" scale="30"/>
+    </imageobject>
+  </mediaobject>
+</chapter>
+
+
+

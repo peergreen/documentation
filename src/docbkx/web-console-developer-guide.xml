@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<book version="5.0" xml:id="web-console-guide"
+<book version="5.0" xml:id="web-console-developer-guide"
       xmlns="http://docbook.org/ns/docbook"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xmlns:xi="http://www.w3.org/2001/XInclude">
   <info>
-    <title>Peergreen Web Console</title>
+    <title>Peergreen Console Kernel Developer Guide</title>
 
     <productname>Peergreen Web Console</productname>
 
@@ -44,9 +42,8 @@
     </legalnotice>
   </info>
 
-  <xi:include href="webconsole/introduction.xml"/>
-  <xi:include href="webconsole/installation.xml"/>
-  <xi:include href="webconsole/getting-started.xml"/>
+  <xi:include href="webconsole/developer/introduction.xml"/>
+  <xi:include href="webconsole/developer/create-console-instance.xml"/>
   <xi:include href="webconsole/developer/how-to-contribute-to-web-console.xml"/>
   <xi:include href="webconsole/developer/extensions.xml"/>
   <xi:include href="webconsole/developer/annotations-model.xml"/>
@@ -54,5 +51,7 @@
   <xi:include href="webconsole/developer/contribute-to-an-extension.xml"/>
   <xi:include href="webconsole/developer/provide-extension-point.xml"/>
   <xi:include href="webconsole/developer/custom-vaadin-components-library.xml"/>
+  <xi:include href="webconsole/developer/security.xml"/>
+  <xi:include href="webconsole/developer/examples.xml"/>
   <xi:include href="webconsole/developer/advanced.xml"/>
 </book>

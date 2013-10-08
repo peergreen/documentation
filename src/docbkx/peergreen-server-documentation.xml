@@ -9,6 +9,16 @@
     <!--<label>Web Console</label>-->
     <!--<name>webconsole-guide.xml</name>-->
   <!--</file>-->
+  <set label="Web Console">
+    <file id="web-console-user-guide">
+      <label>User guide</label>
+      <name>web-console-user-guide.xml</name>
+    </file>
+    <file id="web-console-developer-guide">
+      <label>Developer guide</label>
+      <name>web-console-developer-guide.xml</name>
+    </file>
+  </set>
 
 	<set label="Tutorials">
 		<file id="pg-eclipse-plugin">
