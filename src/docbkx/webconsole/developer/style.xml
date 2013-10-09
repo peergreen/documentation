@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Peergreen S.A.S. All rights reserved.
+  ~ Proprietary and confidential.
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<chapter version="5.0" xml:id="style"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Contribute to style</title>
+
+  <para>You can add your own CSS code to your extension. To do that, there is two possibilities : </para>
+  <orderedlist>
+    <listitem>
+      <para>Use <literal>com.peergreen.webconsole.resource.CssInjectorService</literal>.
+      You can inject a String of CSS code : </para>
+<programlisting language="java">@Inject
+private CssInjectorService cssInjectorService;
+private CssHandle handle;
+
+@PostConstruct
+public void init() {
+  // ...
+  this.handle = cssInjectorService.inject(".myClass {font-color : red;}");
+  // ...
+}
+
+@PreDestroy
+public void stop() {
+  // ...
+  this.handle.remove();
+  // ...
+
+}</programlisting>
+
+      <para>Or inject an input stream if a CSS content <literal>style.css</literal>: </para>
+<programlisting language="css">.myClass {
+  font-family : Arial;
+  border : 1px;
+  margin : 5px;
+}
+</programlisting>
+<programlisting language="java">this.handle = cssInjectorService.inject(new FileInputStream("path/to/style.css"));</programlisting>
+      <note>
+        <para>In case of a separated CSS file, prefer the second option</para>
+      </note>
+    </listitem>
+
+    <listitem>
+      <para> Create a separated CSS file inside <literal>resources/css/</literal>. The package <literal>css</literal>
+      should be root in the produced jar file.</para>
+    </listitem>
+  </orderedlist>
+
+  <para>To add <literal>myClass</literal> to your vaadin component use : </para>
+<programlisting language="java">vaadinComponent.addStyleName("myClass");</programlisting>
+
+  <note>
+    <para>May be your CSS code is ignored by the web browser and it use other classes. If you want to prioritize your
+    CSS code, add <literal>!important</literal> at the end of the wanted property :
+<programlisting language="css">.myClass {
+  font-family : Arial !important;
+  border : 1px;
+  margin : 5px;
+  }
+</programlisting>
+    </para>
+  </note>
+</chapter>

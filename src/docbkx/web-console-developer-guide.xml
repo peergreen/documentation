@@ -51,6 +51,7 @@
   <xi:include href="webconsole/developer/contribute-to-an-extension.xml"/>
   <xi:include href="webconsole/developer/provide-extension-point.xml"/>
   <xi:include href="webconsole/developer/custom-vaadin-components-library.xml"/>
+  <xi:include href="webconsole/developer/style.xml"/>
   <xi:include href="webconsole/developer/security.xml"/>
   <xi:include href="webconsole/developer/examples.xml"/>
   <xi:include href="webconsole/developer/advanced.xml"/>
