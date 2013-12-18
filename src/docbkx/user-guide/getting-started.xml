@@ -485,11 +485,14 @@ START LEVEL 1
   <section>
     <title>Logging</title>
 
-    <para>Standard and error outputs are redirected into files under the
-    <emphasis>&lt;your-dir&gt;/peergreen/logs</emphasis> directory :</para>
+    <para>Standard, error and java.util logs outputs are redirected into files
+    under the <emphasis>&lt;your-dir&gt;/peergreen/logs</emphasis> directory
+    :</para>
 
     <screen><prompt>system.out
-system.err</prompt></screen>
+system.err
+system.log
+</prompt></screen>
   </section>
 
   <section>

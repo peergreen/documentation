@@ -96,9 +96,10 @@
     <section>
       <title>OSGi</title>
 
-      <para>A org.osgi.service.jdbc.DataSourceFactory service is available
-      when enabling H2. This allows to create Datasource or XADatsource in
-      OSGi world.</para>
+      <para>A <link
+      xlink:href="http://www.osgi.org/javadoc/r4v42/org/osgi/service/jdbc/DataSourceFactory.html">org.osgi.service.jdbc.DataSourceFactory</link>
+      service is available when enabling H2. This allows to create Datasource
+      or XADatsource in OSGi world.</para>
     </section>
   </section>
 
