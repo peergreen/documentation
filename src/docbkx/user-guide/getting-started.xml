@@ -104,6 +104,10 @@
           </listitem>
 
           <listitem>
+            <para>JDBC 4 for efficient database access</para>
+          </listitem>
+
+          <listitem>
             <para>H2 java database</para>
           </listitem>
         </itemizedlist>
